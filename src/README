@@ -1,0 +1,17 @@
+The custom theme (variables.less + bootswatch.less) is a hybrid between the default
+'flatly' and 'yeti' themes. The flatly files were taken as a basis and some sections
+were replaced with their yeti counterparts.
+
+To compile the LESS files into CSS:
+
+1. Download Bootswatch:
+
+   git clone git@github.com:thomaspark/bootswatch.git
+
+2. Install lessc:
+
+   npm install lessc
+
+3. Compile the combined LESS files into CSS:
+
+   npx lessc -x combined.less ../css/bootstrap-mkdocs.min.css

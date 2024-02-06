@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="/img/openfpm.png">
+        <meta name="keywords" content="Particle Methods Library,Particle Methods Code,Particle Methods C++,SPH C++,DC-PSE C++,Active Matter C++,Molecular Dynamics C++,Sparse Grid C++">
+<!--	<title></title>  -->
+        <title>OpenFPM - C++ framework for parallel particle-mesh codes</title>
+
+        <link href="./css/bootstrap-mkdocs.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="./css/highlight.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://openfpm.mpi-cbg.de/">OpenFPM</a>
+        </div>
+
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li >
+                                 <a href="vector-example/">Vector</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li >
+                                 <a href="building/">Build from source</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="docker/">Docker</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/">Doxygen</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li >
+                                 <a href="news/">News</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="videos/">Videos</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="hackathon23/">Hackathon 2022/2023</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="hackathon24/">Hackathon 2023/2024</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="about/">Cite us</a>
+                </li>
+            
+            
+            
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="download/">Download</a>
+                </li>
+            
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li>
+                    <a href="https://github.com/mosaic-group/openfpm_pdata/">
+                        
+                            <i class="fa fa-github-square"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+            
+            
+
+<div class="col-md-5">
+<p><img alt="" src="img/OpenFPM.png" />
+OpenFPM is a scalable open framework for <em>particle</em> and <em>particle-mesh</em> codes on parallel computers.</p>
+<p><strong>Important Announcements</strong>: OpenFPM annual <a href="hackathon24/">hackathon</a> in Spring 2024!</p>
+</div>
+<div class="col-md-7">
+<h2 id="features">Features</h2>
+<ul>
+<li>Scalable serial and parallel data structures for heterogeneous computing systems available CPU and GPU-accelerated hardware</li>
+<li>Operators for particle methods linear differential discretization, e.g. DC-PSE, <a href="vector-example/">SPH</a></li>
+<li>Particle-mesh and mesh-particle interpolation schemes</li>
+<li>Data structures for efficient particle methods simulations, e.g. <a href="vector-example/#ex2">Cell-List, Verlet-List</a>, for efficient item-based, e.g. <a href="vector-example/#ex6">Lennard-Jones molecular dynamics</a>, and continuous simulations</li>
+<li>Sparse grid on CPU and GPU</li>
+<li>Support for <a href="https://petsc.org/">PETSc</a>, <a href="https://eigen.tuxfamily.org/index.php">Eigen</a> linear algebra backends</li>
+<li>Support for ODE integration operators with <a href="https://www.boost.org/doc/libs/1_82_0/libs/numeric/odeint/doc/html/index.html">Boost.Numeric.Odeint</a></li>
+<li>Level-set formulation with <a href="https://algoim.github.io">Algoim</a></li>
+<li>GPU execution backends include <a href="https://developer.nvidia.com/cuda-toolkit">CUDA</a>, <a href="https://rocm.docs.amd.com/projects/HIP/en/latest/">HIP</a>, <a href="https://www.openmp.org/">OpenMP</a> </li>
+<li>... and many others</li>
+</ul>
+</div>
+<div class="col-md-12">
+<hr />
+</div>
+<div class="col-md-5">
+<h2 id="contact">Contact</h2>
+<p>Use the GitHub <a href="https://github.com/mosaic-group/openfpm_pdata/issues">issue tracker</a>
+to report bugs/questions/comments. 
+See the <a href="about/">Cite us</a> page for the citation information.</p>
+</div>
+<div class="col-md-7">
+<h2 id="documentation">Documentation</h2>
+<p><a href="building/">Building from source</a>
+┊ <a href="docker/">Using Docker</a>
+┊ <a href="vector-example/">Examples</a>
+┊ <a href="videos/">Videos</a>
+┊ <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/">Doxygen</a></p>
+</div>
+<div class="col-md-12">
+<h2 id="selected-simulations">Selected simulations</h2>
+<p>OpenFPM is used in many projects, please see some of the simulation samples below. Other examples are available in the <a href="vector-example/">Example section</a>.</p>
+</div>
+<div class="col-md-12 bottom"></div>
+
+<p><br>
+<center></p>
+<div class="col-md-5">
+<p><img alt="" src="img/gallery/sparse_grid_level_set.png" /></p>
+<p><em><a href="https://www.sciencedirect.com/science/article/pii/S1877750323001783">Diffusive heat conduction</a> with distributed surface sink in a sample of reticulate porous ceramics. Reconstruction of the solid phase represented as a sparse-grid level set</em></p>
+<hr />
+<p><img alt="" src="img/gallery/gs_alpha.png" /></p>
+<p><em><a href="vector-example/">Visualization</a> of the OpenFPM-simulation of one of steady-state patterns produced by the Gray-Scott reaction-system in 3D.</em></p>
+<hr />
+</div>
+<div class="col-md-7">
+<p><img alt="" src="img/gallery/dam_break.png" /></p>
+<p><em><a href="https://onlinelibrary.wiley.com/doi/10.1002/cpe.7870">Dam-break simulation</a> of weakly compressible Navier-Stokes equations in SPH formulation. The ﬁgure shows a density iso-surface
+indicating the ﬂuid surface with color indicating the ﬂuid velocity magnitude. The simulation domain is split into 4 subdomains run on 4 processors.</em></p>
+<hr />
+<p><img alt="" src="img/gallery/active_fluid.png" /></p>
+<p><em>Fully developed bent coherent angular motion of an <a href="https://pubs.aip.org/aip/pof/article/35/10/105155/2919100/A-numerical-solver-for-active-hydrodynamics-in">active fluid</a> in a 3D annular domain with visualized polarity (top) and velocity (bottom) streamlines.</em></p>
+<hr />
+<p><img alt="" src="img/gallery/vortex_ring.png" /></p>
+<p><em>OpenFPM <a href="vector-example/">simulation</a> of a vortex ring at with 256 million particles on 3072 processors using a hybrid particle-mesh Vortex Method to solve the incompressible Navier-Stokes equations</em></p>
+<hr />
+<!-- [![](img/gallery/workshop23/MBBBeam2D.png)](img/gallery/workshop23/MBBBeam2D.mp4) -->
+<!-- 
+[🎬](img/gallery/workshop23/MBBBeam2D.mp4)
+*Topology optimization with [conformal meshes](https://computing.llnl.gov/projects/ethos-enabling-technologies-high-order-simulations) to maximize beam stiffness under a downward force on the right wall. Image courtesy of Ketan Mittal and Mathias Schmidt, as part of the 2023 MFEM Workshop Visualization Contest.*
+ -->
+<!-- ---- -->
+
+</div>
+<p></center></p>
+
+            
+        </div>
+        
+
+        <footer class="footer">
+           <div class="container">
+              <p class="text-muted alignleft">
+                  Developed by <a href = "mailto: yaskovet@mpi-cbg.de">Serhii Yaskovets</a> at
+                  <a href="https://tu-dresden.de/ing/informatik/ki/wr">TUD</a>,
+                  <a href="https://www.mpi-cbg.de/research/researchgroups/currentgroups/ivo-sbalzarini/group-members">MPI-CBG</a></p>
+           </div>
+        </footer>
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script src="./js/base.js"></script>
+        <script src="./js/retina.min.js"></script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="search/main.js"></script>
+    </body>
+</html>

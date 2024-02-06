@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="/img/openfpm.png">
+        <meta name="keywords" content="Particle Methods Library,Particle Methods Code,Particle Methods C++,SPH C++,DC-PSE C++,Active Matter C++,Molecular Dynamics C++,Sparse Grid C++">
+<!--	<title></title>  -->
+        <title>OpenFPM - C++ framework for parallel particle-mesh codes</title>
+
+        <link href="../css/bootstrap-mkdocs.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/highlight.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://openfpm.mpi-cbg.de/">OpenFPM</a>
+        </div>
+
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li class="active">
+                                 <a href="./">Vector</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li >
+                                 <a href="../building/">Build from source</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="../docker/">Docker</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/">Doxygen</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+                            <li >
+                                 <a href="../news/">News</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="../videos/">Videos</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="../hackathon23/">Hackathon 2022/2023</a>
+                            </li>
+                        
+                    
+                        
+                            <li >
+                                 <a href="../hackathon24/">Hackathon 2023/2024</a>
+                            </li>
+                        
+                    
+                    </ul>
+                </li>
+            
+            
+            
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="../about/">Cite us</a>
+                </li>
+            
+            
+            
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="../download/">Download</a>
+                </li>
+            
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li>
+                    <a href="https://github.com/mosaic-group/openfpm_pdata/">
+                        
+                            <i class="fa fa-github-square"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+            
+            <div class="col-md-3 visible-xs visible-sm"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#vector-0-simple-vector-initialization">Vector 0: Simple vector initialization</a></li>
+        
+    
+        <li class="main "><a href="#example-1-vector-ghost-layer">Example 1: Vector Ghost layer</a></li>
+        
+    
+        <li class="main "><a href="#example-2-cell-lists-and-verlet-lists">Example 2: Cell-lists and Verlet-lists</a></li>
+        
+    
+        <li class="main "><a href="#example-3-gpu-vector">Example 3: GPU vector</a></li>
+        
+    
+        <li class="main "><a href="#example-4-hdf5-save-and-load">Example 4: HDF5 Save and load</a></li>
+        
+    
+        <li class="main "><a href="#example-5-vector-expressions">Example 5: Vector expressions</a></li>
+        
+    
+        <li class="main "><a href="#example-6-molecular-dynamics-with-lennard-jones-potential-cell-list">Example 6: Molecular Dynamics with Lennard-Jones potential (Cell-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-7-molecular-dynamics-with-lennard-jones-potential-verlet-list">Example 7: Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-15-molecular-dynamics-with-lennard-jones-potential-symmetric-verlet-list">Example 15: Molecular Dynamics with Lennard-Jones potential (Symmetric Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-16-molecular-dynamics-with-lennard-jones-potential-symmetric-crs-verlet-list">Example 16: Molecular Dynamics with Lennard-Jones potential (Symmetric CRS Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-8-molecular-dynamics-with-lennard-jones-potential-gpu">Example 8: Molecular Dynamics with Lennard-Jones potential (GPU)</a></li>
+        
+    
+        <li class="main "><a href="#example-9-molecular-dynamics-with-lennard-jones-potential-gpu-optimized">Example 9: Molecular Dynamics with Lennard-Jones potential (GPU optimized)</a></li>
+        
+    
+        <li class="main "><a href="#example-10-molecular-dynamics-with-lennard-jones-potential-particle-reordering">Example 10: Molecular Dynamics with Lennard-Jones potential (Particle reordering)</a></li>
+        
+    
+        <li class="main "><a href="#example-11-molecular-dynamics-with-lennard-jones-potential-cell-list-reordering">Example 11: Molecular Dynamics with Lennard-Jones potential (Cell-list reordering)</a></li>
+        
+    
+        <li class="main "><a href="#example-12-complex-properties-in-vector-1">Example 12: Complex properties in Vector 1</a></li>
+        
+    
+        <li class="main "><a href="#example-13-complex-properties-in-vector-2">Example 13: Complex properties in Vector 2</a></li>
+        
+    
+        <li class="main "><a href="#example-14-multiphase-cell-lists-and-verlet-lists">Example 14: Multiphase Cell-lists and Verlet-lists</a></li>
+        
+    
+    
+    </ul>
+</div>
+
+<!-- Developer notes:
+  See the MkDocs documentation in https://www.mkdocs.org/dev-guide/themes/#page
+  and the Jinja2 template API in https://tedboy.github.io/jinja2/index.html
+--></div> <!-- toc on top on mobile -->
+            <div class="col-md-9" role="main">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+</script>
+
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<p>For detailed documentation of the OpenFPM sources, including the examples, see the
+<a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/">online Doxygen documentation</a>.</p>
+<div id="ex0">
+<h2 id="vector-0-simple-vector-initialization">Vector 0: Simple vector initialization</h2>
+<p>This example show several basic functionalities of the distributed vector <code>vector_dist</code>. 
+The distributed vector is a set of particles in an N-dimensional space.
+In this example it is shown how to:</p>
+<ul>
+<li>Initialize the library</li>
+<li>Create a Box that defines the domain</li>
+<li>An array that defines the boundary conditions</li>
+<li>A Ghost object that will define the extension of the ghost part in physical units</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/0_simple/main.cpp">Vector/0_simple/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_0_simple.html">Vector_0_simple</a></em>.</p>
+<p>See also our video lectures dedicated to this topic <a href="http://ppmcore.mpi-cbg.de/upload/video/Lesson1-1.mp4">Video 1</a>, <a href="http://ppmcore.mpi-cbg.de/upload/video/Lesson1-2.mp4">Video 2</a>
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex1">
+<p><img class="floatright" src="http://ppmcore.mpi-cbg.de/web/images/examples/after_ghost_get.jpg" style="width: 300px; height: 300px;"></p>
+<h2 id="example-1-vector-ghost-layer">Example 1: Vector Ghost layer</h2>
+<p>This example shows the properties of <code>ghost_get</code> and <code>ghost_put</code> - functions 
+that synchronize the ghosts layer for a distributed vector <code>vector_dist</code>.</p>
+<p>In this example it is shown how to:</p>
+<ul>
+<li>Iterate <code>vector_dist</code> via <code>getDomainIterator</code> </li>
+<li>Redistribute the particles in <code>vector_dist</code> according to the underlying domain decomposition via <code>map</code></li>
+<li>Synchronize the ghost layers in the standard way</li>
+<li><code>NO_POSITION</code>, <code>KEEP_PROPERTIES</code> and <code>SKIP_LABELLING</code> options of the <code>ghost_get</code> function</li>
+<li>Propagate the data from ghost to non-ghost particles via <code>ghost_put</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_ghost_get_put/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_ghost_get.html">Vector_1_ghost_get</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex2">
+<h2 id="example-2-cell-lists-and-verlet-lists">Example 2: Cell-lists and Verlet-lists</h2>
+<p>This example shows the properties of <code>ghost_get</code> and <code>ghost_put</code> - functions 
+that synchronize the ghosts layer for a distributed vector <code>vector_dist</code>.</p>
+<p>Key points:</p>
+<ul>
+<li>How to utilize the grid iterator <code>getGridIterator</code>, to create a grid-like particle domain</li>
+<li>Two principal types of fast neighbor lists: cell-list <code>getCellList</code> and Verlet-list <code>getVerlet</code> for a distributed vector <code>vector_dist</code></li>
+<li><code>CELL_MEMFAST</code>, <code>CELL_MEMBAL</code> and <code>CELL_MEMMW</code> variations of the cell-list, with different memory requirements and computations costs</li>
+<li>Iterating through the neighboring particles via <code>getNNIterator</code> of cell-list and Verlet-list</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_celllist/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_celllist.html">Vector_1_celllist</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex3">
+<p><img class="floatright" src="../img/examples/1_gpu_first_step.png" style="width: 300px; height: 300px;"></p>
+<h2 id="example-3-gpu-vector">Example 3: GPU vector</h2>
+<p>This example shows how to create a vector data-structure with <code>vector_dist_gpu</code> to access a <code>vector_dist</code>-alike data structure from GPU accelerated computing code.</p>
+<p>Key points:</p>
+<ul>
+<li>How to convert the source code from using <code>vector_dist</code> to <code>vector_dist_gpu</code> and how it influences the memory layout of the data structure</li>
+<li>Oflloading particle position <code>hostToDevicePos</code> and particle property <code>hostToDeviceProp</code> data from CPU to GPU</li>
+<li>Lanuching a CUDA-like kernel with <code>CUDA_LAUNCH</code> and automatic subdivision of a computation loop into workgroups/threads via <code>getDomainIteratorGPU</code> or manually specifying the number of workgroups and the number of threads in a workgroup</li>
+<li>Passing the data-structures to a CUDA-like kernel code via <code>toKernel</code></li>
+<li>How to use <code>map</code> with the option <code>RUN_DEVICE</code> to redistribute the particles directly on GPU, and <code>ghost_get</code> with <code>RUN_DEVICE</code> option to fill ghost particles directly on GPU</li>
+<li>How to detect and utilize RDMA on GPU to get the support of CUDA-aware MPI implementation to work directly with device pointers in communication subroutines</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_gpu_first_step/main.cpp">Vector/1_gpu_first_step/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_gpu_first_step.html">Vector_1_gpu_first_step</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex4">
+<h2 id="example-4-hdf5-save-and-load">Example 4: HDF5 Save and load</h2>
+<p>This example show how to save and load a vector to/from the parallel file format HDF5.</p>
+<p>Key points:</p>
+<ul>
+<li>How to save the position/property information of the particles <code>vector_dist</code> into an <em>.hdf5</em> file via <code>save</code></li>
+<li>How to load the position/property information of the particles <code>vector_dist</code> from an <em>.hdf5</em> file via <code>load</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/tree/master/example/Vector/1_HDF5_save_load/main.cpp">Vector/1_HDF5_save_load/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_HDF5.html">Vector_1_HDF5</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex5">
+<h2 id="example-5-vector-expressions">Example 5: Vector expressions</h2>
+<p>This example shows how to use vector expressions to apply mathematical operations and functions on particles. 
+The example also shows to create a point-wise applicable function <br />
+$$ A_q e^{\frac{|x_p-x_q|^2}{\sigma}} $$</p>
+<p>where
+$A_q$ is the property $A$ of particle $q$, $x_p, x_q$ are positions of particles $p, q$ correspondingly.</p>
+<p>Key points:</p>
+<ul>
+<li>Setting an alias for particle properties via <code>getV</code> of <code>particle_dist</code> to be used within an expression </li>
+<li>Composing expressions with scalar particle properties </li>
+<li>Composing expressions with vector particle properties. The expressions are 1) applied point-wise; 2) used to create a component-wise multiplication via <code>*</code>; 3) scalar product via <code>pmul</code>; 4) compute a norm <code>norm</code>; 5) perform square root operation <code>sqrt</code></li>
+<li>Converting <code>Point</code> object into an expression <code>getVExpr</code> to be used with vector expressions</li>
+<li>Utilizing <code>operator=</code> and the function <code>assign</code> to assing singular or multiple particle properties per iteration through particles</li>
+<li>Constructing expressions with <code>applyKernel_in</code> and <code>applyKernel_in_gen</code> to create kernel functions called at particle locations 
+for all the neighboring particles, e.g. as in SPH</li>
+</ul>
+<p>$$\sum_{q = Neighborhood(p)}  A_q D^{\beta}ker(x_p,x_q) V_q $$</p>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/tree/master/example/Vector/2_expressions/main.cpp">Vector/2_expressions/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_2_expression.html">Vector_2_expression</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex6">
+<h2 id="example-6-molecular-dynamics-with-lennard-jones-potential-cell-list">Example 6: Molecular Dynamics with Lennard-Jones potential (Cell-List)</h2>
+<p>This example shows a simple Lennard-Jones molecular dynamics simulation in a stable regime. 
+The particles interact with the interaction potential <br />
+$$ V(x_p,x_q) = 4( (\frac{\sigma}{r})^{12} - (\frac{\sigma}{r})^6  ) $$</p>
+<p>$A_q$ is the property $A$ of particle $q$, $x_p, x_q$ are positions of particles $p, q$ correspondingly, $\sigma$ is a free parameter, $r$ is the distance between the particles.</p>
+<p>Key points:</p>
+<ul>
+<li>Reusing memory allocated with <code>getCellList</code> for the subsequent iterations via <code>updateCellList</code></li>
+<li>Utilizing <code>CELL_MEMBAL</code> with <code>getCellList</code> to minimize memory footprint</li>
+<li>Performing 10000 time steps using symplectic Verlet integrator</li>
+</ul>
+<p>$$ \vec{v}(t_{n}+1/2) = \vec{v}_p(t_n) + \frac{1}{2} \delta t \vec{a}(t_n) $$</p>
+<p>$$ \vec{x}(t_{n}+1) = \vec{x}_p(t_n) + \delta t \vec{v}(t_n+1/2) $$</p>
+<p>$$ \vec{v}(t_{n+1}) = \vec{v}_p(t_n+1/2) + \frac{1}{2} \delta t \vec{a}(t_n+1) $$</p>
+<ul>
+<li>Producing a time-total energy 2D plot with <code>GoogleChart</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic/main.cpp">Vector/3_molecular_dynamic/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn.html">Vector_3_md_dyn</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex7">
+<h2 id="example-7-molecular-dynamics-with-lennard-jones-potential-verlet-list">Example 7: Molecular Dynamics with Lennard-Jones potential (Verlet-List)</h2>
+<p>The physical model in the example is identical to <a href="#ex6">Molecular Dynamics with Lennard-Jones potential (Cell-List)</a>. Please refer to it for futher details.
+Key points:</p>
+<ul>
+<li>Due to the computational cost of updating Verlet-list, <em>r_cut + skin</em> cutoff distance is used
+such that the Verlet-list has to be updated once in 10 iterations via <code>updateVerlet</code></li>
+<li>As Verlet-lists are constructed based on local particle id's, which would be invalidated by <code>map</code> or <code>ghost_get</code> ,<code>map</code> is called every 10 time-step, and <code>ghost_get</code> is used with <code>SKIP_LABELLING</code> option to keep old indices every iteration</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic/main_vl.cpp">Vector/3_molecular_dynamic/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_vl.html">Vector_3_md_vl</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex15">
+<h2 id="example-15-molecular-dynamics-with-lennard-jones-potential-symmetric-verlet-list">Example 15: Molecular Dynamics with Lennard-Jones potential (Symmetric Verlet-List)</h2>
+<p>This example is an extension to <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a>. It shows how better performance can be achieved for symmetric interaction models with symmetric Verlet-list compared to the standard Verlet-list.
+Key points:</p>
+<ul>
+<li>Computing the interaction for particles <em>p</em>, <em>q</em> only once</li>
+<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>_add_</code></li>
+<li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
+<li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex16">
+<h2 id="example-16-molecular-dynamics-with-lennard-jones-potential-symmetric-crs-verlet-list">Example 16: Molecular Dynamics with Lennard-Jones potential (Symmetric CRS Verlet-List)</h2>
+<p>This example is an extension to <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a> and <a href="#ex15">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a>. It shows how better performance can be achieved for symmetric interaction models with symmetric Verlet-list compared to the standard Verlet-list.
+Key points:</p>
+<ul>
+<li>Computing the interaction for particles <em>p</em>, <em>q</em> only once</li>
+<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>_add_</code></li>
+<li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
+<li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex8">
+<h2 id="example-8-molecular-dynamics-with-lennard-jones-potential-gpu">Example 8: Molecular Dynamics with Lennard-Jones potential (GPU)</h2>
+<p>The physical model in the example is identical to <a href="#ex6">Molecular Dynamics with Lennard-Jones potential (Cell-List)</a> and <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a>. Please refer to those for futher details.
+Key points:</p>
+<ul>
+<li>To get the particle index inside a CUDA-like kernel <code>GET_PARTICLE</code> macro is used to avoid overflow in the construction <code>blockIdx.x * blockDim.x + threadIdx.x</code></li>
+<li>A primitive reduction function <code>reduce_local</code> with the operation <code>_add_</code> is used to get the total energy by summing energies of all particles.</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic_gpu/main.cu">Vector/3_molecular_dynamic_gpu/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu.html">Vector_3_md_dyn_gpu</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex9">
+<h2 id="example-9-molecular-dynamics-with-lennard-jones-potential-gpu-optimized">Example 9: Molecular Dynamics with Lennard-Jones potential (GPU optimized)</h2>
+<p>The physical model in the example is identical to <a href="#ex6">Molecular Dynamics with Lennard-Jones potential (Cell-List)</a>, <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a> and is based on <a href="#ex8">Molecular Dynamics with Lennard-Jones potential (GPU)</a>. Please refer to those for futher details.
+Key points:</p>
+<ul>
+<li>To achieve coalesced memory access on GPU and to reduce cache load the particle indices are stored in cell-list in a sorted manner, i.e. particles with neighboring indices are located in the same cell-list. This is achieved by assigning new particle indices and storing them temporarily in <code>vector_dist</code>. </li>
+<li>The sorted version of <code>vector_dist_gpu</code> is offloaded to GPU using <code>toKernel_sorted</code>. It uses <code>get_sort</code> instead of <code>get</code> to get a particle index in the cell-list neighborhood iterator <code>getNNIteratorBox</code></li>
+<li>The sorted version of particle properties have to be merged to the original ones once the processing is done via <code>merge_sort</code> of <code>vector_dist</code> </li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic_gpu_opt/main_gpu.cu">Vector/3_molecular_dynamic_gpu_opt/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu_opt.html">Vector_3_md_dyn_gpu_opt</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex10">
+<h2 id="example-10-molecular-dynamics-with-lennard-jones-potential-particle-reordering">Example 10: Molecular Dynamics with Lennard-Jones potential (Particle reordering)</h2>
+<p>The physical model in the example is identical to <a href="#ex6">Molecular Dynamics with Lennard-Jones potential (Cell-List)</a>, <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a>. The example shows how reordering the data can significantly reduce the computational running time. 
+Key points:</p>
+<ul>
+<li>The particles inside <code>vector_dist</code> are reordered via <code>reorder</code> following a Hilbert curve of order <em>m</em> (here <em>m=5</em>) passing through the cells of $2^m \times 2^m \times 2^m$ (here, in 3D) cell-list</li>
+<li>It is shown that the frequency of reordering depends on the mobility of particles</li>
+<li>Wall clock time is measured of the function <code>calc_force</code> utilizing the object <code>timer</code> via <code>start</code> and <code>stop</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_reorder/main_data_ord.cpp">Vector/4_reorder/main_data_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_reo.html">Vector_4_reo</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex11">
+<h2 id="example-11-molecular-dynamics-with-lennard-jones-potential-cell-list-reordering">Example 11: Molecular Dynamics with Lennard-Jones potential (Cell-list reordering)</h2>
+<p>The physical model in the example is identical to <a href="#ex6">Molecular Dynamics with Lennard-Jones potential (Cell-List)</a>, <a href="#ex7">Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a>. The example shows how reordering the data can significantly reduce the computational running time. 
+Key points:</p>
+<ul>
+<li>The cell-list cells are iterated following a Hilbert curve instead of a normal left-to-right bottom-to-top cell iteration (in 2D). The function <code>getCellList_hilb</code> of <code>vector_dist</code> is used instead of <code>getCellList</code></li>
+<li>It is shown that for static or slowly moving particles a speedup of up to 10% could be achieved</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_reorder/main_comp_ord.cpp">Vector/4_reorder/main_comp_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_comp_reo.html">Vector_4_comp_reo</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex12">
+<h2 id="example-12-complex-properties-in-vector-1">Example 12: Complex properties in Vector 1</h2>
+<p>This example shows how to use complex properties in the distributed vector <code>vector_dist</code></p>
+<p>Key points:</p>
+<ul>
+<li>Creating a distributed vector with particle properties: scalar, vector <code>float[3]</code>, <code>Point</code>, list of float <code>openfpm::vector&lt;float&gt;</code>, list of custom structures <code>openfpm::vector&lt;A&gt;</code> (where <code>A</code> is a user-defined type with no pointers), vector of vectors <code>openfpm::vector&lt;openfpm::vector&lt;float&gt;&gt;&gt;</code></li>
+<li>Redistribute the particles in <code>vector_dist</code> according to the underlying domain decomposition. Communicate only the selected particle properties via <code>map_list</code> (instead of communicating all <code>map</code>)</li>
+<li>Synchronize the ghost layers only for the selected particle properties <code>ghost_get</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop.html">Vector_4_complex_prop</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex13">
+<h2 id="example-13-complex-properties-in-vector-2">Example 13: Complex properties in Vector 2</h2>
+<p>This example shows how to use complex properties in the distributed vector <code>vector_dist</code></p>
+<p>Key points:</p>
+<ul>
+<li>Creating a distributed vector with particle properties: scalar, vector <code>float[3]</code>, <code>Point</code>, list of float <code>openfpm::vector&lt;float&gt;</code>, list of custom structures <code>openfpm::vector&lt;A&gt;</code> (where <code>A</code> is a user-defined type with memory pointers inside), vector of vectors <code>openfpm::vector&lt;openfpm::vector&lt;float&gt;&gt;&gt;</code></li>
+<li>Enabling the user-defined type being serializable by <code>vector_dist</code> via <ul>
+<li><code>packRequest</code> method to indicate how many byte are needed to serialize the structure</li>
+<li><code>pack</code> method to serialize the data-structure via methods <code>allocate</code>, <code>getPointer</code> of <code>ExtPreAlloc</code> and method <code>pack</code> of <code>Packer</code> </li>
+<li><code>unpack</code> method to deserialize the data-structure via method <code>getPointerOffset</code> of <code>ExtPreAlloc</code> and method <code>unpack</code> of <code>Unpacker</code></li>
+<li><code>noPointers</code> method to inform the serialization system that the object has pointers</li>
+<li>Constructing constructor, destructor and <code>operator=</code> to avoid memory leaks </li>
+</ul>
+</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop_ser.html">Vector_4_complex_prop_ser</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div id="ex14">
+<h2 id="example-14-multiphase-cell-lists-and-verlet-lists">Example 14: Multiphase Cell-lists and Verlet-lists</h2>
+<p>This example is an extension to <a href="#ex2">Example 2: Cell-lists and Verlet-lists</a> and ()[]. It shows how to use multi-phase cell-lists and Verlet-list using multiple instances of <code>vector_dist</code>.
+Key points:</p>
+<ul>
+<li>All the phases have to use the same domain decomposition, which is achieved by passing the decomposition of the first phase to the constructor of <code>vector_dist</code> of all the other phases.</li>
+<li>The domains have to be iterated individually via <code>getDomainIterator</code>, the particles redistributed via <code>map</code>, the ghost layers synchronized via <code>ghost_get</code> for all the phases <code>vector_dist</code>.</li>
+<li>Constructing Verlet-lists for two phases (<em>ph0</em>, <em>ph1</em>) with <code>createVerlet</code>, where for one phase <em>ph0</em> the neighoring particles of <em>ph1</em> are assigned in the Verlet-list. Cell-list of <em>ph1</em> has to be passed to <code>createVerlet</code></li>
+<li>Constructing Verlet-lists for multiple phases (<em>ph0</em>, <em>ph1</em>, <em>ph2</em>...) with <code>createVerletM</code>, where for one phase <em>ph0</em> the neighoring particles of <em>ph1</em>, <em>ph2</em>... are assigned in the Verlet-list. Cell-list containing all of <em>ph1</em>, <em>ph2</em>... create with <code>createCellListM</code> has to be passed to <code>createVerletM</code></li>
+<li>Iterating over the neighboring particles of a multiphase Verlet-list with <code>getNNIterator</code> with <code>get</code> being substituded by <code>getP</code> (particle phase) and <code>getV</code> (particle id)</li>
+<li>Extending example of the symmetric interaction for multiphase cell-lists and Verlet-lists via <code>createCellListSymM</code>, <code>createVerletSymM</code></li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_multiphase_celllist_verlet/main.cpp">Vector/4_multiphase_celllist_verlet/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_mp_cl.html">Vector_4_mp_cl</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
+<div style="clear:both;"/></div></div>
+            <div class="col-md-3 hidden-xs hidden-sm"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#vector-0-simple-vector-initialization">Vector 0: Simple vector initialization</a></li>
+        
+    
+        <li class="main "><a href="#example-1-vector-ghost-layer">Example 1: Vector Ghost layer</a></li>
+        
+    
+        <li class="main "><a href="#example-2-cell-lists-and-verlet-lists">Example 2: Cell-lists and Verlet-lists</a></li>
+        
+    
+        <li class="main "><a href="#example-3-gpu-vector">Example 3: GPU vector</a></li>
+        
+    
+        <li class="main "><a href="#example-4-hdf5-save-and-load">Example 4: HDF5 Save and load</a></li>
+        
+    
+        <li class="main "><a href="#example-5-vector-expressions">Example 5: Vector expressions</a></li>
+        
+    
+        <li class="main "><a href="#example-6-molecular-dynamics-with-lennard-jones-potential-cell-list">Example 6: Molecular Dynamics with Lennard-Jones potential (Cell-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-7-molecular-dynamics-with-lennard-jones-potential-verlet-list">Example 7: Molecular Dynamics with Lennard-Jones potential (Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-15-molecular-dynamics-with-lennard-jones-potential-symmetric-verlet-list">Example 15: Molecular Dynamics with Lennard-Jones potential (Symmetric Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-16-molecular-dynamics-with-lennard-jones-potential-symmetric-crs-verlet-list">Example 16: Molecular Dynamics with Lennard-Jones potential (Symmetric CRS Verlet-List)</a></li>
+        
+    
+        <li class="main "><a href="#example-8-molecular-dynamics-with-lennard-jones-potential-gpu">Example 8: Molecular Dynamics with Lennard-Jones potential (GPU)</a></li>
+        
+    
+        <li class="main "><a href="#example-9-molecular-dynamics-with-lennard-jones-potential-gpu-optimized">Example 9: Molecular Dynamics with Lennard-Jones potential (GPU optimized)</a></li>
+        
+    
+        <li class="main "><a href="#example-10-molecular-dynamics-with-lennard-jones-potential-particle-reordering">Example 10: Molecular Dynamics with Lennard-Jones potential (Particle reordering)</a></li>
+        
+    
+        <li class="main "><a href="#example-11-molecular-dynamics-with-lennard-jones-potential-cell-list-reordering">Example 11: Molecular Dynamics with Lennard-Jones potential (Cell-list reordering)</a></li>
+        
+    
+        <li class="main "><a href="#example-12-complex-properties-in-vector-1">Example 12: Complex properties in Vector 1</a></li>
+        
+    
+        <li class="main "><a href="#example-13-complex-properties-in-vector-2">Example 13: Complex properties in Vector 2</a></li>
+        
+    
+        <li class="main "><a href="#example-14-multiphase-cell-lists-and-verlet-lists">Example 14: Multiphase Cell-lists and Verlet-lists</a></li>
+        
+    
+    
+    </ul>
+</div>
+
+<!-- Developer notes:
+  See the MkDocs documentation in https://www.mkdocs.org/dev-guide/themes/#page
+  and the Jinja2 template API in https://tedboy.github.io/jinja2/index.html
+--></div>
+            
+        </div>
+        
+
+        <footer class="footer">
+           <div class="container">
+              <p class="text-muted alignleft">
+                  Developed by <a href = "mailto: yaskovet@mpi-cbg.de">Serhii Yaskovets</a> at
+                  <a href="https://tu-dresden.de/ing/informatik/ki/wr">TUD</a>,
+                  <a href="https://www.mpi-cbg.de/research/researchgroups/currentgroups/ivo-sbalzarini/group-members">MPI-CBG</a></p>
+           </div>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script src="../js/base.js"></script>
+        <script src="../js/retina.min.js"></script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../search/main.js"></script>
+    </body>
+</html>

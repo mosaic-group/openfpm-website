@@ -71,10 +71,10 @@ Please find more information about Munich public transport network [here](https:
 
 We can recommend the following hotels in the vicinity:
 
-*   [Stellaris Apartment Hotel](https://www.stellaris-apartment.de/de/home), on-campus
-*   [Hotel Marriott](https://www.marriott.com/en-us/hotels/muccg-courtyard-munich-garching/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0), on-campus
+*   [Stellaris Apartment Hotel](https://www.stellaris-apartment.de/de/home), on-campus. Booking codes for discounts at this place are available. Please get it touch with [Stefan Adami](mailto:stefan.adami@tum.de) to get more details about the offer
+*   [Hotel Marriott](https://www.marriott.com/en-us/hotels/muccg-courtyard-munich-garching/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0), on-campus.  Booking codes for discounts at this place are available. Please get it touch with [Stefan Adami](mailto:stefan.adami@tum.de) to get more details about the offer
 *   [Hotel Koenig Ludwig II](https://hkl.de/
-), Garching (off-campus), 5 min. Public transport to the campus.
+), Garching (off-campus), 5 min. Public transport to the campus
 
 Please do not hesitate to get in touch with us if you have questions or require assistance with hotel booking.
 

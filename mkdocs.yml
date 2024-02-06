@@ -1,0 +1,38 @@
+site_name: OpenFPM
+site_url: http://openfpm.mpi-cbg.de/
+docs_dir: 'src'
+
+markdown_extensions:
+- extra  # allow markdown in <div markdown="1">
+- fenced_code  # GitHub style code blocks, e.g. ```python, see https://highlightjs.readthedocs.org/en/latest/css-classes-reference.html for a list of languages
+- footnotes
+- attr_list  # Allow us to add link attributes
+
+repo_url: https://github.com/mosaic-group/openfpm_pdata
+remote_name: origin
+# pages starting with '_' are hidden from the menu
+
+nav:
+- Home: index.md
+- Examples:
+  - 'Vector': vector-example.md
+- Documentation:
+  - 'Build from source': building.md
+  - 'Docker': docker.md
+  - 'Doxygen': http://ppmcore.mpi-cbg.de/doxygen/openfpm/
+- Community:
+  - 'News': news.md
+  - 'Videos': videos.md
+  - 'Hackathon 2022/2023': hackathon23.md
+  - 'Hackathon 2023/2024': hackathon24.md
+- Cite us: about.md
+- Download: download.md
+
+theme:
+  name: mkdocs  # required. Can be anything as long as custom_dir is set correctly below
+  custom_dir: template
+  features:
+    - search.suggest
+
+extra:
+  include_next_prev: false  # turn off next/previous buttons

@@ -71,8 +71,8 @@ Please find more information about Munich public transport network [here](https:
 
 We can recommend the following hotels in the vicinity:
 
-*   [Stellaris Apartment Hotel](https://www.stellaris-apartment.de/de/home), on-campus. Booking codes for discounts at this place are available. Please get it touch with [Stefan Adami](mailto:stefan.adami@tum.de) to get more details about the offer
-*   [Hotel Marriott](https://www.marriott.com/en-us/hotels/muccg-courtyard-munich-garching/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0), on-campus.  Booking codes for discounts at this place are available. Please get it touch with [Stefan Adami](mailto:stefan.adami@tum.de) to get more details about the offer
+*   [Stellaris Apartment Hotel](https://www.stellaris-apartment.de/de/home), on-campus. Booking codes for discounts at this place are available upon registration (see below)
+*   [Hotel Marriott](https://www.marriott.com/en-us/hotels/muccg-courtyard-munich-garching/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0), on-campus.  Booking codes for discounts at this place are available upon registration (see below)
 *   [Hotel Koenig Ludwig II](https://hkl.de/
 ), Garching (off-campus), 5 min. Public transport to the campus
 
@@ -83,7 +83,7 @@ Please do not hesitate to get in touch with us if you have questions or require 
 
 Everyone interested is welcome to attend, regardless if you are already an OpenFPM crack, a beginner, or not yet using it at all; regardless if you want to contribute code, learn for yourself, or work on documentation and web page. There is something for every skillset.
 
-If you wish to attend, please send an e-mail to the organizer [Serhii Yaskovets](mailto:yaskovet@mpi-cbg.de), so we can have a tally and book rooms accordingly. Thanks!
+If you wish to attend, please send an e-mail to the organizer [Serhii Yaskovets](mailto:yaskovet@mpi-cbg.de), so we can have a tally and book seminar rooms accordingly. Thanks!
 
 Registration deadline: March 1, 2024.
 

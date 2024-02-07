@@ -11,7 +11,7 @@ pre-installed `openfpm/ubuntu:install20.04`, `openfpm/fedora:install34`.
 Or the images with the GPU code enabled `openfpm/ubuntu_cuda:install10.2-devel-ubuntu18.04`,
 `openfpm/ubuntu_cuda:install11.2.2-devel-ubuntu20.04`.   
 
-To start the container a in Linux general command would be
+To start the container in Linux general command would be
 ```sh
 [sudo] docker run --net=host \
  -dit -v /tmp/.X11-unix:/tmp/.X11-unix \

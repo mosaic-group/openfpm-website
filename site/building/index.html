@@ -275,6 +275,10 @@
 cd openfpm_pdata
 git submodule init
 git submodule update 
+# optional: switch to a non-master branch, e.g. develop
+git checkout develop
+git submodule foreach &quot;git checkout develop&quot;
+git submodule foreach &quot;git pull origin develop&quot;
 </code></pre>
 
 <h2 id="dependencies">Dependencies</h2>

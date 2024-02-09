@@ -34,6 +34,10 @@ git clone https://github.com/mosaic-group/openfpm_pdata
 cd openfpm_pdata
 git submodule init
 git submodule update 
+# optional: switch to a non-master branch, e.g. develop
+git checkout develop
+git submodule foreach "git checkout develop"
+git submodule foreach "git pull origin develop"
 ```
 
 ## Dependencies

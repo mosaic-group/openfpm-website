@@ -358,6 +358,20 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <td>master (*no active support)</td>
 </tr>
 <tr>
+<td><a href="https://rocm.docs.amd.com/projects/HIP/en/latest/">HIP</a></td>
+<td>openfpm_devices</td>
+<td>A C++ runtime API and kernel language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code. One of the alternative execution backends for CUDA-like code supported by OpenFPM</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://alpaka.readthedocs.io/en/latest/index.html">alpaka</a></td>
+<td>openfpm_devices</td>
+<td>A header-only C++17 abstraction library for accelerator development. One of the alternative execution backends for CUDA-like code supported by OpenFPM</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
 <td><a href="http://www.openblas.net/">OpenBLAS</a></td>
 <td>openfpm_numerics</td>
 <td>An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations</td>
@@ -399,26 +413,13 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <td>Yes (or Eigen)</td>
 <td>3.19.6</td>
 </tr>
-<tr>
-<td><a href="https://rocm.docs.amd.com/projects/HIP/en/latest/">HIP</a></td>
-<td>openfpm_devices</td>
-<td>A C++ runtime API and kernel language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code. One of the alternative execution backends for CUDA-like code supported by OpenFPM</td>
-<td>Yes</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://alpaka.readthedocs.io/en/latest/index.html">alpaka</a></td>
-<td>openfpm_devices</td>
-<td>A header-only C++17 abstraction library for accelerator development. One of the alternative execution backends for CUDA-like code supported by OpenFPM</td>
-<td>Yes</td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <hr />
 <p>OpenFPM uses <a href="https://docs.nvidia.com/cuda/gpudirect-rdma/index.html">GPUDirect RDMA</a> to move data from one GPU to another GPU (intranode and extranode) without moving the data to host. This feature requires that OpenMPI is compiled with CUDA support. It can without this feature as well using GPUDirect of an old version (1.0). In practice it requires that MPI works with host pinned memory allocated with CUDA. This feature has been introduced with CUDA 5.0 in 2010. At best of our knowledge this feature should work without special compilation options for OpenMPI. On the other end we found several problems with GPUDirect v1.0 and Infiniband cards, when OpenMPI is not compiled with CUDA support. If you are on a super-computer or a machine you did not set-up, we suggest to re-install OpenMPI with CUDA support using the options suggested. Alternatively you can use the OpenMPI already provied.</p>
+<p>The following script installs OpenFPM dependencies to the directory <code>/home/test/openfpm_dependencies</code>, compiled libraries and headers of OpenFPM to <code>/home/test/openfpm_install</code>, uses <em>gcc</em> toolkit, <em>4</em> cores and no gpu support for OpenMPI.</p>
 <pre><code class="sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
-# to enable gpuaccelerated code, set GPU_SUPPORT=1
+# to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
 export CC=gcc \
   CXX=g++ \
   F77=gfortran \
@@ -426,9 +427,9 @@ export CC=gcc \
   PREFIX_DEPENDS=/home/test/openfpm_dependencies \
   PREFIX_OPENFPM=/home/test/openfpm_install \
   NCORE=4 \
-  GPU_SUPPORT=0 
+  GPU_CUDA_SUPPORT=0
 
-./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_SUPPORT $CC $CXX $F77 $FC &quot;--with-mpivendor=openmpi&quot;
+./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_CUDA_SUPPORT $CC $CXX $F77 $FC &quot;--with-mpivendor=openmpi&quot;
 export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 
 ./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX 
@@ -517,7 +518,8 @@ the following compiler options have to be set:</p>
 <li><em>Lloc</em> The location <em>loc</em> where to search for <em>lib</em></li>
 <li><em>Idir</em> Add the directory <em>dir</em> to the list of directories to be searched for header files during preprocessing.   </li>
 </ul>
-<p>This could be done manually when compiling the example codes or with the following tool that produces the file <em>example.mk</em>
+<p>This could be done manually when compiling the example codes or with the following tool that produces the file <em>example.mk</em>.
+<em><strong>Warning</strong>: OpenFPM installed and the gpu examples have to be compiled in the same mode (i.e. via nvcc, hip, alpaka or gpu-emulated (SEQUENTIAL, OpenMP))</em><br>
 The file has to be placed in the folder <em>example</em>.</p>
 <pre><code class="sh">./script/create_example.mk.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 mv example.mk example

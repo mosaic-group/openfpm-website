@@ -65,22 +65,23 @@ OpenFPM is build upon the following open-source tools. Please intall these by bu
 | [zlib](https://www.zlib.net/) | openfpm_io | Lossless data-compression library needed by HDF5 to deflate stored files | NO | 1.3.1 (*doesn't work on Windows) |
 | [HDF5](https://www.hdfgroup.org/) | openfpm_io | Distributed file format that supports large, complex, heterogeneous data | NO | 1.14.3 |
 | [libhilbert](https://www.hdfgroup.org/) | openfpm_data | Library producing Hilbert indices for multidimensional data to iterate through the grid elements following an Hilbert space filling curve. | NO | master (*no active support) |
+| [HIP](https://rocm.docs.amd.com/projects/HIP/en/latest/) | openfpm_devices | A C++ runtime API and kernel language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
+| [alpaka](https://alpaka.readthedocs.io/en/latest/index.html) | openfpm_devices | A header-only C++17 abstraction library for accelerator development. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
 | [OpenBLAS](http://www.openblas.net/) | openfpm_numerics | An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations | NO | 0.3.26 |
 | [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | openfpm_numerics | A suite of sparse matrix algorithms. Here UMFPACK - multifrontal LU factorization module. Requires [OpenBLAS](http://www.openblas.net/] | NO | 5.7.2 |
 | [Eigen](https://eigen.tuxfamily.org/index.php) | openfpm_numerics | Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | Yes (or Petsc) | 3.4.0 |
 | [Blitz++](https://github.com/blitzpp/blitz) | openfpm_numerics | A meta-template library for array manipulation in C++ with a speed comparable to Fortran implementations, while preserving an object-oriented interface | NO | 1.0.2 |
 | [Algoim](https://algoim.github.io) | openfpm_numerics | A collection of high-order accurate numerical methods and C++ algorithms for working with implicitly-defined geometry and level set methods. Requires [Blitz++](https://github.com/blitzpp/blitz) | NO | master |
 | [PETSc](https://petsc.org/) | openfpm_numerics |  Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires [OpenBLAS](http://www.openblas.net/), [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html), [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | Yes (or Eigen) | 3.19.6 |
-| [HIP](https://rocm.docs.amd.com/projects/HIP/en/latest/) | openfpm_devices | A C++ runtime API and kernel language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
-| [alpaka](https://alpaka.readthedocs.io/en/latest/index.html) | openfpm_devices | A header-only C++17 abstraction library for accelerator development. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
 
 ---
 
 OpenFPM uses [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/index.html) to move data from one GPU to another GPU (intranode and extranode) without moving the data to host. This feature requires that OpenMPI is compiled with CUDA support. It can without this feature as well using GPUDirect of an old version (1.0). In practice it requires that MPI works with host pinned memory allocated with CUDA. This feature has been introduced with CUDA 5.0 in 2010. At best of our knowledge this feature should work without special compilation options for OpenMPI. On the other end we found several problems with GPUDirect v1.0 and Infiniband cards, when OpenMPI is not compiled with CUDA support. If you are on a super-computer or a machine you did not set-up, we suggest to re-install OpenMPI with CUDA support using the options suggested. Alternatively you can use the OpenMPI already provied.
 
+The following script installs OpenFPM dependencies to the directory `/home/test/openfpm_dependencies`, compiled libraries and headers of OpenFPM to `/home/test/openfpm_install`, uses _gcc_ toolkit, _4_ cores and no gpu support for OpenMPI.
 ```sh
 # here for gcc/g++. Also for icc/icpc and clang/clang++
-# to enable gpuaccelerated code, set GPU_SUPPORT=1
+# to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
 export CC=gcc \
   CXX=g++ \
   F77=gfortran \
@@ -88,9 +89,9 @@ export CC=gcc \
   PREFIX_DEPENDS=/home/test/openfpm_dependencies \
   PREFIX_OPENFPM=/home/test/openfpm_install \
   NCORE=4 \
-  GPU_SUPPORT=0 
+  GPU_CUDA_SUPPORT=0
 
-./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_SUPPORT $CC $CXX $F77 $FC "--with-mpivendor=openmpi"
+./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_CUDA_SUPPORT $CC $CXX $F77 $FC "--with-mpivendor=openmpi"
 export PATH="$PREFIX_DEPENDS/MPI/bin:$PATH"
 
 ./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX 
@@ -185,7 +186,8 @@ the following compiler options have to be set:
 - _Lloc_ The location _loc_ where to search for _lib_
 - _Idir_ Add the directory _dir_ to the list of directories to be searched for header files during preprocessing.   
 
-This could be done manually when compiling the example codes or with the following tool that produces the file _example.mk_
+This could be done manually when compiling the example codes or with the following tool that produces the file _example.mk_.
+_**Warning**: OpenFPM installed and the gpu examples have to be compiled in the same mode (i.e. via nvcc, hip, alpaka or gpu-emulated (SEQUENTIAL, OpenMP))_<br>
 The file has to be placed in the folder _example_.
 ```sh
 ./script/create_example.mk.sh $PREFIX_DEPENDS $PREFIX_OPENFPM

@@ -17,7 +17,7 @@ OpenFPM is a scalable open framework for _particle_ and _particle-mesh_ codes on
 * Support for [PETSc](https://petsc.org/), [Eigen](https://eigen.tuxfamily.org/index.php) linear algebra backends
 * Support for ODE integration operators with [Boost.Numeric.Odeint](https://www.boost.org/doc/libs/1_82_0/libs/numeric/odeint/doc/html/index.html)
 * Level-set formulation with [Algoim](https://algoim.github.io)
-* GPU execution backends include [CUDA](https://developer.nvidia.com/cuda-toolkit), [HIP](https://rocm.docs.amd.com/projects/HIP/en/latest/), [OpenMP](https://www.openmp.org/) 
+* GPU execution backends include [CUDA](https://developer.nvidia.com/cuda-toolkit), [HIP](https://rocm.docs.amd.com/projects/HIP/en/latest/), [OpenMP](https://www.openmp.org/), [alpaka](https://alpaka.readthedocs.io/en/latest/)
 * ... and many others
 
 

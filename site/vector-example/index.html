@@ -220,6 +220,9 @@
         <li class="main "><a href="#example-14-multiphase-cell-lists-and-verlet-lists">Example 14: Multiphase Cell-lists and Verlet-lists</a></li>
         
     
+        <li class="main "><a href="#example-16-validation-and-debugging">Example 16: Validation and debugging</a></li>
+        
+    
     
     </ul>
 </div>
@@ -257,8 +260,8 @@ In this example it is shown how to:</p>
 <br></p>
 </div>
 <div id="ex1">
-<p><img class="floatright" src="http://ppmcore.mpi-cbg.de/web/images/examples/after_ghost_get.jpg" style="width: 300px; height: 300px;"></p>
 <h2 id="example-1-vector-ghost-layer">Example 1: Vector Ghost layer</h2>
+<p><img class="floatright" src="http://ppmcore.mpi-cbg.de/web/images/examples/after_ghost_get.jpg" style="width: 300px; height: 300px;"></p>
 <p>This example shows the properties of <code>ghost_get</code> and <code>ghost_put</code> - functions 
 that synchronize the ghosts layer for a distributed vector <code>vector_dist</code>.</p>
 <p>In this example it is shown how to:</p>
@@ -289,8 +292,8 @@ that synchronize the ghosts layer for a distributed vector <code>vector_dist</co
 <br></p>
 </div>
 <div id="ex3">
-<p><img class="floatright" src="../img/examples/1_gpu_first_step.png" style="width: 300px; height: 300px;"></p>
 <h2 id="example-3-gpu-vector">Example 3: GPU vector</h2>
+<p><img class="floatright" src="../img/examples/1_gpu_first_step.png" style="width: 300px; height: 300px;"></p>
 <p>This example shows how to create a vector data-structure with <code>vector_dist_gpu</code> to access a <code>vector_dist</code>-alike data structure from GPU accelerated computing code.</p>
 <p>Key points:</p>
 <ul>
@@ -380,7 +383,7 @@ such that the Verlet-list has to be updated once in 10 iterations via <code>upda
 Key points:</p>
 <ul>
 <li>Computing the interaction for particles <em>p</em>, <em>q</em> only once</li>
-<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>_add_</code></li>
+<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>add_</code></li>
 <li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
 <li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
 </ul>
@@ -394,7 +397,7 @@ Key points:</p>
 Key points:</p>
 <ul>
 <li>Computing the interaction for particles <em>p</em>, <em>q</em> only once</li>
-<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>_add_</code></li>
+<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>add_</code></li>
 <li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
 <li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
 </ul>
@@ -500,6 +503,18 @@ Key points:</p>
 <div style="clear:both;"></div>
 <br></p>
 </div>
+<div id="ex16">
+<h2 id="example-16-validation-and-debugging">Example 16: Validation and debugging</h2>
+<p>This example shows how the flexibility of the library can be used to perform complex tasks for validation and debugging.
+Key points:</p>
+<ul>
+<li>To get unique global id's of the particles the function <code>accum</code> of <code>vector_dist</code> is used, which returns prefix sum of local domain sizes $j&lt;i$ for the logical processor $i$ out of $N$ total processors</li>
+<li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>merge_</code>, that merges two <code>openfpm::vector</code> (ghost and non-ghost)</li>
+</ul>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/6_complex_usage/main.cpp">Vector/6_complex_usage/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_6_complex_usage.html">Vector_6_complex_usage</a></em>.
+<div style="clear:both;"></div>
+<br></p>
+</div>
 <div style="clear:both;"/></div></div>
             <div class="col-md-3 hidden-xs hidden-sm"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
@@ -553,6 +568,9 @@ Key points:</p>
         
     
         <li class="main "><a href="#example-14-multiphase-cell-lists-and-verlet-lists">Example 14: Multiphase Cell-lists and Verlet-lists</a></li>
+        
+    
+        <li class="main "><a href="#example-16-validation-and-debugging">Example 16: Validation and debugging</a></li>
         
     
     

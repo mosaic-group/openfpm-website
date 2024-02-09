@@ -25,8 +25,8 @@ See also our video lectures dedicated to this topic [Video 1](http://ppmcore.mpi
 <br></div>
 
 <div id="ex1" markdown="1">
-<img class="floatright" src="http://ppmcore.mpi-cbg.de/web/images/examples/after_ghost_get.jpg" style="width: 300px; height: 300px;">
 ##Example 1: Vector Ghost layer
+<img class="floatright" src="http://ppmcore.mpi-cbg.de/web/images/examples/after_ghost_get.jpg" style="width: 300px; height: 300px;">
 
 This example shows the properties of `ghost_get` and `ghost_put` - functions 
 that synchronize the ghosts layer for a distributed vector `vector_dist`.
@@ -61,8 +61,8 @@ Key points:
 <br></div>
 
 <div id="ex3" markdown="1">
-<img class="floatright" src="../img/examples/1_gpu_first_step.png" style="width: 300px; height: 300px;">
 ##Example 3: GPU vector
+<img class="floatright" src="../img/examples/1_gpu_first_step.png" style="width: 300px; height: 300px;">
 
 This example shows how to create a vector data-structure with `vector_dist_gpu` to access a `vector_dist`-alike data structure from GPU accelerated computing code.
 
@@ -169,7 +169,7 @@ This example is an extension to [Molecular Dynamics with Lennard-Jones potential
 Key points:
 
 - Computing the interaction for particles _p_, _q_ only once
-- Propagate the data from potentially ghost particles _q_ to non-ghost particles in their corresponding domains via `ghost_put` with the operation `_add_`
+- Propagate the data from potentially ghost particles _q_ to non-ghost particles in their corresponding domains via `ghost_put` with the operation `add_`
 - Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) 
 - Updating Verlet-list once in 10 iterations via `updateVerlet` with 'VL_SYMMETRIC' flag
 
@@ -185,7 +185,7 @@ This example is an extension to [Molecular Dynamics with Lennard-Jones potential
 Key points:
 
 - Computing the interaction for particles _p_, _q_ only once
-- Propagate the data from potentially ghost particles _q_ to non-ghost particles in their corresponding domains via `ghost_put` with the operation `_add_`
+- Propagate the data from potentially ghost particles _q_ to non-ghost particles in their corresponding domains via `ghost_put` with the operation `add_`
 - Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) 
 - Updating Verlet-list once in 10 iterations via `updateVerlet` with 'VL_SYMMETRIC' flag
 
@@ -300,6 +300,19 @@ Key points:
 - Extending example of the symmetric interaction for multiphase cell-lists and Verlet-lists via `createCellListSymM`, `createVerletSymM`
 
  _The source code of the example [Vector/4_multiphase_celllist_verlet/main.cpp](https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_multiphase_celllist_verlet/main.cpp). The full doxygen documentation [Vector_4_mp_cl](http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_mp_cl.html)_.
+<div style="clear:both;"></div>
+<br></div>
+
+<div id="ex16" markdown="1">
+##Example 16: Validation and debugging
+
+This example shows how the flexibility of the library can be used to perform complex tasks for validation and debugging.
+Key points:
+
+- To get unique global id's of the particles the function `accum` of `vector_dist` is used, which returns prefix sum of local domain sizes $j<i$ for the logical processor $i$ out of $N$ total processors
+- Propagate the data from potentially ghost particles _q_ to non-ghost particles in their corresponding domains via `ghost_put` with the operation `merge_`, that merges two `openfpm::vector` (ghost and non-ghost)
+
+ _The source code of the example [Vector/6_complex_usage/main.cpp](https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/6_complex_usage/main.cpp). The full doxygen documentation [Vector_6_complex_usage](http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_6_complex_usage.html)_.
 <div style="clear:both;"></div>
 <br></div>
 

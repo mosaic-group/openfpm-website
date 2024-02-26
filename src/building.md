@@ -91,8 +91,8 @@ export CC=gcc \
   CXX=g++ \
   F77=gfortran \
   FC=gfortran \
-  PREFIX_DEPENDS=/home/serhii/openfpm_check_new_script/dependencies \
-  PREFIX_OPENFPM=/home/serhii/openfpm_check_new_script/install \
+  PREFIX_DEPENDS=/home/test/openfpm_dependencies \
+  PREFIX_OPENFPM=/home/test/openfpm_install \
   NCORE=4 \
   GPU_CUDA_SUPPORT=0
 

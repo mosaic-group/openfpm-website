@@ -429,8 +429,8 @@ export CC=gcc \
   CXX=g++ \
   F77=gfortran \
   FC=gfortran \
-  PREFIX_DEPENDS=/home/serhii/openfpm_check_new_script/dependencies \
-  PREFIX_OPENFPM=/home/serhii/openfpm_check_new_script/install \
+  PREFIX_DEPENDS=/home/test/openfpm_dependencies \
+  PREFIX_OPENFPM=/home/test/openfpm_install \
   NCORE=4 \
   GPU_CUDA_SUPPORT=0
 
@@ -526,7 +526,7 @@ the following compiler options have to be set:</p>
 <ul>
 <li><em>-llib</em> Search for the library named <em>lib</em> when linking</li>
 <li><em>-Lloc</em> The location <em>loc</em> where to search for <em>lib</em></li>
-<li><em>-Idir</em> Add the directory <em>dir</em> to the list of directories to be searched for header files during preprocessing.   </li>
+<li><em>-Idir</em> Add the directory <em>dir</em> to the list of directories to be searched for header files during preprocessing.</li>
 </ul>
 <p>This could be done manually when compiling the example codes or with the following tool that produces the file <em>example.mk</em>.
 <em><strong>Warning</strong>: OpenFPM installed and the gpu examples have to be compiled in the same mode (i.e. via nvcc, hip, alpaka or gpu-emulated (SEQUENTIAL, OpenMP))</em><br>

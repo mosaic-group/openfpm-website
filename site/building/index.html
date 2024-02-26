@@ -227,7 +227,7 @@
 </table>
 <hr />
 <h2 id="git-subprojects">Git Subprojects</h2>
-<p>OpenFPM includes the following subprojects</p>
+<p><a href="https://github.com/mosaic-group/openfpm">OpenFPM</a> project includes the following subprojects</p>
 <table>
 <thead>
 <tr>
@@ -270,9 +270,9 @@
 </tbody>
 </table>
 <hr />
-<p>The subprojects managed using <em>Git submodules</em>. Please refer to this <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">manual</a> on how to use this tool:</p>
-<pre><code class="sh">git clone https://github.com/mosaic-group/openfpm_pdata
-cd openfpm_pdata
+<p>The subprojects are managed using <em>Git submodules</em>. Please refer to this <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">manual</a> on how to use this tool:</p>
+<pre><code class="sh">git clone https://github.com/mosaic-group/openfpm
+cd openfpm
 git submodule init
 git submodule update 
 # optional: switch to a non-master branch, e.g. develop
@@ -310,14 +310,7 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <td>openfpm_vcluster</td>
 <td>The Open MPI Project is an open source <a href="https://www.mpi-forum.org/">Message Passing Interface</a> implementation</td>
 <td>NO</td>
-<td>4.1.6 (we do not support building from source on cygwin, has to be preinstalled)</td>
-</tr>
-<tr>
-<td><a href="https://web-docs.gsi.de/~mkretz/Vc-0.7/index.html">Vc</a></td>
-<td>openfpm_data</td>
-<td>The library is a collection of SIMD vector classes with existing implementations for SSE, AVX, and a scalar fallback</td>
-<td>NO</td>
-<td>1.4.4</td>
+<td>4.1.6 (building from source on cygwin not supported, has to be preinstalled)</td>
 </tr>
 <tr>
 <td><a href="http://glaros.dtc.umn.edu/gkhome/metis/metis/overview">METIS</a></td>
@@ -350,9 +343,16 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <tr>
 <td><a href="https://www.hdfgroup.org/">HDF5</a></td>
 <td>openfpm_io</td>
-<td>Distributed file format that supports large, complex, heterogeneous data</td>
+<td>Distributed file format that supports large, complex, heterogeneous data. Requires <a href="https://www.zlib.net/">zlib</a></td>
 <td>NO</td>
 <td>1.14.3</td>
+</tr>
+<tr>
+<td><a href="https://web-docs.gsi.de/~mkretz/Vc-0.7/index.html">Vc</a></td>
+<td>openfpm_data</td>
+<td>The library is a collection of SIMD vector classes with existing implementations for SSE, AVX, and a scalar fallback</td>
+<td>NO</td>
+<td>1.4.4</td>
 </tr>
 <tr>
 <td><a href="https://www.hdfgroup.org/">libhilbert</a></td>
@@ -379,47 +379,48 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <td><a href="http://www.openblas.net/">OpenBLAS</a></td>
 <td>openfpm_numerics</td>
 <td>An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations</td>
-<td>NO</td>
+<td>NO*</td>
 <td>0.3.26</td>
 </tr>
 <tr>
 <td><a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a></td>
 <td>openfpm_numerics</td>
 <td>A suite of sparse matrix algorithms. Here UMFPACK - multifrontal LU factorization module. Requires [OpenBLAS](http://www.openblas.net/]</td>
-<td>NO</td>
+<td>NO*</td>
 <td>5.7.2</td>
 </tr>
 <tr>
 <td><a href="https://eigen.tuxfamily.org/index.php">Eigen</a></td>
 <td>openfpm_numerics</td>
 <td>Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires <a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a></td>
-<td>Yes (or Petsc)</td>
+<td>Yes* (or Petsc)</td>
 <td>3.4.0</td>
 </tr>
 <tr>
 <td><a href="https://github.com/blitzpp/blitz">Blitz++</a></td>
 <td>openfpm_numerics</td>
 <td>A meta-template library for array manipulation in C++ with a speed comparable to Fortran implementations, while preserving an object-oriented interface</td>
-<td>NO</td>
+<td>NO*</td>
 <td>1.0.2</td>
 </tr>
 <tr>
 <td><a href="https://algoim.github.io">Algoim</a></td>
 <td>openfpm_numerics</td>
 <td>A collection of high-order accurate numerical methods and C++ algorithms for working with implicitly-defined geometry and level set methods. Requires <a href="https://github.com/blitzpp/blitz">Blitz++</a></td>
-<td>NO</td>
+<td>NO*</td>
 <td>master</td>
 </tr>
 <tr>
 <td><a href="https://petsc.org/">PETSc</a></td>
 <td>openfpm_numerics</td>
 <td>Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires <a href="http://www.openblas.net/">OpenBLAS</a>, <a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a>, <a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a></td>
-<td>Yes (or Eigen)</td>
+<td>Yes* (or Eigen)</td>
 <td>3.19.6</td>
 </tr>
 </tbody>
 </table>
 <hr />
+<p><em>*optional if openfpm_numerics is disabled</em></p>
 <p>OpenFPM uses <a href="https://docs.nvidia.com/cuda/gpudirect-rdma/index.html">GPUDirect RDMA</a> to move data from one GPU to another GPU (intranode and extranode) without moving the data to host. This feature requires that OpenMPI is compiled with CUDA support. It can without this feature as well using GPUDirect of an old version (1.0). In practice it requires that MPI works with host pinned memory allocated with CUDA. This feature has been introduced with CUDA 5.0 in 2010. At best of our knowledge this feature should work without special compilation options for OpenMPI. On the other end we found several problems with GPUDirect v1.0 and Infiniband cards, when OpenMPI is not compiled with CUDA support. If you are on a super-computer or a machine you did not set-up, we suggest to re-install OpenMPI with CUDA support using the options suggested. Alternatively you can use the OpenMPI already provied.</p>
 <p>The following script installs OpenFPM dependencies to the directory <code>/home/test/openfpm_dependencies</code>, compiled libraries and headers of OpenFPM to <code>/home/test/openfpm_install</code>, uses <em>gcc</em> toolkit, <em>4</em> cores and no gpu support for OpenMPI.</p>
 <pre><code class="sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
@@ -428,8 +429,8 @@ export CC=gcc \
   CXX=g++ \
   F77=gfortran \
   FC=gfortran \
-  PREFIX_DEPENDS=/home/test/openfpm_dependencies \
-  PREFIX_OPENFPM=/home/test/openfpm_install \
+  PREFIX_DEPENDS=/home/serhii/openfpm_check_new_script/dependencies \
+  PREFIX_OPENFPM=/home/serhii/openfpm_check_new_script/install \
   NCORE=4 \
   GPU_CUDA_SUPPORT=0
 
@@ -440,11 +441,12 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 # Parmetis uses mpicc in make config by default
 ./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE 
 ./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE
+./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
 ./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE
 # Zlib uses CC=mpicc in ./configure
-./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
 ./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE
 ./script/install_VCDEVEL.sh $PREFIX_DEPENDS $NCORE $CC $CXX
+# Install dependencies for numerics (optional)
 ./script/install_OPENBLAS.sh $PREFIX_DEPENDS $NCORE
 ./script/install_SUITESPARSE.sh $PREFIX_DEPENDS $NCORE
 ./script/install_EIGEN.sh $PREFIX_DEPENDS $NCORE
@@ -456,13 +458,13 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 
 <h2 id="building-openfpm">Building OpenFPM</h2>
 <p>OpenFPM uses CMake build system. For it to function properly, CMake has to be able to locate
-the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake</p>
+the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake. Additionaly, the script assumes some <em>openfpm</em> build parameters by default, e.g. build type, backend for CUDA-like code, enable/disable <em>numerics</em> module, debug utilities etc.</p>
 <pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 </code></pre>
 
 <p>The resultant CMake command is echoed to the terminal window and saved into the file <em>cmake_build_options</em>.</p>
 <p>CMake config options are exported to header files to be used in the project</p>
-<pre><code class="sh">mkdir -p openfpm_devices/scr/config openfpm_io/scr/config openfpm_data/scr/config openfpm_numerics/scr/config openfpm_vcluster/scr/config
+<pre><code class="sh">mkdir -p openfpm_pdata/scr/config openfpm_devices/scr/config openfpm_io/scr/config openfpm_data/scr/config openfpm_numerics/scr/config openfpm_vcluster/scr/config
 </code></pre>
 
 <pre><code class="sh">mkdir build
@@ -471,6 +473,7 @@ cd build
 # &lt;INSERT HERE&gt;
 make VERBOSE=1  -j $NCORE
 make install
+cd ..
 </code></pre>
 
 <p>If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly: </p>
@@ -479,7 +482,8 @@ make install
 <li><em>PATH</em> so the binary files could be executed without specifying the full path, e.q. <code>mpic++</code></li>
 </ul>
 <p>This could be done manually (e.g. by modifying <em>~/.bashrc</em>,<em>~/.zshrc</em>...) or with the following tool that produces the file
-<em>openfpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
+<em>open
+fpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
 <pre><code class="sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 source openfpm_vars
 </code></pre>
@@ -488,39 +492,41 @@ source openfpm_vars
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
 <pre><code class="sh"># openfpm_data
 cd openfpm_data
-mpirun -np 1 ../build/openfpm_io/openfpm_vcluster/openfpm_data/src/mem_map --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/src/mem_map --run_test=*/* --log_level=test_suite
 cd ..
 
 # openfpm_devices
 cd openfpm_devices
-mpirun -np 1 ../build/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/src/mem --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/src/mem --run_test=*/* --log_level=test_suite
 cd ..
 
 # openfpm_io
 cd openfpm_io
-mpirun -np 1 ../build/openfpm_io/src/io --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/src/io --run_test=*/* --log_level=test_suite
 cd ..
 
 # openfpm_numerics
 cd openfpm_numerics
-mpirun -np 3 ../build/openfpm_numerics/src/numerics --run_test=*/* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/openfpm_numerics/src/numerics --run_test=*/* --log_level=test_suite
 cd ..
 
 # openfpm_vcluter
 cd openfpm_vcluster
-mpirun -np 3 ../build/openfpm_io/openfpm_vcluster/src/vcluster_test --run_test=*/* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/src/vcluster_test --run_test=*/* --log_level=test_suite
 cd ..
 
 # openfpm_pdata
-mpirun -np 3 ./build/src/pdata --log_level=test_suite
+cd openfpm_pdata
+mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=*/* --log_level=test_suite
+cd ..
 </code></pre>
 
 <p>Example simulation codes are compiled with Makefile. For the dependencies (that are not installed system-wide) to be linked properly,
 the following compiler options have to be set:</p>
 <ul>
 <li><em>-llib</em> Search for the library named <em>lib</em> when linking</li>
-<li><em>Lloc</em> The location <em>loc</em> where to search for <em>lib</em></li>
-<li><em>Idir</em> Add the directory <em>dir</em> to the list of directories to be searched for header files during preprocessing.   </li>
+<li><em>-Lloc</em> The location <em>loc</em> where to search for <em>lib</em></li>
+<li><em>-Idir</em> Add the directory <em>dir</em> to the list of directories to be searched for header files during preprocessing.   </li>
 </ul>
 <p>This could be done manually when compiling the example codes or with the following tool that produces the file <em>example.mk</em>.
 <em><strong>Warning</strong>: OpenFPM installed and the gpu examples have to be compiled in the same mode (i.e. via nvcc, hip, alpaka or gpu-emulated (SEQUENTIAL, OpenMP))</em><br>

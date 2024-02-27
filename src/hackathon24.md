@@ -27,15 +27,16 @@ Lichtenbergstr. 4a<br>
 
     - 09.00 - 12.30 Introduction to Openfpm: architecture, paradigms of development, application use-cases
     - 12.30 - 13.30 Lunch break
-    - 13.30 - 16.30 Open problems: discussion
-    - 16.30 - 18.00 Open problems: code review
+    - 13.30 - 15.00 Discussion: future of OpenFPM - its target audience, missing modules/features, ways to improve
+    - 15.00 - 16.00 Open problems: code review
+    - 16.00 - 18.00 Discussion: current issues and ways to solve them
 
   - Day 2 - March 5:
 
     - 09.00 - 12.30 Open problems: coding session 1
     - 12.30 - 13.30 Lunch break
     - 13.30 - 16.30 Open problems: coding session 2
-    - 16.30 - 18.00 Discussion: problems of open-source projects in scientific community
+    - 16.30 - 18.00 Discussion: sustainability of OpenFPM in the realm of scientific software
 
 
   - Day 3 - March 6:
@@ -43,14 +44,14 @@ Lichtenbergstr. 4a<br>
     - 09.00 - 12.30 Open problems: coding session 1
     - 12.30 - 13.30 Lunch break
     - 13.30 - 16.30 Open problems: coding session 2
-    - 16.30 - 18.00 Discussion: the art of reproducibility: best practices
+    - 16.30 - 18.00 Discussion: the art of reproducibility - best practices
 
   - Day 4 - March 7:
 
     - 09.00 - 12.30 Open problems: coding session 1
     - 12.30 - 13.30 Lunch break
     - 13.30 - 16.30 Open problems: coding session 2
-    - 16.30 - 18.00 Discussion: future of OpenFPM - its target audience, missing modules/features, ways to improve
+    - 16.30 - 18.00 Discussion: integration with GitHub
 
   - Day 5 -  March 8
 
@@ -90,4 +91,13 @@ Registration deadline: March 1, 2024.
 ## Proposed topics
 ---------------
 
-Call for topics is still on!
+- Make OpenFPM available through Homebrew
+- Extend template support in `vector_dist_expressions` to expressions with three-index operands
+- Extend IO options in `openfpm_io` to support exporting tensor data types in _vtp_ format
+- Enable initial distribution of particles based on centroidal voronoi tessellation 
+- Integrate an interactive virtual reality in situ visualization framework with OpenFPM
+- Rewrite DC-PSE implementation to reuse Verlet List from `openfpm_data`. Extend Verlet List to variable neighborhood size for individual particles
+- Profile performance of symmetrical particle interaction schemes
+- Improve code documentation, code test coverage, guidance material availability 
+
+_*call for topics is still on_

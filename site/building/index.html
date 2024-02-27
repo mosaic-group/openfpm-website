@@ -289,7 +289,7 @@ apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev pytho
 apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python-dev wget 
 # for other systems
 yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python-devel libxml2-devel libxslt-devel wget
-brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget 
+brew install gcc libtool make cmake git python bzip2 wget 
 </code></pre>
 
 <p>OpenFPM is build upon the following open-source tools. Please intall these by building from source or with a package manager. </p>
@@ -422,6 +422,7 @@ brew install gcc49 gcc-gfortran libtool make cmake git python bzip2 wget
 <hr />
 <p><em>*optional if openfpm_numerics is disabled</em></p>
 <p>OpenFPM uses <a href="https://docs.nvidia.com/cuda/gpudirect-rdma/index.html">GPUDirect RDMA</a> to move data from one GPU to another GPU (intranode and extranode) without moving the data to host. This feature requires that OpenMPI is compiled with CUDA support. It can without this feature as well using GPUDirect of an old version (1.0). In practice it requires that MPI works with host pinned memory allocated with CUDA. This feature has been introduced with CUDA 5.0 in 2010. At best of our knowledge this feature should work without special compilation options for OpenMPI. On the other end we found several problems with GPUDirect v1.0 and Infiniband cards, when OpenMPI is not compiled with CUDA support. If you are on a super-computer or a machine you did not set-up, we suggest to re-install OpenMPI with CUDA support using the options suggested. Alternatively you can use the OpenMPI already provied.</p>
+<p><strong>If any of the OpenFPM dependencies is available system-wide the building from source step can be skipped!</strong></p>
 <p>The following script installs OpenFPM dependencies to the directory <code>/home/test/openfpm_dependencies</code>, compiled libraries and headers of OpenFPM to <code>/home/test/openfpm_install</code>, uses <em>gcc</em> toolkit, <em>4</em> cores and no gpu support for OpenMPI.</p>
 <pre><code class="sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
 # to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
@@ -458,11 +459,11 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 
 <h2 id="building-openfpm">Building OpenFPM</h2>
 <p>OpenFPM uses CMake build system. For it to function properly, CMake has to be able to locate
-the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake. Additionaly, the script assumes some <em>openfpm</em> build parameters by default, e.g. build type, backend for CUDA-like code, enable/disable <em>numerics</em> module, debug utilities etc.</p>
+the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake. Additionaly, the script assumes some <em>openfpm</em> build parameters by default, e.g. build type, backend for CUDA-like code, enable/disable <em>numerics</em> module, debug utilities etc. These parameters can be modified inside <em>script/conf_CMake.sh</em></p>
 <pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 </code></pre>
 
-<p>The resultant CMake command is echoed to the terminal window and saved into the file <em>cmake_build_options</em>.</p>
+<p>The resultant CMake command is echoed to the terminal window and saved into the file <em>cmake_build_options</em></p>
 <p>CMake config options are exported to header files to be used in the project</p>
 <pre><code class="sh">mkdir -p openfpm_pdata/scr/config openfpm_devices/scr/config openfpm_io/scr/config openfpm_data/scr/config openfpm_numerics/scr/config openfpm_vcluster/scr/config
 </code></pre>

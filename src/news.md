@@ -2,7 +2,7 @@
 
 <img width=130px, style="margin:-20px"> | |
 ------------ | -----------------------------------------------------------------
-**12/2/2024** | *OpenFPM 5.0.0*
+**12/2/2024** | *OpenFPM 5.0.0-beta*
 **29/3/2022** | *OpenFPM 4.1.0*
 **1/9/2021** | *OpenFPM 4.0.0*
 **24/4/2021** | *OpenFPM 3.3.0*
@@ -19,6 +19,29 @@
 **5/11/2016** | *OpenFPM 0.6.0*
 
 # Change Log
+## OpenFPM 5.0.0 - Feb 2024
+- Move to `openfpm` meta OpenFPM project structure with git subprojects `openfpm_data`, `openfpm_devices`, `openfpm_io`, `openfpm_vcluster`, `openfpm_pdata`, `openfpm_numerics`. Example codes, installation scripts for dependencies, configuration scripts moved to `openfpm`. Only source code of `openfpm_pdata` kept in `openfpm_pdata`
+
+### Added 
+- Add DC-PSE gpu implementation
+- Add support for _minter_ header-only library. Installed automatically if `openfpm_numerics` is enabled
+- Add _Odeint_ gpu support
+
+### Fixed
+- Fix `remove_marked` when number of particles is decreased and memory is reused
+- Fix `host_to_device_impl` when _allocated_ size > _actual_ size 
+- Fix DC-PSE operator with Lagrange multiplier for number of variables > 1
+- Fix template substitution failure for `Graph_CSR` with no edge
+- Fix Cell List `getNNIterator` giving different neighborhood lists for dense and sparse versions
+- Fix `sendrecvMultipleMessagesNBX` for message size > 2 GB
+
+### Changes 
+- Get rid of _autotools_ emulation for installation procedure. Remove `install/update/upgrade` scripts. Move to _CMake_ with manually building dependencies and manualy calling configuration scripts for _CMake_, `example.mk`, `openfpm_vars`
+- Remove `gdbui` from list of git subprojects
+- Move from _moderngpu_ as it's no longer supported to _cub_
+- Refactor Cell List implementation, change code structure and variable naming. Split dense and sparse Cell List into partial template specializations
+- Move all backends for CUDA emulation, CUDA headers and parallel primitives to `openfpm_devices` from `openfpm_data` 
+
 ## OpenFPM 4.1.0 - Mar 2022
 - On a general base the code should not use `CUDA_ON_CPU` but if it does `CUDA_ON_CPU` macro now cover both `SEQUENTIAL` and `OpenMP` backend. The macros `CUDIFY_USE_CUDA,CUDIFY_USE_HIP,CUDIFY_USE_OPENMP,CUDIFY_USE_SEQUENTIAL,CUDIFY_USE_NONE` can be checked to control which CUDA backend is used
 

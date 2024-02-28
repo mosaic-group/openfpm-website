@@ -25,10 +25,10 @@ Lichtenbergstr. 4a<br>
 
   - Day 1 - March 4:
 
-    - 09.00 - 12.30 Introduction to Openfpm: architecture, paradigms of development, application use-cases
+    - 09.00 - 11.30 Introduction to Openfpm: architecture, paradigms of development, application use-cases
+    - 11.30 - 12.30 Discussion: future of OpenFPM - its target audience, missing modules/features, ways to improve
     - 12.30 - 13.30 Lunch break
-    - 13.30 - 15.00 Discussion: future of OpenFPM - its target audience, missing modules/features, ways to improve
-    - 15.00 - 16.00 Open problems: code review
+    - 13.30 - 16.00 Open problems: code review and coding session
     - 16.00 - 18.00 Discussion: current issues and ways to solve them
 
   - Day 2 - March 5:

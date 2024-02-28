@@ -331,6 +331,8 @@
 <li>Move from <em>moderngpu</em> as it's no longer supported to <em>cub</em></li>
 <li>Refactor Cell List implementation, change code structure and variable naming. Split dense and sparse Cell List into partial template specializations</li>
 <li>Move all backends for CUDA emulation, CUDA headers and parallel primitives to <code>openfpm_devices</code> from <code>openfpm_data</code> </li>
+<li>Remove default parameter from <code>NO_CHECK</code> from Cell List iterators (e.g. <code>getNNIterator</code>). <code>cl.template getNNIterator&lt;NO_CHECK&gt;(...)</code> is replaced by <code>cl.getNNIterator(...)</code></li>
+<li>Pass Cell List <code>NNIteratorBox</code> parameter to <code>getCellList/getCellListGPU</code> of <code>vector_dist</code>. <code>getNNIteratorBox</code> has to be set when initializing the Cell List compared to <code>getNNIteratorRadius</code>, which could be set later, due to sparse Cell List on gpu using it in <code>construct()</code>. If not set, the dafault value of 1 would have been used by <code>construct()</code></li>
 </ul>
 <h2 id="openfpm-410-mar-2022">OpenFPM 4.1.0 - Mar 2022</h2>
 <ul>

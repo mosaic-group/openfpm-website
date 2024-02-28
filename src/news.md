@@ -41,6 +41,8 @@
 - Move from _moderngpu_ as it's no longer supported to _cub_
 - Refactor Cell List implementation, change code structure and variable naming. Split dense and sparse Cell List into partial template specializations
 - Move all backends for CUDA emulation, CUDA headers and parallel primitives to `openfpm_devices` from `openfpm_data` 
+- Remove default parameter from `NO_CHECK` from Cell List iterators (e.g. `getNNIterator`). `cl.template getNNIterator<NO_CHECK>(...)` is replaced by `cl.getNNIterator(...)`
+- Pass Cell List `NNIteratorBox` parameter to `getCellList/getCellListGPU` of `vector_dist`. `getNNIteratorBox` has to be set when initializing the Cell List compared to `getNNIteratorRadius`, which could be set later, due to sparse Cell List on gpu using it in `construct()`. If not set, the dafault value of 1 would have been used by `construct()`
 
 ## OpenFPM 4.1.0 - Mar 2022
 - On a general base the code should not use `CUDA_ON_CPU` but if it does `CUDA_ON_CPU` macro now cover both `SEQUENTIAL` and `OpenMP` backend. The macros `CUDIFY_USE_CUDA,CUDIFY_USE_HIP,CUDIFY_USE_OPENMP,CUDIFY_USE_SEQUENTIAL,CUDIFY_USE_NONE` can be checked to control which CUDA backend is used

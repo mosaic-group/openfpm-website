@@ -38,7 +38,7 @@ author = {Pietro Incardona and Antonio Leo and Yaroslav Zaluzhnyi and Rajesh Ram
 
 ## License
 
-- [BSD 3-Clause](https://github.com/mosaic-group/openfpm_pdata/blob/master/LICENSE.md)
+- [BSD 3-Clause](https://github.com/mosaic-group/openfpm/blob/master/LICENSE.md)
 
 <br>
 

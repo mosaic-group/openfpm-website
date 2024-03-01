@@ -8,7 +8,7 @@ markdown_extensions:
 - footnotes
 - attr_list  # Allow us to add link attributes
 
-repo_url: https://github.com/mosaic-group/openfpm_pdata
+repo_url: https://github.com/mosaic-group/openfpm
 remote_name: origin
 # pages starting with '_' are hidden from the menu
 

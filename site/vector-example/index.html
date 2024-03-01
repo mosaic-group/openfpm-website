@@ -150,7 +150,7 @@
                 
                 
                 <li>
-                    <a href="https://github.com/mosaic-group/openfpm_pdata/">
+                    <a href="https://github.com/mosaic-group/openfpm/">
                         
                             <i class="fa fa-github-square"></i>
                         
@@ -254,7 +254,7 @@ In this example it is shown how to:</p>
 <li>An array that defines the boundary conditions</li>
 <li>A Ghost object that will define the extension of the ghost part in physical units</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/0_simple/main.cpp">Vector/0_simple/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_0_simple.html">Vector_0_simple</a></em>.</p>
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/0_simple/main.cpp">Vector/0_simple/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_0_simple.html">Vector_0_simple</a></em>.</p>
 <p>See also our video lectures dedicated to this topic <a href="http://ppmcore.mpi-cbg.de/upload/video/Lesson1-1.mp4">Video 1</a>, <a href="http://ppmcore.mpi-cbg.de/upload/video/Lesson1-2.mp4">Video 2</a>
 <div style="clear:both;"></div>
 <br></p>
@@ -272,7 +272,7 @@ that synchronize the ghosts layer for a distributed vector <code>vector_dist</co
 <li><code>NO_POSITION</code>, <code>KEEP_PROPERTIES</code> and <code>SKIP_LABELLING</code> options of the <code>ghost_get</code> function</li>
 <li>Propagate the data from ghost to non-ghost particles via <code>ghost_put</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_ghost_get_put/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_ghost_get.html">Vector_1_ghost_get</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_ghost_get_put/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_ghost_get.html">Vector_1_ghost_get</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -287,7 +287,7 @@ that synchronize the ghosts layer for a distributed vector <code>vector_dist</co
 <li><code>CELL_MEMFAST</code>, <code>CELL_MEMBAL</code> and <code>CELL_MEMMW</code> variations of the cell-list, with different memory requirements and computations costs</li>
 <li>Iterating through the neighboring particles via <code>getNNIterator</code> of cell-list and Verlet-list</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_celllist/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_celllist.html">Vector_1_celllist</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/1_ghost_get_put/main.cpp">Vector/1_celllist/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_celllist.html">Vector_1_celllist</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -304,7 +304,7 @@ that synchronize the ghosts layer for a distributed vector <code>vector_dist</co
 <li>How to use <code>map</code> with the option <code>RUN_DEVICE</code> to redistribute the particles directly on GPU, and <code>ghost_get</code> with <code>RUN_DEVICE</code> option to fill ghost particles directly on GPU</li>
 <li>How to detect and utilize RDMA on GPU to get the support of CUDA-aware MPI implementation to work directly with device pointers in communication subroutines</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/1_gpu_first_step/main.cpp">Vector/1_gpu_first_step/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_gpu_first_step.html">Vector_1_gpu_first_step</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/1_gpu_first_step/main.cpp">Vector/1_gpu_first_step/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_gpu_first_step.html">Vector_1_gpu_first_step</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -316,7 +316,7 @@ that synchronize the ghosts layer for a distributed vector <code>vector_dist</co
 <li>How to save the position/property information of the particles <code>vector_dist</code> into an <em>.hdf5</em> file via <code>save</code></li>
 <li>How to load the position/property information of the particles <code>vector_dist</code> from an <em>.hdf5</em> file via <code>load</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/tree/master/example/Vector/1_HDF5_save_load/main.cpp">Vector/1_HDF5_save_load/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_HDF5.html">Vector_1_HDF5</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/tree/master/example/Vector/1_HDF5_save_load/main.cpp">Vector/1_HDF5_save_load/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_1_HDF5.html">Vector_1_HDF5</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -338,7 +338,7 @@ $A_q$ is the property $A$ of particle $q$, $x_p, x_q$ are positions of particles
 for all the neighboring particles, e.g. as in SPH</li>
 </ul>
 <p>$$\sum_{q = Neighborhood(p)}  A_q D^{\beta}ker(x_p,x_q) V_q $$</p>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/tree/master/example/Vector/2_expressions/main.cpp">Vector/2_expressions/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_2_expression.html">Vector_2_expression</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/tree/master/example/Vector/2_expressions/main.cpp">Vector/2_expressions/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_2_expression.html">Vector_2_expression</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -360,7 +360,7 @@ $$ V(x_p,x_q) = 4( (\frac{\sigma}{r})^{12} - (\frac{\sigma}{r})^6  ) $$</p>
 <ul>
 <li>Producing a time-total energy 2D plot with <code>GoogleChart</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic/main.cpp">Vector/3_molecular_dynamic/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn.html">Vector_3_md_dyn</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/3_molecular_dynamic/main.cpp">Vector/3_molecular_dynamic/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn.html">Vector_3_md_dyn</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -373,7 +373,7 @@ Key points:</p>
 such that the Verlet-list has to be updated once in 10 iterations via <code>updateVerlet</code></li>
 <li>As Verlet-lists are constructed based on local particle id's, which would be invalidated by <code>map</code> or <code>ghost_get</code> ,<code>map</code> is called every 10 time-step, and <code>ghost_get</code> is used with <code>SKIP_LABELLING</code> option to keep old indices every iteration</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic/main_vl.cpp">Vector/3_molecular_dynamic/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_vl.html">Vector_3_md_vl</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/3_molecular_dynamic/main_vl.cpp">Vector/3_molecular_dynamic/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_vl.html">Vector_3_md_vl</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -387,7 +387,7 @@ Key points:</p>
 <li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
 <li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -401,7 +401,7 @@ Key points:</p>
 <li>Changing the prefactor in the subroutine of calculating the total energy as every pair of particles is visited once (as compared to two times before) </li>
 <li>Updating Verlet-list once in 10 iterations via <code>updateVerlet</code> with 'VL_SYMMETRIC' flag</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/5_molecular_dynamic_sym/main.cpp">Vector/5_molecular_dynamic_sym/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_5_md_vl_sym.html">Vector_5_md_vl_sym</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -413,7 +413,7 @@ Key points:</p>
 <li>To get the particle index inside a CUDA-like kernel <code>GET_PARTICLE</code> macro is used to avoid overflow in the construction <code>blockIdx.x * blockDim.x + threadIdx.x</code></li>
 <li>A primitive reduction function <code>reduce_local</code> with the operation <code>_add_</code> is used to get the total energy by summing energies of all particles.</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic_gpu/main.cu">Vector/3_molecular_dynamic_gpu/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu.html">Vector_3_md_dyn_gpu</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/3_molecular_dynamic_gpu/main.cu">Vector/3_molecular_dynamic_gpu/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu.html">Vector_3_md_dyn_gpu</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -426,7 +426,7 @@ Key points:</p>
 <li>The sorted version of <code>vector_dist_gpu</code> is offloaded to GPU using <code>toKernel_sorted</code>. It uses <code>get_sort</code> instead of <code>get</code> to get a particle index in the cell-list neighborhood iterator <code>getNNIteratorBox</code></li>
 <li>The sorted version of particle properties have to be merged to the original ones once the processing is done via <code>merge_sort</code> of <code>vector_dist</code> </li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/3_molecular_dynamic_gpu_opt/main_gpu.cu">Vector/3_molecular_dynamic_gpu_opt/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu_opt.html">Vector_3_md_dyn_gpu_opt</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/3_molecular_dynamic_gpu_opt/main_gpu.cu">Vector/3_molecular_dynamic_gpu_opt/main_vl.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_3_md_dyn_gpu_opt.html">Vector_3_md_dyn_gpu_opt</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -439,7 +439,7 @@ Key points:</p>
 <li>It is shown that the frequency of reordering depends on the mobility of particles</li>
 <li>Wall clock time is measured of the function <code>calc_force</code> utilizing the object <code>timer</code> via <code>start</code> and <code>stop</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_reorder/main_data_ord.cpp">Vector/4_reorder/main_data_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_reo.html">Vector_4_reo</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/4_reorder/main_data_ord.cpp">Vector/4_reorder/main_data_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_reo.html">Vector_4_reo</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -451,7 +451,7 @@ Key points:</p>
 <li>The cell-list cells are iterated following a Hilbert curve instead of a normal left-to-right bottom-to-top cell iteration (in 2D). The function <code>getCellList_hilb</code> of <code>vector_dist</code> is used instead of <code>getCellList</code></li>
 <li>It is shown that for static or slowly moving particles a speedup of up to 10% could be achieved</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_reorder/main_comp_ord.cpp">Vector/4_reorder/main_comp_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_comp_reo.html">Vector_4_comp_reo</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/4_reorder/main_comp_ord.cpp">Vector/4_reorder/main_comp_ord.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_comp_reo.html">Vector_4_comp_reo</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -464,7 +464,7 @@ Key points:</p>
 <li>Redistribute the particles in <code>vector_dist</code> according to the underlying domain decomposition. Communicate only the selected particle properties via <code>map_list</code> (instead of communicating all <code>map</code>)</li>
 <li>Synchronize the ghost layers only for the selected particle properties <code>ghost_get</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop.html">Vector_4_complex_prop</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop.html">Vector_4_complex_prop</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -483,7 +483,7 @@ Key points:</p>
 </ul>
 </li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop_ser.html">Vector_4_complex_prop_ser</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/4_complex_prop/main.cpp">Vector/4_complex_prop/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_complex_prop_ser.html">Vector_4_complex_prop_ser</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -499,7 +499,7 @@ Key points:</p>
 <li>Iterating over the neighboring particles of a multiphase Verlet-list with <code>getNNIterator</code> with <code>get</code> being substituded by <code>getP</code> (particle phase) and <code>getV</code> (particle id)</li>
 <li>Extending example of the symmetric interaction for multiphase cell-lists and Verlet-lists via <code>createCellListSymM</code>, <code>createVerletSymM</code></li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/4_multiphase_celllist_verlet/main.cpp">Vector/4_multiphase_celllist_verlet/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_mp_cl.html">Vector_4_mp_cl</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/4_multiphase_celllist_verlet/main.cpp">Vector/4_multiphase_celllist_verlet/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_4_mp_cl.html">Vector_4_mp_cl</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>
@@ -511,7 +511,7 @@ Key points:</p>
 <li>To get unique global id's of the particles the function <code>accum</code> of <code>vector_dist</code> is used, which returns prefix sum of local domain sizes $j&lt;i$ for the logical processor $i$ out of $N$ total processors</li>
 <li>Propagate the data from potentially ghost particles <em>q</em> to non-ghost particles in their corresponding domains via <code>ghost_put</code> with the operation <code>merge_</code>, that merges two <code>openfpm::vector</code> (ghost and non-ghost)</li>
 </ul>
-<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm_pdata/blob/master/example/Vector/6_complex_usage/main.cpp">Vector/6_complex_usage/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_6_complex_usage.html">Vector_6_complex_usage</a></em>.
+<p><em>The source code of the example <a href="https://github.com/mosaic-group/openfpm/blob/master/example/Vector/6_complex_usage/main.cpp">Vector/6_complex_usage/main.cpp</a>. The full doxygen documentation <a href="http://ppmcore.mpi-cbg.de/doxygen/openfpm/Vector_6_complex_usage.html">Vector_6_complex_usage</a></em>.
 <div style="clear:both;"></div>
 <br></p>
 </div>

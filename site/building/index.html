@@ -463,8 +463,7 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 <li><em>PATH</em> so the binary files could be executed without specifying the full path, e.q. <code>mpic++</code></li>
 </ul>
 <p>This could be done manually (e.g. by modifying <em>~/.bashrc</em>,<em>~/.zshrc</em>...) or with the following tool that produces the file
-<em>open
-fpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
+<em>openfpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
 <pre><code class="sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 source openfpm_vars
 </code></pre>

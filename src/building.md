@@ -126,8 +126,7 @@ If the dependencies are not installed system-wide, but build from source, two en
 - _PATH_ so the binary files could be executed without specifying the full path, e.q. `mpic++`
 
 This could be done manually (e.g. by modifying _~/.bashrc_,_~/.zshrc_...) or with the following tool that produces the file
-_open
-fpm_vars_. This file has to be sourced every time in a new session before running OpenFPM related code.
+_openfpm_vars_. This file has to be sourced every time in a new session before running OpenFPM related code.
 
 ```sh
 ./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM

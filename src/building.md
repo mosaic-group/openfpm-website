@@ -208,3 +208,14 @@ mv example.mk example
 
 In addition to the building from source described below, OpenFPM packages are
 also available as pre-built [binaries](download.md) and [Docker images](docker.md)
+
+## Troubleshooting: known issues
+- **Mac OS**: _CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)_. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running `make check` in PETSC directory. The command will fail with `dyld[...]: Library not loaded`, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via `-DPETSC_EXECUTABLE_RUNS=True` added to the output of the command:
+```sh
+./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+```
+- **Mac OS Xcode 15**: _Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)_. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM backe-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:
+```sh
+make LDFLAGS=" -ld_classic" -j $NCORE
+```
+

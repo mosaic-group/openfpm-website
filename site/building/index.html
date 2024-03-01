@@ -181,6 +181,8 @@
         
             <li><a href="#running-tests-and-examples">Running Tests and Examples</a></li>
         
+            <li><a href="#troubleshooting-known-issues">Troubleshooting: known issues</a></li>
+        
     
     
     </ul>
@@ -536,7 +538,19 @@ mv example.mk example
 </code></pre>
 
 <p>In addition to the building from source described below, OpenFPM packages are
-also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p></div>
+also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p>
+<h2 id="troubleshooting-known-issues">Troubleshooting: known issues</h2>
+<ul>
+<li><strong>Mac OS</strong>: <em>CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)</em>. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running <code>make check</code> in PETSC directory. The command will fail with <code>dyld[...]: Library not loaded</code>, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via <code>-DPETSC_EXECUTABLE_RUNS=True</code> added to the output of the command:</li>
+</ul>
+<pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+</code></pre>
+
+<ul>
+<li><strong>Mac OS Xcode 15</strong>: <em>Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)</em>. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM backe-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:</li>
+</ul>
+<pre><code class="sh">make LDFLAGS=&quot; -ld_classic&quot; -j $NCORE
+</code></pre></div>
             <div class="col-md-3 hidden-xs hidden-sm"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
@@ -551,6 +565,8 @@ also available as pre-built <a href="../download/">binaries</a> and <a href="../
             <li><a href="#building-openfpm">Building OpenFPM</a></li>
         
             <li><a href="#running-tests-and-examples">Running Tests and Examples</a></li>
+        
+            <li><a href="#troubleshooting-known-issues">Troubleshooting: known issues</a></li>
         
     
     

@@ -64,7 +64,7 @@
  Apr 19  2021 | 117M | 3.2.0 | [OpenFPM-3.2.0-Darwin.bigsur.x86_64.pkg](http://openfpm.mpi-cbg.de/upload/super_bundles/OpenFPM-3.2.0-Darwin.bigsur.x86_64.pkg) |
  Feb 28  2021 | 117M | 3.2.0 | [OpenFPM-3.2.0-Darwin.catalina.x86_64.pkg](http://openfpm.mpi-cbg.de/upload/super_bundles/OpenFPM-3.2.0-Darwin.catalina.x86_64.pkg) |
 
-Please use our GitHub [issue tracker](https://github.com/mosaic-group/openfpm_pdata/issues)
-to report [bugs](https://github.com/mosaic-group/openfpm_pdata/issues/new?labels=bug)
-or post [questions](https://github.com/mosaic-group/openfpm_pdata/issues/new?labels=question) or [comments](https://github.com/mosaic-group/openfpm_pdata/issues/new?labels=comment).
+Please use our GitHub [issue tracker](https://github.com/mosaic-group/openfpm/issues)
+to report [bugs](https://github.com/mosaic-group/openfpm/issues/new?labels=bug)
+or post [questions](https://github.com/mosaic-group/openfpm/issues/new?labels=question) or [comments](https://github.com/mosaic-group/openfpm/issues/new?labels=comment).
 

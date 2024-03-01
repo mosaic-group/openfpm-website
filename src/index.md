@@ -29,7 +29,7 @@ OpenFPM is a scalable open framework for _particle_ and _particle-mesh_ codes on
 
 ## Contact
 
-Use the GitHub [issue tracker](https://github.com/mosaic-group/openfpm_pdata/issues)
+Use the GitHub [issue tracker](https://github.com/mosaic-group/openfpm/issues)
 to report bugs/questions/comments. 
 See the [Cite us](about.md) page for the citation information.
 

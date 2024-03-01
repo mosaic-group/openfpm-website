@@ -75,7 +75,7 @@ OpenFPM is build upon the following open-source tools. Please intall these by bu
 | [Eigen](https://eigen.tuxfamily.org/index.php) | openfpm_numerics | Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | Yes* (or Petsc) | 3.4.0 |
 | [Blitz++](https://github.com/blitzpp/blitz) | openfpm_numerics | A meta-template library for array manipulation in C++ with a speed comparable to Fortran implementations, while preserving an object-oriented interface | NO* | 1.0.2 |
 | [Algoim](https://algoim.github.io) | openfpm_numerics | A collection of high-order accurate numerical methods and C++ algorithms for working with implicitly-defined geometry and level set methods. Requires [Blitz++](https://github.com/blitzpp/blitz) | NO* | master |
-| [PETSc](https://petsc.org/) | openfpm_numerics |  Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires [OpenBLAS](http://www.openblas.net/), [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html), [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | Yes* (or Eigen) | 3.19.6 |
+| [PETSc](https://petsc.org/) | openfpm_numerics |  Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires [OpenBLAS](http://www.openblas.net/), [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html), [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | Yes* (or Eigen) | 3.20.5 |
 
 ---
 
@@ -105,9 +105,9 @@ export PATH="$PREFIX_DEPENDS/MPI/bin:$PATH"
 # Parmetis uses mpicc in make config by default
 ./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE 
 ./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE
+# Zlib uses CC=mpicc in ./configure
 ./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
 ./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE
-# Zlib uses CC=mpicc in ./configure
 ./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE
 ./script/install_VCDEVEL.sh $PREFIX_DEPENDS $NCORE $CC $CXX
 # Install dependencies for numerics (optional)
@@ -118,6 +118,20 @@ export PATH="$PREFIX_DEPENDS/MPI/bin:$PATH"
 ./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE
 ./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
 
+```
+
+If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly:
+
+- _LD_LIBRARY_PATH_ so the dynamic link loader knows where to search for the dynamic shared libraries;
+- _PATH_ so the binary files could be executed without specifying the full path, e.q. `mpic++`
+
+This could be done manually (e.g. by modifying _~/.bashrc_,_~/.zshrc_...) or with the following tool that produces the file
+_open
+fpm_vars_. This file has to be sourced every time in a new session before running OpenFPM related code.
+
+```sh
+./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+source openfpm_vars
 ```
 
 ## Building OpenFPM
@@ -139,22 +153,9 @@ mkdir build
 cd build 
 #insert the output of conf_CMake.sh and run the command
 # <INSERT HERE>
-make VERBOSE=1  -j $NCORE
+make -j $NCORE
 make install
 cd ..
-```
-If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly: 
-
-- _LD_LIBRARY_PATH_ so the dynamic link loader knows where to search for the dynamic shared libraries;
-- _PATH_ so the binary files could be executed without specifying the full path, e.q. `mpic++`
-
-This could be done manually (e.g. by modifying _~/.bashrc_,_~/.zshrc_...) or with the following tool that produces the file
-_open
-fpm_vars_. This file has to be sourced every time in a new session before running OpenFPM related code.
-
-```sh
-./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
-source openfpm_vars
 ```
 ## Running Tests and Examples
 
@@ -208,4 +209,3 @@ mv example.mk example
 
 In addition to the building from source described below, OpenFPM packages are
 also available as pre-built [binaries](download.md) and [Docker images](docker.md)
-

@@ -415,7 +415,7 @@ brew install gcc libtool make cmake git python bzip2 wget
 <td>openfpm_numerics</td>
 <td>Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires <a href="http://www.openblas.net/">OpenBLAS</a>, <a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a>, <a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a></td>
 <td>Yes* (or Eigen)</td>
-<td>3.19.6</td>
+<td>3.20.5</td>
 </tr>
 </tbody>
 </table>
@@ -442,9 +442,9 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 # Parmetis uses mpicc in make config by default
 ./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE 
 ./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE
+# Zlib uses CC=mpicc in ./configure
 ./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
 ./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE
-# Zlib uses CC=mpicc in ./configure
 ./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE
 ./script/install_VCDEVEL.sh $PREFIX_DEPENDS $NCORE $CC $CXX
 # Install dependencies for numerics (optional)
@@ -455,6 +455,18 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 ./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE
 ./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
 
+</code></pre>
+
+<p>If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly:</p>
+<ul>
+<li><em>LD_LIBRARY_PATH</em> so the dynamic link loader knows where to search for the dynamic shared libraries;</li>
+<li><em>PATH</em> so the binary files could be executed without specifying the full path, e.q. <code>mpic++</code></li>
+</ul>
+<p>This could be done manually (e.g. by modifying <em>~/.bashrc</em>,<em>~/.zshrc</em>...) or with the following tool that produces the file
+<em>open
+fpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
+<pre><code class="sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+source openfpm_vars
 </code></pre>
 
 <h2 id="building-openfpm">Building OpenFPM</h2>
@@ -472,21 +484,9 @@ the dependencies of OpenFPM. If they are not installed system-wide, the followin
 cd build 
 #insert the output of conf_CMake.sh and run the command
 # &lt;INSERT HERE&gt;
-make VERBOSE=1  -j $NCORE
+make -j $NCORE
 make install
 cd ..
-</code></pre>
-
-<p>If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly: </p>
-<ul>
-<li><em>LD_LIBRARY_PATH</em> so the dynamic link loader knows where to search for the dynamic shared libraries;</li>
-<li><em>PATH</em> so the binary files could be executed without specifying the full path, e.q. <code>mpic++</code></li>
-</ul>
-<p>This could be done manually (e.g. by modifying <em>~/.bashrc</em>,<em>~/.zshrc</em>...) or with the following tool that produces the file
-<em>open
-fpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
-<pre><code class="sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
-source openfpm_vars
 </code></pre>
 
 <h2 id="running-tests-and-examples">Running Tests and Examples</h2>

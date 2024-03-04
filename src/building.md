@@ -205,9 +205,16 @@ The file has to be placed in the folder _example_.
 ./script/create_example.mk.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 mv example.mk example
 ```
-
-In addition to the building from source described below, OpenFPM packages are
-also available as pre-built [binaries](download.md) and [Docker images](docker.md)
+The example codes are split in subfolders. To compile and run an example (e.g. _Vector/0_simple_) use _Makefile_
+```sh
+cd example/Vector/0_simple
+make run
+```
+If dependencies or the codebase of OpenFPM change, to recompile an example use
+```sh
+make clean
+make run
+```
 
 ## Troubleshooting: known issues
 - **Mac OS**: _CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)_. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running `make check` in PETSC directory. The command will fail with `dyld[...]: Library not loaded`, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via `-DPETSC_EXECUTABLE_RUNS=True` added to the output of the command:
@@ -219,3 +226,7 @@ also available as pre-built [binaries](download.md) and [Docker images](docker.m
 make LDFLAGS=" -ld_classic" -j $NCORE
 ```
 
+---
+
+In addition to the building from source described below, OpenFPM packages are
+also available as pre-built [binaries](download.md) and [Docker images](docker.md)

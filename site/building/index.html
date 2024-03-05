@@ -494,32 +494,32 @@ cd ..
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
 <pre><code class="sh"># openfpm_data
 cd openfpm_data
-mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/src/mem_map --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/src/mem_map --run_test=\*/\* --log_level=test_suite
 cd ..
 
 # openfpm_devices
 cd openfpm_devices
-mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/src/mem --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/src/mem --run_test=\*/\* --log_level=test_suite
 cd ..
 
 # openfpm_io
 cd openfpm_io
-mpirun -np 1 ../build/openfpm_pdata/openfpm_io/src/io --run_test=*/* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_pdata/openfpm_io/src/io --run_test=\*/\* --log_level=test_suite
 cd ..
 
 # openfpm_numerics
 cd openfpm_numerics
-mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/openfpm_numerics/src/numerics --run_test=*/* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/openfpm_data/openfpm_devices/openfpm_numerics/src/numerics --run_test=\*/\* --log_level=test_suite
 cd ..
 
 # openfpm_vcluter
 cd openfpm_vcluster
-mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/src/vcluster_test --run_test=*/* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/openfpm_io/openfpm_vcluster/src/vcluster_test --run_test=\*/\* --log_level=test_suite
 cd ..
 
 # openfpm_pdata
 cd openfpm_pdata
-mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=*/* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=\*/\* --log_level=test_suite
 cd ..
 </code></pre>
 
@@ -555,11 +555,13 @@ make run
 </code></pre>
 
 <ul>
-<li><strong>Mac OS Xcode 15</strong>: <em>Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)</em>. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM backe-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:</li>
+<li><strong>Mac OS Xcode 15</strong>: <em>Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)</em>. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM back-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:</li>
 </ul>
-<pre><code class="sh">make LDFLAGS=&quot; -ld_classic&quot; -j $NCORE
+<pre><code class="sh">export LDFLAGS=&quot;$LDFLAGS -Wl,-ld_classic&quot;
+cmake ..
 </code></pre>
 
+<p><em>*Make sure you export the environment variable before running CMake, as it is cached by CMake and becomes read-only when running make</em></p>
 <hr />
 <p>In addition to the building from source described below, OpenFPM packages are
 also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p></div>

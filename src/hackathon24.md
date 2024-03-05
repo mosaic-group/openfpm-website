@@ -33,7 +33,7 @@ Lichtenbergstr. 4a<br>
 
   - Day 2 - March 5:
 
-    - 09.00 - 12.30 Open problems: coding session 1
+    - 09.10 - 12.30 Open problems: coding session 1
     - 12.30 - 13.30 Lunch break
     - 13.30 - 16.30 Open problems: coding session 2
     - 16.30 - 18.00 Discussion: sustainability of OpenFPM in the realm of scientific software

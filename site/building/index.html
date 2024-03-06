@@ -549,6 +549,7 @@ make run
 
 <h2 id="troubleshooting-known-issues">Troubleshooting: known issues</h2>
 <ul>
+<li><strong>Mac OS</strong>: <em>building for macOS-x86_64 but attempting to link with file built for macOS-x86_64</em>. If the error is reporting the same architecure (might be <em>arm64</em> as well), check whether <em>gcc</em> and <em>runlib</em> are showing the same backend consistantly, i.e. both have to be either <em>GNU</em> or <em>clang</em>. If not, modify your <em>$PATH</em> accordingly, e.g. in <em>.bashrc</em> or <em>.zshrc</em>, and rebuild the project/dependency</li>
 <li><strong>Mac OS</strong>: <em>CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)</em>. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running <code>make check</code> in PETSC directory. The command will fail with <code>dyld[...]: Library not loaded</code>, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via <code>-DPETSC_EXECUTABLE_RUNS=True</code> added to the output of the command:</li>
 </ul>
 <pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
@@ -557,11 +558,12 @@ make run
 <ul>
 <li><strong>Mac OS Xcode 15</strong>: <em>Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)</em>. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM back-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:</li>
 </ul>
-<pre><code class="sh">export LDFLAGS=&quot;$LDFLAGS -Wl,-ld_classic&quot;
+<pre><code class="sh"># Make sure you export the environment variable before running CMake,
+# as it is cached by CMake and becomes read-only when running make
+export LDFLAGS=&quot;$LDFLAGS -Wl,-ld_classic&quot;
 cmake ..
 </code></pre>
 
-<p><em>*Make sure you export the environment variable before running CMake, as it is cached by CMake and becomes read-only when running make</em></p>
 <hr />
 <p>In addition to the building from source described below, OpenFPM packages are
 also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p></div>

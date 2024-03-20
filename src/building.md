@@ -142,8 +142,6 @@ the dependencies of OpenFPM. If they are not installed system-wide, the followin
 ```
 The resultant CMake command is echoed to the terminal window and saved into the file _cmake_build_options_
 
-CMake config options (dependencies found, debug/error handling macros etc.) are exported as `#define OPTION` to `${CMAKE_BINARY_DIR}/config/config.h` header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.
-
 ```sh
 mkdir build
 cd build 
@@ -153,36 +151,32 @@ make -j $NCORE
 make install
 cd ..
 ```
+CMake config options (dependencies found, debug/error handling macros etc.) are exported as `#define OPTION` to `${CMAKE_BINARY_DIR}/config/config.h` header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.
+
 ## Running Tests and Examples
 
 Optionally, all tests could be run in each module to assure the project and dependencies work correctly
 ```sh
-# openfpm_data
 cd openfpm_data
 mpirun -np 1 ../build/openfpm_data/src/mem_map --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_devices
 cd openfpm_devices
 mpirun -np 1 ../build/openfpm_devices/src/mem --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_io
 cd openfpm_io
 mpirun -np 1 ../build/openfpm_io/src/io --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_numerics
 cd openfpm_numerics
 mpirun -np 3 ../build/openfpm_numerics/src/numerics --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_vcluter
 cd openfpm_vcluster
 mpirun -np 3 ../build/openfpm_vcluster/src/vcluster_test --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_pdata
 cd openfpm_pdata
 mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=\*/\* --log_level=test_suite
 cd ..

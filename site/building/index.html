@@ -477,7 +477,6 @@ the dependencies of OpenFPM. If they are not installed system-wide, the followin
 </code></pre>
 
 <p>The resultant CMake command is echoed to the terminal window and saved into the file <em>cmake_build_options</em></p>
-<p>CMake config options (dependencies found, debug/error handling macros etc.) are exported as <code>#define OPTION</code> to <code>${CMAKE_BINARY_DIR}/config/config.h</code> header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.</p>
 <pre><code class="sh">mkdir build
 cd build 
 #insert the output of conf_CMake.sh and run the command
@@ -487,34 +486,29 @@ make install
 cd ..
 </code></pre>
 
+<p>CMake config options (dependencies found, debug/error handling macros etc.) are exported as <code>#define OPTION</code> to <code>${CMAKE_BINARY_DIR}/config/config.h</code> header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.</p>
 <h2 id="running-tests-and-examples">Running Tests and Examples</h2>
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
-<pre><code class="sh"># openfpm_data
-cd openfpm_data
+<pre><code class="sh">cd openfpm_data
 mpirun -np 1 ../build/openfpm_data/src/mem_map --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_devices
 cd openfpm_devices
 mpirun -np 1 ../build/openfpm_devices/src/mem --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_io
 cd openfpm_io
 mpirun -np 1 ../build/openfpm_io/src/io --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_numerics
 cd openfpm_numerics
 mpirun -np 3 ../build/openfpm_numerics/src/numerics --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_vcluter
 cd openfpm_vcluster
 mpirun -np 3 ../build/openfpm_vcluster/src/vcluster_test --run_test=\*/\* --log_level=test_suite
 cd ..
 
-# openfpm_pdata
 cd openfpm_pdata
 mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=\*/\* --log_level=test_suite
 cd ..

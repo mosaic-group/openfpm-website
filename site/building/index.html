@@ -179,6 +179,8 @@
         
             <li><a href="#building-openfpm">Building OpenFPM</a></li>
         
+            <li><a href="#updating-openfpm">Updating OpenFPM</a></li>
+        
             <li><a href="#running-tests-and-examples">Running Tests and Examples</a></li>
         
             <li><a href="#troubleshooting-known-issues">Troubleshooting: known issues</a></li>
@@ -487,6 +489,16 @@ cd ..
 </code></pre>
 
 <p>CMake config options (dependencies found, debug/error handling macros etc.) are exported as <code>#define OPTION</code> to <code>${CMAKE_BINARY_DIR}/config/config.h</code> header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.</p>
+<h2 id="updating-openfpm">Updating OpenFPM</h2>
+<p>To pull, build and install an up-to-date version of OpenFPM tracked by the local <em>Git</em> branch (here <em>master</em> or <em>develop</em>) run:</p>
+<pre><code class="sh">git pull origin master/develop
+git submodule update
+cd build
+make -j $NCORE
+make install
+cd ..
+</code></pre>
+
 <h2 id="running-tests-and-examples">Running Tests and Examples</h2>
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
 <pre><code class="sh">cd openfpm_data
@@ -570,6 +582,8 @@ also available as pre-built <a href="../download/">binaries</a> and <a href="../
             <li><a href="#dependencies">Dependencies</a></li>
         
             <li><a href="#building-openfpm">Building OpenFPM</a></li>
+        
+            <li><a href="#updating-openfpm">Updating OpenFPM</a></li>
         
             <li><a href="#running-tests-and-examples">Running Tests and Examples</a></li>
         

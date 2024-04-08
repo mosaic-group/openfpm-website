@@ -153,6 +153,19 @@ cd ..
 ```
 CMake config options (dependencies found, debug/error handling macros etc.) are exported as `#define OPTION` to `${CMAKE_BINARY_DIR}/config/config.h` header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.
 
+## Updating OpenFPM
+
+To pull, build and install an up-to-date version of OpenFPM tracked by the local _Git_ branch (here _master_ or _develop_) run:
+
+```sh
+git pull origin master/develop
+git submodule update
+cd build
+make -j $NCORE
+make install
+cd ..
+```
+
 ## Running Tests and Examples
 
 Optionally, all tests could be run in each module to assure the project and dependencies work correctly

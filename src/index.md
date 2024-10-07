@@ -41,7 +41,7 @@ See the [Cite us](about.md) page for the citation information.
 ┊ [Using Docker](docker.md)
 ┊ [Examples](vector-example.md)
 ┊ [Videos](videos.md)
-┊ [Doxygen](http://ppmcore.mpi-cbg.de/doxygen/openfpm/)
+┊ [Doxygen](https://ppmcore.mpi-cbg.de/doxygen/openfpm/)
 
 
 </div><div class="col-md-12" markdown="1">

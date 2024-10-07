@@ -8,7 +8,7 @@ With OpenFPM developing into a global open-source project for scalable scientifi
 
 This 2-day in-person Hackathon is aimed at users, contributors, and developers. The core OpenFPM Developers will be present and available during the entire hackathon, so this is a great opportunity to get your ideas and wishes into the project and start close collaborations with them.
 
-But the Hackathon also welcomes people with little or no C++ coding skills who are willing to use the two days to contribute towards the OpenFPM documentation, tutorials, or revamping the OpenFPM [web page](http://openfpm.mpi-cbg.de).
+But the Hackathon also welcomes people with little or no C++ coding skills who are willing to use the two days to contribute towards the OpenFPM documentation, tutorials, or revamping the OpenFPM [web page](https://openfpm.mpi-cbg.de).
 
 Additionally, we welcome potential new users and people who are interested in learning more about OpenFPM in order to decide whether to start using it. You will have all the expert users and developers on site to talk to and answer your questions, and you can implement a first own hands-on example implementation to get familiar with OpenFPM and its usage.
 
@@ -79,5 +79,5 @@ Topic proposal collected so far:
 
 *   Granular contact models that would enable OpenFPM to perform granular simulations either of Hookean (linear) or Hertzian (non-linear) dynamics. Implement both approaches on top of OpenFPM data structures and implement a client application for DEM simulation of granular matter.
 *   Extend support for polynomial regression to n-dimensional data by adding a wrapper for the [minter](https://git.mpi-cbg.de/mosaic/software/math/minter) library. One can then use minter to obtain polynomial representations of data stored as OpenFPM grid or particle properties. Currently, there is a stub implementation only for particle properties. This should be extended to grids and subgrids with a uniform interface.
-*   Rewrite the OpenFPM [web page](http://openfpm.mpi-cbg.de) to make it easier to navigate, more informative and up-to-date. Extend the existing primers and tutorials. Integrate with Read the Docs.
+*   Rewrite the OpenFPM [web page](https://openfpm.mpi-cbg.de) to make it easier to navigate, more informative and up-to-date. Extend the existing primers and tutorials. Integrate with Read the Docs.
 *   Integrate and wrap in OpenFPM the Adaptive Particle Representation library ([libAPR](https://github.com/AdaptiveParticles/LibAPR)) for multi-resolution and adaptive simulations.

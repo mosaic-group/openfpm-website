@@ -45,7 +45,7 @@ Ivo F. Sbalzarini highlights challenges in computational developmental biology a
 #### *Particles-1*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 1
 
@@ -55,7 +55,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-3*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-3.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-3.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 3
 
@@ -65,7 +65,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-5*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 5
 
@@ -75,7 +75,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-7*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-1.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 7
 
@@ -84,7 +84,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Dynamic load balancing-1*
 ##### **Pietro Incardona, February 2017**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/dlb-1.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/dlb-1.mp4)
 
 This video series extends the series _Particles_ and introduces the problem of load balancing and dynamic load balancing. It illustrates the practical  use-case of the distributed data structure `vector_dist`. Part 1
 
@@ -93,7 +93,7 @@ This video series extends the series _Particles_ and introduces the problem of l
 #### *Dynamic load balancing-3*
 ##### **Pietro Incardona, February 2017**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/dlb-3.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/dlb-3.mp4)
 
 This video series extends the series _Particles_ and introduces the problem of load balancing and dynamic load balancing. It illustrates the practical  use-case of the distributed data structure `vector_dist`. Part 3
 
@@ -102,7 +102,7 @@ This video series extends the series _Particles_ and introduces the problem of l
 #### *Visualization*
 ##### **Pietro Incardona, August 2018**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/paraview_use.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/paraview_use.mp4)
 
 This video lesson shows how to visualize the data output produced by OpenFPM simulations.
 
@@ -113,7 +113,7 @@ This video lesson shows how to visualize the data output produced by OpenFPM sim
 #### *Particles-2*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-2.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-2.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 2
 
@@ -122,7 +122,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-4*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-4.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-4.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 4
 
@@ -131,7 +131,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-6*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-6.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-6.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 6
 
@@ -140,7 +140,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Particles-8*
 ##### **Pietro Incardona, July 2016**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/Lesson1-8.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/Lesson1-8.mp4)
 
 This video series introduces the basic use of the distributed data structure `vector_dist`. Part 8
 
@@ -149,7 +149,7 @@ This video series introduces the basic use of the distributed data structure `ve
 #### *Dynamic load balancing-2*
 ##### **Pietro Incardona, February 2017**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/dlb-2.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/dlb-2.mp4)
 
 This video series extends the series _Particles_ and introduces the problem of load balancing and dynamic load balancing. It illustrates the practical  use-case of the distributed data structure `vector_dist`. Part 2
 
@@ -158,7 +158,7 @@ This video series extends the series _Particles_ and introduces the problem of l
 #### *Dynamic load balancing-4*
 ##### **Pietro Incardona, February 2017**
 
-[Video](http://openfpm.mpi-cbg.de/upload/video/dlb-4.mp4)
+[Video](https://openfpm.mpi-cbg.de/upload/video/dlb-4.mp4)
 
 This video series extends the series _Particles_ and introduces the problem of load balancing and dynamic load balancing. It illustrates the practical  use-case of the distributed data structure `vector_dist`. Part 4
 

@@ -150,7 +150,7 @@
                 
                 
                 <li>
-                    <a href="https://github.com/mosaic-group/openfpm/">
+                    <a href="https://github.com/mosaic-group/openfpm">
                         
                             <i class="fa fa-github-square"></i>
                         
@@ -191,7 +191,7 @@ pre-installed <code>openfpm/ubuntu:install20.04</code>, <code>openfpm/fedora:ins
 <p>Or the images with the GPU code enabled <code>openfpm/ubuntu_cuda:install10.2-devel-ubuntu18.04</code>,
 <code>openfpm/ubuntu_cuda:install11.2.2-devel-ubuntu20.04</code>.   </p>
 <p>To start the container in Linux general command would be</p>
-<pre><code class="sh">[sudo] docker run --net=host \
+<pre><code class="language-sh">[sudo] docker run --net=host \
  -dit -v /tmp/.X11-unix:/tmp/.X11-unix \
  -e DISPLAY=unix$DISPLAY \
  -v $HOME/&lt;shared host folder&gt;:&lt;shared container folder&gt; \
@@ -200,7 +200,6 @@ pre-installed <code>openfpm/ubuntu:install20.04</code>, <code>openfpm/fedora:ins
  --name openfpm openfpm/ubuntu:install20.04 bash
 
 </code></pre>
-
 <ul>
 <li>where the networking of the container is not containerized, but connected to the host network</li>
 <li>X11 forwarding enabled</li>
@@ -248,6 +247,7 @@ installation files of OpenFPM are located in <code>/usr/local</code>.</p>
         <script src="../js/base.js"></script>
         <script src="../js/retina.min.js"></script>
         <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
         <script src="../search/main.js"></script>
     </body>
 </html>

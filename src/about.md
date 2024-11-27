@@ -22,6 +22,9 @@ author = {Pietro Incardona and Antonio Leo and Yaroslav Zaluzhnyi and Rajesh Ram
 
 
 ## Publications OpenFPM: applications
+- A. Salman et al., [Active Freedericksz Transition in Active Nematic Droplets](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.14.041002), Physical Review X, 2024
+- Zoeller, C. and Adams, N. A. and Adami, S., [Beam-shaping in laser-based powder bed fusion of metals: A computational analysis of point-ring intensity profiles](https://www.sciencedirect.com/science/article/pii/S2214860424004482), Additive Manufacturing, 2024
+- Schulze, Lennart J. and Veettil, Sachin K. T. and Sbalzarini, Ivo F., [A high-order fully Lagrangian particle level-set method for dynamic surfaces](https://www.sciencedirect.com/science/article/pii/S0021999124005102), Journal of Computational Physics, 2024
 - Wimmer A, Panzer H, Zoeller C, Adami A, Adams N A & Zaeh M F, [Experimental and numerical investigations of the hot cracking susceptibility during the powder bed fusion of AA 7075 using a laser beam](https://link.springer.com/article/10.1007/s40964-023-00523-7), Progress in Additive Manufacturing, 2023
 - A. Singh, P. H. Suhrcke, P. Incardona, I. F. Sbalzarini, [A numerical solver for active hydrodynamics in three dimensions and its application to active turbulence](https://pubs.aip.org/pof/article/35/10/105155/2919100/A-numerical-solver-for-active-hydrodynamics-in), Physics of Fluids, 2023
 - Singh, A., Foggia, A., Incardona, P. et al, [A Meshfree Collocation Scheme for Surface Differential Operators on Point Clouds](https://link.springer.com/article/10.1007/s10915-023-02313-3), Journal of Scientific Computing, 2023
@@ -42,8 +45,3 @@ author = {Pietro Incardona and Antonio Leo and Yaroslav Zaluzhnyi and Rajesh Ram
 ## License
 
 - [BSD 3-Clause](https://github.com/mosaic-group/openfpm/blob/master/LICENSE.md)
-
-<br>
-
-This project was supported in parts by the Deutsche Forschungsgemeinschaft (DFG), Germany under project ‘‘OpenPME’’ and by the German
-Federal Ministry of Research and Education (BMBF), Germany under grant number 031L0044

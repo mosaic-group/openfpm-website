@@ -150,7 +150,7 @@
                 
                 
                 <li>
-                    <a href="https://github.com/mosaic-group/openfpm/">
+                    <a href="https://github.com/mosaic-group/openfpm">
                         
                             <i class="fa fa-github-square"></i>
                         
@@ -275,7 +275,7 @@
 </table>
 <hr />
 <p>The subprojects are managed using <em>Git submodules</em>. Please refer to this <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">manual</a> on how to use this tool:</p>
-<pre><code class="sh">git clone https://github.com/mosaic-group/openfpm
+<pre><code class="language-sh">git clone https://github.com/mosaic-group/openfpm
 cd openfpm
 git submodule init
 git submodule update 
@@ -284,10 +284,9 @@ git checkout develop
 git submodule foreach &quot;git checkout develop&quot;
 git submodule foreach &quot;git pull origin develop&quot;
 </code></pre>
-
 <h2 id="dependencies">Dependencies</h2>
 <h3 id="install-prerequisites">Install prerequisites</h3>
-<pre><code class="sh"># for linux-based systems
+<pre><code class="language-sh"># for linux-based systems
 apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev python-dev wget
 # or 
 apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python-dev wget 
@@ -295,7 +294,6 @@ apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git 
 yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python-devel libxml2-devel libxslt-devel wget
 brew install gcc libtool make cmake git python bzip2 wget 
 </code></pre>
-
 <p>OpenFPM is build upon the following open-source tools. Please intall these by building from source or with a package manager. </p>
 <h3 id="building-dependencies-from-source">Building dependencies from source</h3>
 <table>
@@ -428,7 +426,7 @@ brew install gcc libtool make cmake git python bzip2 wget
 <p>OpenFPM uses <a href="https://docs.nvidia.com/cuda/gpudirect-rdma/index.html">GPUDirect RDMA</a> to move data from one GPU to another GPU (intranode and extranode) without moving the data to host. This feature requires that OpenMPI is compiled with CUDA support. It can without this feature as well using GPUDirect of an old version (1.0). In practice it requires that MPI works with host pinned memory allocated with CUDA. This feature has been introduced with CUDA 5.0 in 2010. At best of our knowledge this feature should work without special compilation options for OpenMPI. On the other end we found several problems with GPUDirect v1.0 and Infiniband cards, when OpenMPI is not compiled with CUDA support. If you are on a super-computer or a machine you did not set-up, we suggest to re-install OpenMPI with CUDA support using the options suggested. Alternatively you can use the OpenMPI already provied.</p>
 <p><strong>If any of the OpenFPM dependencies is available system-wide the building from source step can be skipped!</strong></p>
 <p>The following script installs OpenFPM dependencies to the directory <code>/home/test/openfpm_dependencies</code>, compiled libraries and headers of OpenFPM to <code>/home/test/openfpm_install</code>, uses <em>gcc</em> toolkit, <em>4</em> cores and no gpu support for OpenMPI.</p>
-<pre><code class="sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
+<pre><code class="language-sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
 # to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
 export CC=gcc \
   CXX=g++ \
@@ -460,7 +458,6 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 ./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
 
 </code></pre>
-
 <p>If the dependencies are not installed system-wide, but build from source, two environment variables have to be set accordingly:</p>
 <ul>
 <li><em>LD_LIBRARY_PATH</em> so the dynamic link loader knows where to search for the dynamic shared libraries;</li>
@@ -468,18 +465,16 @@ export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 </ul>
 <p>This could be done manually (e.g. by modifying <em>~/.bashrc</em>,<em>~/.zshrc</em>...) or with the following tool that produces the file
 <em>openfpm_vars</em>. This file has to be sourced every time in a new session before running OpenFPM related code.</p>
-<pre><code class="sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+<pre><code class="language-sh">./script/create_env_vars.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 source openfpm_vars
 </code></pre>
-
 <h2 id="building-openfpm">Building OpenFPM</h2>
 <p>OpenFPM uses CMake build system. For it to function properly, CMake has to be able to locate
 the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake. Additionaly, the script assumes some <em>openfpm</em> build parameters by default, e.g. build type, backend for CUDA-like code, enable/disable <em>numerics</em> module, debug utilities etc. These parameters can be modified inside <em>script/conf_CMake.sh</em></p>
-<pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+<pre><code class="language-sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 </code></pre>
-
 <p>The resultant CMake command is echoed to the terminal window and saved into the file <em>cmake_build_options</em></p>
-<pre><code class="sh">mkdir build
+<pre><code class="language-sh">mkdir build
 cd build 
 #insert the output of conf_CMake.sh and run the command
 # &lt;INSERT HERE&gt;
@@ -487,21 +482,19 @@ make -j $NCORE
 make install
 cd ..
 </code></pre>
-
 <p>CMake config options (dependencies found, debug/error handling macros etc.) are exported as <code>#define OPTION</code> to <code>${CMAKE_BINARY_DIR}/config/config.h</code> header file to be included by the source files. The config file is generated per build and is unique for every directory where CMake command was run.</p>
 <h2 id="updating-openfpm">Updating OpenFPM</h2>
 <p>To pull, build and install an up-to-date version of OpenFPM tracked by the local <em>Git</em> branch (here <em>master</em> or <em>develop</em>) run:</p>
-<pre><code class="sh">git pull origin master/develop
+<pre><code class="language-sh">git pull origin master/develop
 git submodule update
 cd build
 make -j $NCORE
 make install
 cd ..
 </code></pre>
-
 <h2 id="running-tests-and-examples">Running Tests and Examples</h2>
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
-<pre><code class="sh">cd openfpm_data
+<pre><code class="language-sh">cd openfpm_data
 mpirun -np 1 ../build/openfpm_data/src/mem_map --run_test=\*/\* --log_level=test_suite
 cd ..
 
@@ -525,7 +518,6 @@ cd openfpm_pdata
 mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=\*/\* --log_level=test_suite
 cd ..
 </code></pre>
-
 <p>Example simulation codes are compiled with Makefile. For the dependencies (that are not installed system-wide) to be linked properly,
 the following compiler options have to be set:</p>
 <ul>
@@ -536,37 +528,32 @@ the following compiler options have to be set:</p>
 <p>This could be done manually when compiling the example codes or with the following tool that produces the file <em>example.mk</em>.
 <em><strong>Warning</strong>: OpenFPM installed and the gpu examples have to be compiled in the same mode (i.e. via nvcc, hip, alpaka or gpu-emulated (SEQUENTIAL, OpenMP))</em><br>
 The file has to be placed in the folder <em>example</em>.</p>
-<pre><code class="sh">./script/create_example.mk.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+<pre><code class="language-sh">./script/create_example.mk.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 mv example.mk example
 </code></pre>
-
 <p>The example codes are split in subfolders. To compile and run an example (e.g. <em>Vector/0_simple</em>) use <em>Makefile</em></p>
-<pre><code class="sh">cd example/Vector/0_simple
+<pre><code class="language-sh">cd example/Vector/0_simple
 make run
 </code></pre>
-
 <p>If dependencies or the codebase of OpenFPM change, to recompile an example use</p>
-<pre><code class="sh">make clean
+<pre><code class="language-sh">make clean
 make run
 </code></pre>
-
 <h2 id="troubleshooting-known-issues">Troubleshooting: known issues</h2>
 <ul>
 <li><strong>Mac OS</strong>: <em>building for macOS-x86_64 but attempting to link with file built for macOS-x86_64</em>. If the error is reporting the same architecure (might be <em>arm64</em> as well), check whether <em>gcc</em> and <em>runlib</em> are showing the same backend consistantly, i.e. both have to be either <em>GNU</em> or <em>clang</em>. If not, modify your <em>$PATH</em> accordingly, e.g. in <em>.bashrc</em> or <em>.zshrc</em>, and rebuild the project/dependency</li>
 <li><strong>Mac OS</strong>: <em>CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)</em>. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running <code>make check</code> in PETSC directory. The command will fail with <code>dyld[...]: Library not loaded</code>, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via <code>-DPETSC_EXECUTABLE_RUNS=True</code> added to the output of the command:</li>
 </ul>
-<pre><code class="sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+<pre><code class="language-sh">./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
 </code></pre>
-
 <ul>
 <li><strong>Mac OS Xcode 15</strong>: <em>Undefined symbols:  Linker command failed with exit code 1 (use -v to see invocation)</em>. In the new version Xcode 15 has introduced the new linker which might cause linking errors for LLVM back-end compilers (clang or gcc supplied by Apple). Try reverting to an old linker with:</li>
 </ul>
-<pre><code class="sh"># Make sure you export the environment variable before running CMake,
+<pre><code class="language-sh"># Make sure you export the environment variable before running CMake,
 # as it is cached by CMake and becomes read-only when running make
 export LDFLAGS=&quot;$LDFLAGS -Wl,-ld_classic&quot;
 cmake ..
 </code></pre>
-
 <hr />
 <p>In addition to the building from source described below, OpenFPM packages are
 also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p></div>
@@ -617,6 +604,7 @@ also available as pre-built <a href="../download/">binaries</a> and <a href="../
         <script src="../js/base.js"></script>
         <script src="../js/retina.min.js"></script>
         <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
         <script src="../search/main.js"></script>
     </body>
 </html>

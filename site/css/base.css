@@ -166,7 +166,7 @@ div.news-table table > tbody > tr > td {
         width: 213px;
     }
     .bs-sidebar.affix {
-        position: fixed; /* Undo the static from mobile first approach */
+        position: absolute; /* Undo the static from mobile first approach */
         top: 80px;
     }
     .bs-sidebar.affix-bottom {

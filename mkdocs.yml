@@ -7,6 +7,10 @@ markdown_extensions:
 - fenced_code  # GitHub style code blocks, e.g. ```python, see https://highlightjs.readthedocs.org/en/latest/css-classes-reference.html for a list of languages
 - footnotes
 - attr_list  # Allow us to add link attributes
+- mdx_math
+
+extra_javascript:
+- https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
 
 repo_url: https://github.com/mosaic-group/openfpm
 remote_name: origin

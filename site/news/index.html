@@ -174,6 +174,8 @@
     
         <li class="main "><a href="#change-log">Change Log</a></li>
         
+            <li><a href="#openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</a></li>
+        
             <li><a href="#openfpm-500-feb-2024">OpenFPM 5.0.0 - Feb 2024</a></li>
         
             <li><a href="#openfpm-410-mar-2022">OpenFPM 4.1.0 - Mar 2022</a></li>
@@ -243,6 +245,10 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>1/6/2024</strong></td>
+<td><em>OpenFPM 5.1.0</em></td>
+</tr>
+<tr>
 <td><strong>12/2/2024</strong></td>
 <td><em>OpenFPM 5.0.0</em></td>
 </tr>
@@ -305,11 +311,30 @@
 </tbody>
 </table>
 <h1 id="change-log">Change Log</h1>
+<h2 id="openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</h2>
+<ul>
+<li>Refactor implementations of cell list and Verlet list <code>CellList</code>, <code>CellList_gpu</code>,<code>VerletList</code> and all neighborhood iterators. Move from keeping two sets (unordered and ordered) of positions/property vectors to reordering explicitly before launching CUDA kernels that utilize this feature</li>
+</ul>
+<h3 id="added">Added</h3>
+<ul>
+<li>Add adaptive cut-off radius Verlet list on CPU. Particles individual radii are passed as a vector to <code>getVerletAdaptRCut</code> of <code>openfpm_pdata</code>. Time complexity: O(N^2)</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li><code>cuda_launch</code> is a function instead of a macro</li>
+<li>Move project c++ standard to c++17</li>
+<li>Add bit-wise option flags that control lell list behaviour. Pass as a parameter <code>opt</code> to <code>getCellList</code> of <code>openfpm_pdata</code> or set directly on cell list via <code>setOpt</code></li>
+<li>Add support for the following cell list bit-wise option flags: <code>CL_SYMMETRIC</code>, <code>CL_NON_SYMMETRIC</code>, <code>CL_LOCAL_SYMMETRIC</code>, <code>CL_LINEAR_CELL_KEYS</code>, <code>CL_HILBERT_CELL_KEYS</code>, <code>CL_GPU_REORDER</code>, where for the last one <code>CL_GPU_REORDER</code> control options for reordering/restoring operations could be more fine-tuned: <code>CL_GPU_REORDER_POSITION</code>, <code>CL_GPU_REORDER_PROPERTY</code>, <code>CL_GPU_RESTORE_POSITION</code>, <code>CL_GPU_RESTORE_PROPERTY</code></li>
+<li>Add bit-wise option flags that control Verlet list behaviour. Pass as a template parameter <code>opt</code> in <code>VerletList</code> or pass Verlet list type with <code>opt</code> set to <code>getVerlet</code> of <code>openfpm_pdata</code>. The difference in how <code>opt</code> is set for cell list and Verlet list is due to legacy code</li>
+<li>Add support for the following Verlet list bit-wise option flags: <code>VL_NON_SYMMETRIC</code>, <code>VL_SYMMETRIC</code>, <code>VL_CRS_SYMMETRIC</code>, <code>VL_ADAPTIVE_RCUT</code>, <code>VL_NMAX_NEIGHBOR</code>, <code>VL_SKIP_REF_PART</code></li>
+<li><code>getCellListGPU</code> of <code>openfpm_pdata</code> doesn't fill a cell list with particle locations. Additionally, <code>updateCellListGPU</code> has to be called to perform this operation. The reason is to remove two identical fill operations in a row in simulations</li>
+<li>To reorder <code>vector_dist</code> for GPU coalesced memory access dictated by the cell list structure, cell list on GPU has to be constructed with one of the following flags enabled: <code>CL_GPU_REORDER</code>, <code>CL_GPU_REORDER_POSITION</code>, <code>CL_GPU_REORDER_PROPERTY</code>, <code>CL_GPU_RESTORE_POSITION</code>, <code>CL_GPU_RESTORE_PROPERTY</code>. Properties to be copied to reordered copies of position/property vectors have to be passed to <code>updateCellListGPU&lt;PROPERTIES&gt;(CELL LIST)</code> of <code>vector_dist</code>. Properties that undergone changes in reordered copies and have to be restored to the original position/property vectors have to be passed to <code>restoreOrder&lt;PROPERTIES&gt;(CELL LIST)</code> of <code>vector_dist</code></li>
+</ul>
 <h2 id="openfpm-500-feb-2024">OpenFPM 5.0.0 - Feb 2024</h2>
 <ul>
 <li>Move to <code>openfpm</code> meta OpenFPM project structure with git subprojects <code>openfpm_data</code>, <code>openfpm_devices</code>, <code>openfpm_io</code>, <code>openfpm_vcluster</code>, <code>openfpm_pdata</code>, <code>openfpm_numerics</code>. Example codes, installation scripts for dependencies, configuration scripts moved to <code>openfpm</code>. Only source code of <code>openfpm_pdata</code> kept in <code>openfpm_pdata</code></li>
 </ul>
-<h3 id="added">Added</h3>
+<h3 id="added_1">Added</h3>
 <ul>
 <li>Add DC-PSE GPU implementation</li>
 <li>Add support for <em>minter</em> header-only library. Installed automatically if <code>openfpm_numerics</code> is enabled</li>
@@ -324,7 +349,7 @@
 <li>Fix Cell List <code>getNNIterator</code> giving different neighborhood lists for dense and sparse versions</li>
 <li>Fix <code>sendrecvMultipleMessagesNBX</code> for message size &gt; 2 GB</li>
 </ul>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_1">Changes</h3>
 <ul>
 <li>Get rid of <em>autotools</em> emulation for installation procedure. Remove <code>install/update/upgrade</code> scripts. Move to <em>CMake</em> with manually building dependencies and manualy calling configuration scripts for <em>CMake</em>, <code>example.mk</code>, <code>openfpm_vars</code></li>
 <li>Remove <code>gdbui</code> from list of git subprojects</li>
@@ -346,7 +371,7 @@
 <ul>
 <li>Adding <em>DCPSE</em>, <em>Level-set</em> based numerics (Closest-point)</li>
 </ul>
-<h3 id="changes_1">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>Particles writer use now the new XML pvtp Paraview format</li>
 <li>Particles constructor does not accept discordance precision on space example:
@@ -363,7 +388,7 @@ Additional Notes:</li>
            is reading this message does not want to buy one for me :-)</li>
 <li>SparseGridGPU are unsupported untill AMD does not fix the bug reported <a href="https://github.com/ROCm-Developer-Tools/HIP/issues/2260">here</a>:</li>
 </ul>
-<h3 id="changes_2">Changes</h3>
+<h3 id="changes_3">Changes</h3>
 <ul>
 <li>None</li>
 </ul>
@@ -380,7 +405,7 @@ Additional Notes:</li>
 <ul>
 <li>Minors bugs</li>
 </ul>
-<h3 id="changes_3">Changes</h3>
+<h3 id="changes_4">Changes</h3>
 <ul>
 <li>In order to compile OpenFPM is now required a compiler implementing C++14 Standard</li>
 </ul>
@@ -413,7 +438,7 @@ Additional Notes:</li>
 </ul>
 <h2 id="openfpm-1x-end-of-life-theese-versions-are-not-supported-enymore">OpenFPM 1.X - End of life (Theese versions are not supported enymore )</h2>
 <h2 id="openfpm-200-feb-2019">OpenFPM 2.0.0 - Feb 2019</h2>
-<h3 id="added_1">Added</h3>
+<h3 id="added_2">Added</h3>
 <ul>
 <li>Adding GPU support (see example 1_gpu_first_step
                   3_molecular_dynamic_gpu 
@@ -437,7 +462,7 @@ Additional Notes:</li>
 </ul>
 <h2 id="openfpm-10x-end-of-life-theese-versions-are-not-supported-enymore">OpenFPM 1.0.X - End of life (Theese versions are not supported enymore)</h2>
 <h2 id="openfpm-110-feb-2018">OpenFPM 1.1.0 - Feb 2018</h2>
-<h3 id="added_2">Added</h3>
+<h3 id="added_3">Added</h3>
 <ul>
 <li>Interface for Multi-vector dynamic load balancing</li>
 <li>Increaded performance for grid ghost get</li>
@@ -458,7 +483,7 @@ Additional Notes:</li>
 <li>Fixing Intel compilation of Linear algebra</li>
 </ul>
 <h2 id="openfpm-100-sep-2017">OpenFPM 1.0.0 - Sep 2017</h2>
-<h3 id="added_3">Added</h3>
+<h3 id="added_4">Added</h3>
 <ul>
 <li>Introduced getDomainIterator for Cell-list</li>
 <li>New dynamic load balancing scheme to 7_SPH_opt (see Vector/7_SPH_opt)</li>
@@ -502,7 +527,7 @@ Additional Notes:</li>
 <li>MPI,PETSC,SUPERLU,Trilinos,MUMPS,SuiteSparse has been upgraded</li>
 </ul>
 <h2 id="openfpm-080-feb-2017">OpenFPM 0.8.0 - Feb 2017</h2>
-<h3 id="added_4">Added</h3>
+<h3 id="added_5">Added</h3>
 <ul>
 <li>Dynamic Load balancing</li>
 <li>Added SPH Dam break with Dynamic load balancing (7_sph_dlb)(7_sph_dlb_opt)</li>
@@ -528,7 +553,7 @@ Additional Notes:</li>
 <li>Multiphase verlet single to all case generate overflow</li>
 </ul>
 <h2 id="openfpm-070-dec-2016">OpenFPM 0.7.0 - Dec 2016</h2>
-<h3 id="added_5">Added</h3>
+<h3 id="added_6">Added</h3>
 <ul>
 <li>Symmetric cell-list/verlet list Crossing scheme</li>
 <li>VCluster examples</li>
@@ -546,7 +571,7 @@ Additional Notes:</li>
   BECAUSE OF THIS, PLEASE CLEAN THE OPENFPM FOLDER OTHERWISE YOU WILL END TO HAVE 2 VCLUSTER.HPP</li>
 </ul>
 <h2 id="openfpm-060-nov-2016">OpenFPM 0.6.0 - Nov 2016</h2>
-<h3 id="added_6">Added</h3>
+<h3 id="added_7">Added</h3>
 <ul>
 <li>Symmetric cell-list/verlet list</li>
 <li>Multi-phase cell-list and Multi-phase cell-list</li>
@@ -564,9 +589,9 @@ Additional Notes:</li>
               (Internal: Added OSX examples compilarion/running test in the release pipeline)</li>
 <li>gray_scott example code (variable not initialized)</li>
 </ul>
-<h3 id="changes_4">Changes</h3>
+<h3 id="changes_5">Changes</h3>
 <h2 id="openfpm-051-sep-2016">OpenFPM 0.5.1 - Sep 2016</h2>
-<h3 id="added_7">Added</h3>
+<h3 id="added_8">Added</h3>
 <ul>
 <li>ghost_put support for particles</li>
 <li>Full-Support for complex property on vector_dist (Serialization)</li>
@@ -592,7 +617,7 @@ Additional Notes:</li>
 <li>On gcc the -fext-numeric-literals compilation flag is now mandatory</li>
 </ul>
 <h2 id="openfpm-050-aug-2016">OpenFPM 0.5.0 - Aug 2016</h2>
-<h3 id="added_8">Added</h3>
+<h3 id="added_9">Added</h3>
 <ul>
 <li>map communicate particles across processors mooving the information of all the particle map_list give the possibility to give a list of property to move from one to another processor</li>
 <li>Numeric: Finite Differences discretization with matrix contruction and parallel solvers (See example ... )</li>
@@ -614,7 +639,7 @@ Additional Notes:</li>
 <li>Distributed grids on 1D do not work</li>
 </ul>
 <h2 id="openfpm-040-may-2016">OpenFPM 0.4.0 - May 2016</h2>
-<h3 id="added_9">Added</h3>
+<h3 id="added_10">Added</h3>
 <ul>
 <li>Grid with periodic boundary conditions</li>
 <li>VTK Writer for distributed vector, now is the default writer</li>
@@ -629,7 +654,7 @@ Additional Notes:</li>
 </ul>
 <h3 id="changed_8">Changed</h3>
 <h2 id="openfpm-030-apr-2016">OpenFPM 0.3.0 - Apr 2016</h2>
-<h3 id="added_10">Added</h3>
+<h3 id="added_11">Added</h3>
 <ul>
 <li>Molacular Dynamic example</li>
 <li>addUpdateCell list for more optimal update of the cell list instead of recreate the CellList</li>
@@ -652,7 +677,7 @@ Additional Notes:</li>
 <li>GoogleChart name function changed: AddPointGraph to AddLinesGraph and AddColumsGraph to AddHistGraph</li>
 </ul>
 <h2 id="openfpm-020-mar-2016">OpenFPM 0.2.0 - Mar 2016</h2>
-<h3 id="added_11">Added</h3>
+<h3 id="added_12">Added</h3>
 <ul>
 <li>Added Load Balancing and Dynamic Load Balancing on Beta</li>
 <li>PSE 1D example with multiple precision</li>
@@ -669,7 +694,7 @@ Additional Notes:</li>
 <li>Nothing to report</li>
 </ul>
 <h2 id="openfpm-010-feb-2016">OpenFPM 0.1.0 - Feb 2016</h2>
-<h3 id="added_12">Added</h3>
+<h3 id="added_13">Added</h3>
 <ul>
 <li>PSE 1D example</li>
 <li>Cell list example</li>
@@ -694,6 +719,8 @@ Additional Notes:</li>
         
     
         <li class="main "><a href="#change-log">Change Log</a></li>
+        
+            <li><a href="#openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</a></li>
         
             <li><a href="#openfpm-500-feb-2024">OpenFPM 5.0.0 - Feb 2024</a></li>
         

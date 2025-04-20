@@ -3,8 +3,6 @@
 ![](img/OpenFPM.png)
 OpenFPM is a scalable open framework for _particle_ and _particle-mesh_ codes on parallel computers.
 
-**Important Announcements**: OpenFPM annual [hackathon](hackathon24.md) in Spring 2024!
-
 </div><div class="col-md-7" markdown="1">
 
 ## Features

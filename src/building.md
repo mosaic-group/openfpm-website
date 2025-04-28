@@ -118,6 +118,7 @@ export PATH="$PREFIX_DEPENDS/MPI/bin:$PATH"
 ./script/install_BLITZ.sh $PREFIX_DEPENDS $NCORE
 ./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE
 ./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_MINTER.sh $PREFIX_DEPENDS
 
 ```
 

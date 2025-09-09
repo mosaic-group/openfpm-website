@@ -140,7 +140,7 @@ source openfpm_vars
 OpenFPM uses CMake build system. For it to function properly, CMake has to be able to locate
 the dependencies of OpenFPM. If they are not installed system-wide, the following script passes their locations to CMake. Additionaly, the script assumes some _openfpm_ build parameters by default, e.g. build type, backend for CUDA-like code, enable/disable _numerics_ module, debug utilities etc. These parameters can be modified inside _script/conf_CMake.sh_
 ```sh
-./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM
+./script/conf_CMake.sh $PREFIX_DEPENDS $PREFIX_OPENFPM $CC $CXX
 ```
 The resultant CMake command is echoed to the terminal window and saved into the file _cmake_build_options_
 

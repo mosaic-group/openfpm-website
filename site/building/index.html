@@ -213,11 +213,6 @@
 <td>x86-64/arm64</td>
 <td>No/No</td>
 </tr>
-<tr>
-<td>Windows (*only with Cygwin)</td>
-<td>x86-64/arm64</td>
-<td>Yes/No</td>
-</tr>
 </tbody>
 </table>
 <hr />
@@ -303,49 +298,49 @@ brew install gcc libtool make cmake git python bzip2 wget
 <td>openfpm_vcluster</td>
 <td>The Open MPI Project is an open source <a href="https://www.mpi-forum.org/">Message Passing Interface</a> implementation</td>
 <td>NO</td>
-<td>4.1.6 (building from source on cygwin not supported, has to be preinstalled)</td>
+<td>5.0.8</td>
 </tr>
 <tr>
 <td><a href="http://glaros.dtc.umn.edu/gkhome/metis/metis/overview">METIS</a></td>
 <td>openfpm_pdata</td>
 <td>METIS is a set of serial programs for partitioning graphs and producing fill reducing orderings for sparse matrices</td>
 <td>YES (or ParMETIS)</td>
-<td>5.1.0</td>
+<td>master (Oct 2025)</td>
 </tr>
 <tr>
 <td><a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a></td>
 <td>openfpm_pdata, openfpm_numerics</td>
 <td>Extends the functionality of METIS and includes routines that are especially suited for parallel AMR computations and large scale numerical simulations</td>
 <td>YES (or METIS)</td>
-<td>4.0.3</td>
+<td>master (Oct 2025)</td>
 </tr>
 <tr>
 <td><a href="https://www.boost.org/">BOOST</a></td>
 <td>openfpm_data, openfpm_vcluster, openfpm_io, openfpm_pdata, openfpm_numerics</td>
 <td>Set of libraries that provides support for templated data structures, multithreading, unit testing etc.</td>
 <td>NO</td>
-<td>1.84.0 (*works on arm64 macOS only with <code>clang</code>)</td>
+<td>1.85.0 (*works on arm64 macOS only with <code>clang</code>)</td>
 </tr>
 <tr>
 <td><a href="https://www.zlib.net/">zlib</a></td>
 <td>openfpm_io</td>
 <td>Lossless data-compression library needed by HDF5 to deflate stored files</td>
 <td>NO</td>
-<td>1.3.1 (*doesn't work on Windows)</td>
+<td>1.3.1</td>
 </tr>
 <tr>
 <td><a href="https://www.hdfgroup.org/">HDF5</a></td>
 <td>openfpm_io</td>
 <td>Distributed file format that supports large, complex, heterogeneous data. Requires <a href="https://www.zlib.net/">zlib</a></td>
 <td>NO</td>
-<td>1.14.3</td>
+<td>1.14.5</td>
 </tr>
 <tr>
 <td><a href="https://web-docs.gsi.de/~mkretz/Vc-0.7/index.html">Vc</a></td>
 <td>openfpm_data</td>
 <td>The library is a collection of SIMD vector classes with existing implementations for SSE, AVX, and a scalar fallback</td>
 <td>NO</td>
-<td>1.4.4</td>
+<td>1.4.1</td>
 </tr>
 <tr>
 <td><a href="https://www.hdfgroup.org/">libhilbert</a></td>
@@ -373,21 +368,21 @@ brew install gcc libtool make cmake git python bzip2 wget
 <td>openfpm_numerics</td>
 <td>An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations</td>
 <td>NO*</td>
-<td>0.3.26</td>
+<td>develop (Oct 2025, due to M1 Mac OS compat. issues)</td>
 </tr>
 <tr>
 <td><a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a></td>
 <td>openfpm_numerics</td>
 <td>A suite of sparse matrix algorithms. Here UMFPACK - multifrontal LU factorization module. Requires <a href="http://www.openblas.net/">OpenBLAS</a></td>
 <td>NO*</td>
-<td>5.7.2</td>
+<td>7.11.0</td>
 </tr>
 <tr>
 <td><a href="https://eigen.tuxfamily.org/index.php">Eigen</a></td>
 <td>openfpm_numerics</td>
 <td>Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires <a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a></td>
 <td>Yes* (or Petsc)</td>
-<td>3.4.0</td>
+<td>3.4.1</td>
 </tr>
 <tr>
 <td><a href="https://github.com/blitzpp/blitz">Blitz++</a></td>
@@ -408,7 +403,7 @@ brew install gcc libtool make cmake git python bzip2 wget
 <td>openfpm_numerics</td>
 <td>Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires <a href="http://www.openblas.net/">OpenBLAS</a>, <a href="https://people.engr.tamu.edu/davis/suitesparse.html">suitesparse</a>, <a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a></td>
 <td>Yes* (or Eigen)</td>
-<td>3.20.5</td>
+<td>3.23.7</td>
 </tr>
 <tr>
 <td><a href="https://git.mpi-cbg.de/mosaic/software/math/minter">minter</a></td>
@@ -425,7 +420,7 @@ brew install gcc libtool make cmake git python bzip2 wget
 <p><strong>If any of the OpenFPM dependencies is available system-wide the building from source step can be skipped!</strong></p>
 <p>The following script installs OpenFPM dependencies to the directory <code>/home/test/openfpm_dependencies</code>, compiled libraries and headers of OpenFPM to <code>/home/test/openfpm_install</code>, uses <em>gcc</em> toolkit, <em>4</em> cores and no gpu support for OpenMPI.</p>
 <pre><code class="language-sh"># here for gcc/g++. Also for icc/icpc and clang/clang++
-# to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
+# to enable gpu accelerated code in MPI and SUITESPARSE installed, set GPU_CUDA_SUPPORT=1
 export CC=gcc \
   CXX=g++ \
   F77=gfortran \
@@ -438,22 +433,24 @@ export CC=gcc \
 ./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_CUDA_SUPPORT $CC $CXX $F77 $FC &quot;--with-mpivendor=openmpi&quot;
 export PATH=&quot;$PREFIX_DEPENDS/MPI/bin:$PATH&quot;
 
-./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX 
-# Parmetis uses mpicc in make config by default
-./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE 
-./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE
-# Zlib uses CC=mpicc in ./configure
-./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
-./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE
-./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE
+./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
 ./script/install_VCDEVEL.sh $PREFIX_DEPENDS $NCORE $CC $CXX
 # Install dependencies for numerics (optional)
-./script/install_OPENBLAS.sh $PREFIX_DEPENDS $NCORE
-./script/install_SUITESPARSE.sh $PREFIX_DEPENDS $NCORE
-./script/install_EIGEN.sh $PREFIX_DEPENDS $NCORE
-./script/install_BLITZ.sh $PREFIX_DEPENDS $NCORE
-./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE
-./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_OPENBLAS.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_SUITESPARSE.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC $GPU_CUDA_SUPPORT
+./script/install_EIGEN.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_BLITZ.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+# if GPU_CUDA_SUPPORT enabled
+./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC $GPU_CUDA_SUPPORT 87
+# where the last parameter is cuda arch that could be determined with nvcc --list-gpu-arch
+# otherwise
+./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC $GPU_CUDA_SUPPORT
 ./script/install_MINTER.sh $PREFIX_DEPENDS
 
 </code></pre>

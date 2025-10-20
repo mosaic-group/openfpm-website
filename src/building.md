@@ -8,7 +8,6 @@
 | Linux | x86-64/arm64 | Yes/No |
 | macOS | x86-64/arm64 | Yes/Yes |
 | FreeBSD | x86-64/arm64 | No/No |
-| Windows (*only with Cygwin) | x86-64/arm64 | Yes/No |
 
 ---
 
@@ -60,22 +59,22 @@ OpenFPM is build upon the following open-source tools. Please intall these by bu
 
 | Tool | Submodule | Description | Optional | OpenFPM Version  |
 |---|---|---|---|---|
-| [Open MPI](https://www.open-mpi.org/) | openfpm_vcluster | The Open MPI Project is an open source [Message Passing Interface](https://www.mpi-forum.org/) implementation | NO | 4.1.6 (building from source on cygwin not supported, has to be preinstalled) |
-| [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | openfpm_pdata |  METIS is a set of serial programs for partitioning graphs and producing fill reducing orderings for sparse matrices | YES (or ParMETIS) | 5.1.0 |
-| [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | openfpm_pdata, openfpm_numerics | Extends the functionality of METIS and includes routines that are especially suited for parallel AMR computations and large scale numerical simulations | YES (or METIS) | 4.0.3 |
-| [BOOST](https://www.boost.org/) | openfpm_data, openfpm_vcluster, openfpm_io, openfpm_pdata, openfpm_numerics | Set of libraries that provides support for templated data structures, multithreading, unit testing etc. | NO | 1.84.0 (*works on arm64 macOS only with `clang`) |
-| [zlib](https://www.zlib.net/) | openfpm_io | Lossless data-compression library needed by HDF5 to deflate stored files | NO | 1.3.1 (*doesn't work on Windows) |
-| [HDF5](https://www.hdfgroup.org/) | openfpm_io | Distributed file format that supports large, complex, heterogeneous data. Requires [zlib](https://www.zlib.net/) | NO | 1.14.3 |
-| [Vc](https://web-docs.gsi.de/~mkretz/Vc-0.7/index.html) | openfpm_data | The library is a collection of SIMD vector classes with existing implementations for SSE, AVX, and a scalar fallback | NO | 1.4.4 |
+| [Open MPI](https://www.open-mpi.org/) | openfpm_vcluster | The Open MPI Project is an open source [Message Passing Interface](https://www.mpi-forum.org/) implementation | NO | 5.0.8 |
+| [METIS](http://glaros.dtc.umn.edu/gkhome/metis/metis/overview) | openfpm_pdata |  METIS is a set of serial programs for partitioning graphs and producing fill reducing orderings for sparse matrices | YES (or ParMETIS) | master (Oct 2025) |
+| [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | openfpm_pdata, openfpm_numerics | Extends the functionality of METIS and includes routines that are especially suited for parallel AMR computations and large scale numerical simulations | YES (or METIS) | master (Oct 2025) |
+| [BOOST](https://www.boost.org/) | openfpm_data, openfpm_vcluster, openfpm_io, openfpm_pdata, openfpm_numerics | Set of libraries that provides support for templated data structures, multithreading, unit testing etc. | NO | 1.85.0 (*works on arm64 macOS only with `clang`) |
+| [zlib](https://www.zlib.net/) | openfpm_io | Lossless data-compression library needed by HDF5 to deflate stored files | NO | 1.3.1 |
+| [HDF5](https://www.hdfgroup.org/) | openfpm_io | Distributed file format that supports large, complex, heterogeneous data. Requires [zlib](https://www.zlib.net/) | NO | 1.14.5 |
+| [Vc](https://web-docs.gsi.de/~mkretz/Vc-0.7/index.html) | openfpm_data | The library is a collection of SIMD vector classes with existing implementations for SSE, AVX, and a scalar fallback | NO | 1.4.1 |
 | [libhilbert](https://www.hdfgroup.org/) | openfpm_data | Library producing Hilbert indices for multidimensional data to iterate through the grid elements following an Hilbert space filling curve. | NO | master (*no active support) |
 | [HIP](https://rocm.docs.amd.com/projects/HIP/en/latest/) | openfpm_devices | A C++ runtime API and kernel language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
 | [alpaka](https://alpaka.readthedocs.io/en/latest/index.html) | openfpm_devices | A header-only C++17 abstraction library for accelerator development. One of the alternative execution backends for CUDA-like code supported by OpenFPM | Yes |  |
-| [OpenBLAS](http://www.openblas.net/) | openfpm_numerics | An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations | NO* | 0.3.26 |
-| [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | openfpm_numerics | A suite of sparse matrix algorithms. Here UMFPACK - multifrontal LU factorization module. Requires [OpenBLAS](http://www.openblas.net/) | NO* | 5.7.2 |
-| [Eigen](https://eigen.tuxfamily.org/index.php) | openfpm_numerics | Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | Yes* (or Petsc) | 3.4.0 |
+| [OpenBLAS](http://www.openblas.net/) | openfpm_numerics | An optimized BLAS (Basic Linear Algebra Subprograms) library, used for performing basic vector and matrix operations | NO* | develop (Oct 2025, due to M1 Mac OS compat. issues) |
+| [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | openfpm_numerics | A suite of sparse matrix algorithms. Here UMFPACK - multifrontal LU factorization module. Requires [OpenBLAS](http://www.openblas.net/) | NO* | 7.11.0 |
+| [Eigen](https://eigen.tuxfamily.org/index.php) | openfpm_numerics | Template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. Requires [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html) | Yes* (or Petsc) | 3.4.1 |
 | [Blitz++](https://github.com/blitzpp/blitz) | openfpm_numerics | A meta-template library for array manipulation in C++ with a speed comparable to Fortran implementations, while preserving an object-oriented interface | NO* | 1.0.2 |
 | [Algoim](https://algoim.github.io) | openfpm_numerics | A collection of high-order accurate numerical methods and C++ algorithms for working with implicitly-defined geometry and level set methods. Requires [Blitz++](https://github.com/blitzpp/blitz) | NO* | master |
-| [PETSc](https://petsc.org/) | openfpm_numerics |  Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires [OpenBLAS](http://www.openblas.net/), [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html), [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | Yes* (or Eigen) | 3.20.5 |
+| [PETSc](https://petsc.org/) | openfpm_numerics |  Scientific computation toolkit for linear and non-linear solvers, preconditioners, time integrators. Installs HYPRE, MUMPS, ScaLAPACK, SuperLU_DIST. Requires [OpenBLAS](http://www.openblas.net/), [suitesparse](https://people.engr.tamu.edu/davis/suitesparse.html), [ParMETIS](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview) | Yes* (or Eigen) | 3.23.7 |
 | [minter](https://git.mpi-cbg.de/mosaic/software/math/minter) | openfpm_numerics |  Multivariate interpolation module | No | header_only |
 
 ---
@@ -89,7 +88,7 @@ OpenFPM uses [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/index.
 The following script installs OpenFPM dependencies to the directory `/home/test/openfpm_dependencies`, compiled libraries and headers of OpenFPM to `/home/test/openfpm_install`, uses _gcc_ toolkit, _4_ cores and no gpu support for OpenMPI.
 ```sh
 # here for gcc/g++. Also for icc/icpc and clang/clang++
-# to enable gpu accelerated code in MPI installed, set GPU_CUDA_SUPPORT=1
+# to enable gpu accelerated code in MPI and SUITESPARSE installed, set GPU_CUDA_SUPPORT=1
 export CC=gcc \
   CXX=g++ \
   F77=gfortran \
@@ -102,22 +101,24 @@ export CC=gcc \
 ./script/install_MPI.sh $PREFIX_DEPENDS $NCORE $GPU_CUDA_SUPPORT $CC $CXX $F77 $FC "--with-mpivendor=openmpi"
 export PATH="$PREFIX_DEPENDS/MPI/bin:$PATH"
 
-./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX 
-# Parmetis uses mpicc in make config by default
-./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE 
-./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE
-# Zlib uses CC=mpicc in ./configure
-./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE
-./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE
-./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE
+./script/install_Metis.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_Parmetis.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_BOOST.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_ZLIB.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_HDF5.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC
+./script/install_LIBHILBERT.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
 ./script/install_VCDEVEL.sh $PREFIX_DEPENDS $NCORE $CC $CXX
 # Install dependencies for numerics (optional)
-./script/install_OPENBLAS.sh $PREFIX_DEPENDS $NCORE
-./script/install_SUITESPARSE.sh $PREFIX_DEPENDS $NCORE
-./script/install_EIGEN.sh $PREFIX_DEPENDS $NCORE
-./script/install_BLITZ.sh $PREFIX_DEPENDS $NCORE
-./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE
-./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_OPENBLAS.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_SUITESPARSE.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC $GPU_CUDA_SUPPORT
+./script/install_EIGEN.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_BLITZ.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+./script/install_ALGOIM.sh $PREFIX_DEPENDS $NCORE $CC $CXX $F77 $FC
+# if GPU_CUDA_SUPPORT enabled
+./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC $GPU_CUDA_SUPPORT 87
+# where the last parameter is cuda arch that could be determined with nvcc --list-gpu-arch
+# otherwise
+./script/install_PETSC.sh $PREFIX_DEPENDS $NCORE mpicc mpic++ $F77 $FC $GPU_CUDA_SUPPORT
 ./script/install_MINTER.sh $PREFIX_DEPENDS
 
 ```

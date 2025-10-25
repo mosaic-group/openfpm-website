@@ -491,27 +491,27 @@ cd ..
 <h2 id="running-tests-and-examples">Running Tests and Examples</h2>
 <p>Optionally, all tests could be run in each module to assure the project and dependencies work correctly</p>
 <pre><code class="language-sh">cd openfpm_data
-mpirun -np 1 ../build/openfpm_data/src/mem_map --run_test=\*/\* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_data/src/mem_map --log_level=test_suite
 cd ..
 
 cd openfpm_devices
-mpirun -np 1 ../build/openfpm_devices/src/mem --run_test=\*/\* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_devices/src/mem --log_level=test_suite
 cd ..
 
 cd openfpm_io
-mpirun -np 1 ../build/openfpm_io/src/io --run_test=\*/\* --log_level=test_suite
+mpirun -np 1 ../build/openfpm_io/src/io --log_level=test_suite
 cd ..
 
 cd openfpm_numerics
-mpirun -np 3 ../build/openfpm_numerics/src/numerics --run_test=\*/\* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_numerics/src/numerics --log_level=test_suite
 cd ..
 
 cd openfpm_vcluster
-mpirun -np 3 ../build/openfpm_vcluster/src/vcluster_test --run_test=\*/\* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_vcluster/src/vcluster_test --log_level=test_suite
 cd ..
 
 cd openfpm_pdata
-mpirun -np 3 ../build/openfpm_pdata/src/pdata --run_test=\*/\* --log_level=test_suite
+mpirun -np 3 ../build/openfpm_pdata/src/pdata --log_level=test_suite
 cd ..
 </code></pre>
 <p>Example simulation codes are compiled with Makefile. For the dependencies (that are not installed system-wide) to be linked properly,

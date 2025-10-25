@@ -44,7 +44,7 @@ See the [Cite us](about.md) page for the citation information.
 
 </div><div class="col-md-12" markdown="1">
 
-## Selected simulations
+##  Selected simulations
 
 OpenFPM is used in many projects, please see some of the simulation samples below. Other examples are available in the [Example section](vector-example.md).
 

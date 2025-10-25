@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://openfpm.mpi-cbg.de/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/about/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/building/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/docker/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/download/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/hackathon23/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/hackathon24/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/news/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/vector-example/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
     <url>
          <loc>http://openfpm.mpi-cbg.de/videos/</loc>
-         <lastmod>2025-10-20</lastmod>
+         <lastmod>2025-10-25</lastmod>
     </url>
 </urlset>

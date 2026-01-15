@@ -134,6 +134,15 @@
             
             
             
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="../download/">Download</a>
+                </li>
+            
+            
+            
             </ul>
 
             <!-- Search, Navigation and Repo links -->
@@ -273,11 +282,11 @@ git submodule foreach &quot;git pull origin develop&quot;
 <h2 id="dependencies">Dependencies</h2>
 <h3 id="install-prerequisites">Install prerequisites</h3>
 <pre><code class="language-sh"># for linux-based systems
-apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev python-dev wget
+apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev python3-dev wget libgmp3-dev libmpfr-dev
 # or 
-apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python-dev wget 
+apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python3-dev wget libgmp3-dev libmpfr-dev
 # for other systems
-yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python-devel libxml2-devel libxslt-devel wget
+yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python3-devel libxml2-devel libxslt-devel wget libgmp3-dev libmpfr-dev
 brew install gcc libtool make cmake git python bzip2 wget 
 </code></pre>
 <p>OpenFPM is build upon the following open-source tools. Please intall these by building from source or with a package manager. </p>
@@ -537,6 +546,7 @@ make run
 </code></pre>
 <h2 id="troubleshooting-known-issues">Troubleshooting: known issues</h2>
 <ul>
+<li><strong>Mac OS</strong>: <em>building for macOS-x86_64 but attempting to link with file built for macOS-x86_64</em>. If the error is reporting the same architecure (might be <em>arm64</em> as well), check whether <em>gcc</em> and <em>runlib</em> are showing the same backend consistantly, i.e. both have to be either <em>GNU</em> or <em>clang</em>. If not, modify your <em>$PATH</em> accordingly, e.g. in <em>.bashrc</em> or <em>.zshrc</em>, and rebuild the project/dependency</li>
 <li><strong>Mac OS</strong>: <em>building for macOS-x86_64 but attempting to link with file built for macOS-x86_64</em>. If the error is reporting the same architecure (might be <em>arm64</em> as well), check whether <em>gcc</em> and <em>runlib</em> are showing the same backend consistantly, i.e. both have to be either <em>GNU</em> or <em>clang</em>. If not, modify your <em>$PATH</em> accordingly, e.g. in <em>.bashrc</em> or <em>.zshrc</em>, and rebuild the project/dependency</li>
 <li><strong>Mac OS</strong>: <em>CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)</em>. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running <code>make check</code> in PETSC directory. The command will fail with <code>dyld[...]: Library not loaded</code>, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via <code>-DPETSC_EXECUTABLE_RUNS=True</code> added to the output of the command:</li>
 </ul>

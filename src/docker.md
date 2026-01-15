@@ -6,10 +6,9 @@ Docker is an open platform for developers to build, ship, and run distributed ap
 Please refer to user manuals to find more information about this tool, e.g. [here](http://people.irisa.fr/Anthony.Baire/docker-tutorial.pdf)
 
 OpenFPM provides the following CPU-only docker images with OpenFPM 
-pre-installed `openfpm/ubuntu:install20.04`, `openfpm/fedora:install34`.
+pre-installed `openfpm/ubuntu:install24.04`.
 
-Or the images with the GPU code enabled `openfpm/ubuntu_cuda:install10.2-devel-ubuntu18.04`,
-`openfpm/ubuntu_cuda:install11.2.2-devel-ubuntu20.04`.   
+Or the latest images with the GPU code enabled `openfpm/ubuntu_cuda:install24.04`.   
 
 To start the container in Linux general command would be
 ```sh
@@ -19,7 +18,7 @@ To start the container in Linux general command would be
  -v $HOME/<shared host folder>:<shared container folder> \
  -e GDK_SCALE -e GDK_DPI_SCALE \ 
  --gpus all `#for gpu containers, requires nvidia-container-toolkit` \ 
- --name openfpm openfpm/ubuntu:install20.04 bash
+ --name openfpm openfpm/ubuntu:install24.04 bash
 
 ```
 
@@ -34,7 +33,7 @@ To connect to the running container use
 
 Inside the container the preinstalled dependencies are located in `/root`, 
 the file with environment variables _openfpm_vars_ is located is `/root`,
-the source code of OpenFPM located in `/openfpm/openfpm_pdata`, 
+the source code of OpenFPM located in `/openfpm/openfpm`, 
 installation files of OpenFPM are located in `/usr/local`.
 
 ---

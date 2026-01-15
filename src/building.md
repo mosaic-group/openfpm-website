@@ -44,11 +44,11 @@ git submodule foreach "git pull origin develop"
 
 ```sh
 # for linux-based systems
-apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev python-dev wget
+apt-get install build-essential make cmake make cmake git bzip2 libbz2-dev python3-dev wget libgmp3-dev libmpfr-dev
 # or 
-apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python-dev wget 
+apt-get install gcc g++ gfortran libtool libxml2-dev libxslt-dev make cmake git bzip2 libbz2-dev python3-dev wget libgmp3-dev libmpfr-dev
 # for other systems
-yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python-devel libxml2-devel libxslt-devel wget
+yum install g++ gcc-gfortran libtool make cmake git bzip2 bzip2-devel python3-devel libxml2-devel libxslt-devel wget libgmp3-dev libmpfr-dev
 brew install gcc libtool make cmake git python bzip2 wget 
 ```
 
@@ -224,6 +224,7 @@ make run
 ```
 
 ## Troubleshooting: known issues
+- **Mac OS**: _building for macOS-x86_64 but attempting to link with file built for macOS-x86_64_. If the error is reporting the same architecure (might be _arm64_ as well), check whether _gcc_ and _runlib_ are showing the same backend consistantly, i.e. both have to be either _GNU_ or _clang_. If not, modify your _$PATH_ accordingly, e.g. in _.bashrc_ or _.zshrc_, and rebuild the project/dependency
 - **Mac OS**: _building for macOS-x86_64 but attempting to link with file built for macOS-x86_64_. If the error is reporting the same architecure (might be _arm64_ as well), check whether _gcc_ and _runlib_ are showing the same backend consistantly, i.e. both have to be either _GNU_ or _clang_. If not, modify your _$PATH_ accordingly, e.g. in _.bashrc_ or _.zshrc_, and rebuild the project/dependency
 - **Mac OS**: _CMake error: PETSC could not be found (missing: PETSC_EXECUTABLE_RUNS) (found version petsc...)_. Due to System Integrity Protection enabled, CMake module of PETSC might encounter problems when running a test program. This could be diagnosed by running `make check` in PETSC directory. The command will fail with `dyld[...]: Library not loaded`, while manually compiling the code samples (i.e. snes/tutorials) works. If the installation of PETSC works properly, the check PETSC_EXECUTABLE_RUNS in CMake could be disabled via `-DPETSC_EXECUTABLE_RUNS=True` added to the output of the command:
 ```sh

@@ -1,5 +1,9 @@
 ## All Releases
 
+_*Starting from the version 5.0.0 OpenFPM switched to the rolling release model. The recommended ways how to install the software are by [building from source](building.md) and by using the [Docker containers](docker.md)._
+
+### Legacy OpenFPM versions
+
  **Release Date** | **Size** | **Version** | **Filename** |
  ------------ | ----------- | ----------------- | -------- |
   Mar 29  2022 | 87M | 4.1.0 | [openfpm_pdata-4.1.0-Linux.15.3.x86_64.rpm](https://openfpm.mpi-cbg.de/upload/super_bundles/openfpm_pdata-4.1.0-Linux.15.3.x86_64.rpm) |

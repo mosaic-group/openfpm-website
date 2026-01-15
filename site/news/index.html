@@ -134,6 +134,15 @@
             
             
             
+            
+            
+                <li >
+                    <!-- Replace "nav_item.url|url" with "nav_item.url" for older mkdocs (before 1.0) -->
+                    <a href="../download/">Download</a>
+                </li>
+            
+            
+            
             </ul>
 
             <!-- Search, Navigation and Repo links -->
@@ -164,6 +173,8 @@
         
     
         <li class="main "><a href="#change-log">Change Log</a></li>
+        
+            <li><a href="#openfpm-520-sep-2025">OpenFPM 5.2.0 - Sep 2025</a></li>
         
             <li><a href="#openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</a></li>
         
@@ -236,6 +247,10 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>15/9/2025</strong></td>
+<td><em>OpenFPM 5.2.0</em></td>
+</tr>
+<tr>
 <td><strong>1/6/2024</strong></td>
 <td><em>OpenFPM 5.1.0</em></td>
 </tr>
@@ -302,15 +317,62 @@
 </tbody>
 </table>
 <h1 id="change-log">Change Log</h1>
+<h2 id="openfpm-520-sep-2025">OpenFPM 5.2.0 - Sep 2025</h2>
+<ul>
+<li>Refactor the internal structure of DC-PSE operators. Remove support building functions of DC-PSE on CPU to use a referenced Verlet List instead. Facilitate easier support sharing between DC-PSE operators. Add standard and adaptive surface DC-PSE operators on CPU. Update dependency installation scripts to up-to-date versions.</li>
+</ul>
+<h3 id="added">Added</h3>
+<ul>
+<li>Add a symmetric box iterator for cell list on GPU.</li>
+<li>Add support for multiphase adaptive verlet list.</li>
+<li>Add an option to skip reconstructing reordered Cell List if particles don't move.</li>
+<li>Add SPH dam break example with template expression operators.</li>
+<li>Add SPH dam break example with template expressions on GPU.</li>
+<li>Add SPH dam break example with OdeInt on CPU.</li>
+<li>Add adaptive surface DC-PSE operators.</li>
+</ul>
+<h3 id="changes">Changes</h3>
+<ul>
+<li>Pass Verlet list as an argument to DC-PSE constructors to remove support building functions from DC-PSE and facilitate easier support sharing.</li>
+<li>Split <code>Dcpse</code> into <code>Dcpse</code> and <code>SurfaceDcpse</code>. Rewrite <code>SupportBuilder</code> on GPU.</li>
+<li>Update default versions of the open-source dependencies. Enable CUDA support in PETSC.</li>
+<li>Move Minter installation from CMake to standalone script.</li>
+<li>Extend positions only on vector_dist.appendLocal().</li>
+<li>Reduce DC-PSE usage of math power function.</li>
+<li>Merge <code>POS_PROP</code> and <code>PROP_POS</code> to <code>POS_PROP</code>.</li>
+<li>Change Minter installation from github to tarball.</li>
+<li>Change interface of <code>getVerletAdaptRCut</code>. <code>rcut</code> is stored in the last particle property.</li>
+<li>Add SFINAE <code>getProp</code> interface to avoid compilation errors in non-<code>AdaptRCut</code> simulations.</li>
+<li>Perform PETSC auxillary libs support check in one go instead of testing one by one.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>Fix rvalue semantics in copy contructor in <code>CellList_gpu</code>.</li>
+<li>Fix <code>Dcpse_3D_test</code>.</li>
+<li>Fix <code>PPInterpolation</code> with <code>SurfaceDcpse</code>.</li>
+<li>Fix DC-PSE operator for <code>vector_dist_subset</code>.</li>
+<li>Fix external MPI communicator bugs.</li>
+<li>Add missing assignment of boxNeighborNumber in operator= of CellList_gpu.</li>
+<li>Fix partially incorrect initial values for parallel reduce operation.</li>
+<li>Fix position to property assignment expression.</li>
+<li>Fix OdeInt state vector assignment after <code>vector_dist.map()</code> in <code>SPH_dlb</code> example.</li>
+<li>Fixes PETSC detection with a new CMake Policy.</li>
+<li>Fix memory access error on adaptive Cell List update.</li>
+<li>Fix OdeInt iterator potential nullptr memory access.</li>
+<li>Fix <code>dcpse_surface_adaptive_planeCart</code> unit test in parallel mpi mode.</li>
+<li>Fix slicing vector expressions error on GPU.</li>
+<li>Fix <code>SE_CLASS1</code> error on <code>op_ssend_gg_recv_merge_impl</code>.</li>
+<li>Fix unit tests in <code>openfpm_numerics</code>, <code>openfpm_pdata</code> with <code>SE_CLASS1</code> enabled.</li>
+</ul>
 <h2 id="openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</h2>
 <ul>
 <li>Refactor implementations of cell list and Verlet list <code>CellList</code>, <code>CellList_gpu</code>,<code>VerletList</code> and all neighborhood iterators. Move from keeping two sets (unordered and ordered) of positions/property vectors to reordering explicitly before launching CUDA kernels that utilize this feature</li>
 </ul>
-<h3 id="added">Added</h3>
+<h3 id="added_1">Added</h3>
 <ul>
 <li>Add adaptive cut-off radius Verlet list on CPU. Particles individual radii are passed as a vector to <code>getVerletAdaptRCut</code> of <code>openfpm_pdata</code>. Time complexity: O(N^2)</li>
 </ul>
-<h3 id="changes">Changes</h3>
+<h3 id="changes_1">Changes</h3>
 <ul>
 <li><code>cuda_launch</code> is a function instead of a macro</li>
 <li>Move project c++ standard to c++17</li>
@@ -325,13 +387,13 @@
 <ul>
 <li>Move to <code>openfpm</code> meta OpenFPM project structure with git subprojects <code>openfpm_data</code>, <code>openfpm_devices</code>, <code>openfpm_io</code>, <code>openfpm_vcluster</code>, <code>openfpm_pdata</code>, <code>openfpm_numerics</code>. Example codes, installation scripts for dependencies, configuration scripts moved to <code>openfpm</code>. Only source code of <code>openfpm_pdata</code> kept in <code>openfpm_pdata</code></li>
 </ul>
-<h3 id="added_1">Added</h3>
+<h3 id="added_2">Added</h3>
 <ul>
 <li>Add DC-PSE GPU implementation</li>
 <li>Add support for <em>minter</em> header-only library. Installed automatically if <code>openfpm_numerics</code> is enabled</li>
 <li>Add <em>Odeint</em> GPU support</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li>Fix <code>remove_marked</code> when number of particles is decreased and memory is reused</li>
 <li>Fix <code>host_to_device_impl</code> when <em>allocated</em> size &gt; <em>actual</em> size </li>
@@ -340,7 +402,7 @@
 <li>Fix Cell List <code>getNNIterator</code> giving different neighborhood lists for dense and sparse versions</li>
 <li>Fix <code>sendrecvMultipleMessagesNBX</code> for message size &gt; 2 GB</li>
 </ul>
-<h3 id="changes_1">Changes</h3>
+<h3 id="changes_2">Changes</h3>
 <ul>
 <li>Get rid of <em>autotools</em> emulation for installation procedure. Remove <code>install/update/upgrade</code> scripts. Move to <em>CMake</em> with manually building dependencies and manualy calling configuration scripts for <em>CMake</em>, <code>example.mk</code>, <code>openfpm_vars</code></li>
 <li>Remove <code>gdbui</code> from list of git subprojects</li>
@@ -354,7 +416,7 @@
 <ul>
 <li>On a general base the code should not use <code>CUDA_ON_CPU</code> but if it does <code>CUDA_ON_CPU</code> macro now cover both <code>SEQUENTIAL</code> and <code>OpenMP</code> backend. The macros <code>CUDIFY_USE_CUDA,CUDIFY_USE_HIP,CUDIFY_USE_OPENMP,CUDIFY_USE_SEQUENTIAL,CUDIFY_USE_NONE</code> can be checked to control which CUDA backend is used</li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li>Minors bug</li>
 </ul>
@@ -362,7 +424,7 @@
 <ul>
 <li>Adding <em>DCPSE</em>, <em>Level-set</em> based numerics (Closest-point)</li>
 </ul>
-<h3 id="changes_2">Changes</h3>
+<h3 id="changes_3">Changes</h3>
 <ul>
 <li>Particles writer use now the new XML pvtp Paraview format</li>
 <li>Particles constructor does not accept discordance precision on space example:
@@ -379,11 +441,11 @@ Additional Notes:</li>
            is reading this message does not want to buy one for me :-)</li>
 <li>SparseGridGPU are unsupported untill AMD does not fix the bug reported <a href="https://github.com/ROCm-Developer-Tools/HIP/issues/2260">here</a>:</li>
 </ul>
-<h3 id="changes_3">Changes</h3>
+<h3 id="changes_4">Changes</h3>
 <ul>
 <li>None</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>uninitialized variables in the SPH example on GPU, and other fixes necessary for <em>AMD</em> gpus</li>
 </ul>
@@ -392,11 +454,11 @@ Additional Notes:</li>
 <li>Adding <code>CUDA_ON_CPU</code> option to run CUDA code on CPU</li>
 <li>Adding <code>gdb-gui</code> debugger</li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>Minors bugs</li>
 </ul>
-<h3 id="changes_4">Changes</h3>
+<h3 id="changes_5">Changes</h3>
 <ul>
 <li>In order to compile OpenFPM is now required a compiler implementing C++14 Standard</li>
 </ul>
@@ -405,7 +467,7 @@ Additional Notes:</li>
 <li>Adding GPU support for <code>ghost_put</code></li>
 <li>Adding support for CUDA 11</li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li>Few details in the installation system of linear algebra for OSX</li>
 </ul>
@@ -419,7 +481,7 @@ Additional Notes:</li>
 <li>Adding CPU and GPU sparse grids. Look at the examples SparseGrid in the forlder examples</li>
 <li>Improving performance of GPU function remove_marked</li>
 </ul>
-<h3 id="fixed_5">Fixed</h3>
+<h3 id="fixed_6">Fixed</h3>
 <ul>
 <li>Several installation bugs on PETSC installation</li>
 </ul>
@@ -429,14 +491,14 @@ Additional Notes:</li>
 </ul>
 <h2 id="openfpm-1x-end-of-life-theese-versions-are-not-supported-enymore">OpenFPM 1.X - End of life (Theese versions are not supported enymore )</h2>
 <h2 id="openfpm-200-feb-2019">OpenFPM 2.0.0 - Feb 2019</h2>
-<h3 id="added_2">Added</h3>
+<h3 id="added_3">Added</h3>
 <ul>
 <li>Adding GPU support (see example 1_gpu_first_step
                   3_molecular_dynamic_gpu 
                                   7_sph_dlb_gpu 
                                   7_sph_dlb_gpu_opt)</li>
 </ul>
-<h3 id="fixed_6">Fixed</h3>
+<h3 id="fixed_7">Fixed</h3>
 <ul>
 <li>Detection of clang 10.0.0 on mac-osx mojave</li>
 <li>In VTK binary format all 64 bit types are casted to 32 bit. Either the long/unsigned_long are bugged in Paraview we tested, either I do not understand how they work.</li>
@@ -447,13 +509,13 @@ Additional Notes:</li>
            Most probably you have to change in your code from Vcluster to Vcluster&lt;&gt;</li>
 </ul>
 <h2 id="openfpm-111-dec-2018">OpenFPM 1.1.1 - Dec 2018</h2>
-<h3 id="fixed_7">Fixed</h3>
+<h3 id="fixed_8">Fixed</h3>
 <ul>
 <li>Detection of clang 10.0.0 on mac-osx mojave</li>
 </ul>
 <h2 id="openfpm-10x-end-of-life-theese-versions-are-not-supported-enymore">OpenFPM 1.0.X - End of life (Theese versions are not supported enymore)</h2>
 <h2 id="openfpm-110-feb-2018">OpenFPM 1.1.0 - Feb 2018</h2>
-<h3 id="added_3">Added</h3>
+<h3 id="added_4">Added</h3>
 <ul>
 <li>Interface for Multi-vector dynamic load balancing</li>
 <li>Increaded performance for grid ghost get</li>
@@ -465,7 +527,7 @@ Additional Notes:</li>
   a serial section to a parallel section</li>
 <li>Introduced map(LOCAL) for fast communication in case we have small movement</li>
 </ul>
-<h3 id="fixed_8">Fixed</h3>
+<h3 id="fixed_9">Fixed</h3>
 <ul>
 <li>Installation/detection of PETSC</li>
 <li>CRITICAL-BUG scalar product in combination with vector product is broken (it return 0)</li>
@@ -474,7 +536,7 @@ Additional Notes:</li>
 <li>Fixing Intel compilation of Linear algebra</li>
 </ul>
 <h2 id="openfpm-100-sep-2017">OpenFPM 1.0.0 - Sep 2017</h2>
-<h3 id="added_4">Added</h3>
+<h3 id="added_5">Added</h3>
 <ul>
 <li>Introduced getDomainIterator for Cell-list</li>
 <li>New dynamic load balancing scheme to 7_SPH_opt (see Vector/7_SPH_opt)</li>
@@ -491,7 +553,7 @@ Additional Notes:</li>
 <li>Added setPropNames in vector_dist see Vector/0_simple</li>
 <li>Support for Windows with CYGWIN</li>
 </ul>
-<h3 id="fixed_9">Fixed</h3>
+<h3 id="fixed_10">Fixed</h3>
 <ul>
 <li>Bug fixes in installation of PETSC</li>
 <li>2 Bugs in 7_SPH_opt and 7_SPH_opt error in Kernel and update for boundary particles</li>
@@ -518,7 +580,7 @@ Additional Notes:</li>
 <li>MPI,PETSC,SUPERLU,Trilinos,MUMPS,SuiteSparse has been upgraded</li>
 </ul>
 <h2 id="openfpm-080-feb-2017">OpenFPM 0.8.0 - Feb 2017</h2>
-<h3 id="added_5">Added</h3>
+<h3 id="added_6">Added</h3>
 <ul>
 <li>Dynamic Load balancing</li>
 <li>Added SPH Dam break with Dynamic load balancing (7_sph_dlb)(7_sph_dlb_opt)</li>
@@ -529,7 +591,7 @@ Additional Notes:</li>
 <li>Added for debugging the options PRINT_STACKTRACE, CHECKFOR_POSNAN, CHECKFOR_POSINF, CHECKFOR_PROPINF, CHECKFOR_PROPNAN, SE_CLASS3.</li>
 <li>Added the possibility to write binary VTK files using VTK_WRITER and FORMAT_BINARY see 0_simple_vector for an example</li>
 </ul>
-<h3 id="fixed_10">Fixed</h3>
+<h3 id="fixed_11">Fixed</h3>
 <ul>
 <li>Installation of PETSC with MUMPS  </li>
 </ul>
@@ -539,18 +601,18 @@ Additional Notes:</li>
 <li>Eigen updated to 3.3.7</li>
 </ul>
 <h2 id="openfpm-071-jan-2017">OpenFPM 0.7.1 - Jan 2017</h2>
-<h3 id="fixed_11">Fixed</h3>
+<h3 id="fixed_12">Fixed</h3>
 <ul>
 <li>Multiphase verlet single to all case generate overflow</li>
 </ul>
 <h2 id="openfpm-070-dec-2016">OpenFPM 0.7.0 - Dec 2016</h2>
-<h3 id="added_6">Added</h3>
+<h3 id="added_7">Added</h3>
 <ul>
 <li>Symmetric cell-list/verlet list Crossing scheme</li>
 <li>VCluster examples</li>
 <li>Cell-list crossing scheme</li>
 </ul>
-<h3 id="fixed_12">Fixed</h3>
+<h3 id="fixed_13">Fixed</h3>
 <ul>
 <li>CRITICAL BUG: OpenFPM has a bug handling decomposition when a processor has a disconnected domains
                 (By experience this case has been seen on big number of processors).</li>
@@ -562,7 +624,7 @@ Additional Notes:</li>
   BECAUSE OF THIS, PLEASE CLEAN THE OPENFPM FOLDER OTHERWISE YOU WILL END TO HAVE 2 VCLUSTER.HPP</li>
 </ul>
 <h2 id="openfpm-060-nov-2016">OpenFPM 0.6.0 - Nov 2016</h2>
-<h3 id="added_7">Added</h3>
+<h3 id="added_8">Added</h3>
 <ul>
 <li>Symmetric cell-list/verlet list</li>
 <li>Multi-phase cell-list and Multi-phase cell-list</li>
@@ -573,23 +635,23 @@ Additional Notes:</li>
         6_complex_usage It show how the flexibility of openfpm can be used to debug your program</li>
 <li>Plotting system can export graph in svg (to be included in the paper)</li>
 </ul>
-<h3 id="fixed_13">Fixed</h3>
+<h3 id="fixed_14">Fixed</h3>
 <ul>
 <li>Option NO_POSITION was untested</li>
 <li>Regression: Examples code compilation was broken on OSX (Affect only 0.5.1)
               (Internal: Added OSX examples compilarion/running test in the release pipeline)</li>
 <li>gray_scott example code (variable not initialized)</li>
 </ul>
-<h3 id="changes_5">Changes</h3>
+<h3 id="changes_6">Changes</h3>
 <h2 id="openfpm-051-sep-2016">OpenFPM 0.5.1 - Sep 2016</h2>
-<h3 id="added_8">Added</h3>
+<h3 id="added_9">Added</h3>
 <ul>
 <li>ghost_put support for particles</li>
 <li>Full-Support for complex property on vector_dist (Serialization)</li>
 <li>Added examples for serialization of complex properties 4_Vector</li>
 <li>improved speed of the iterators</li>
 </ul>
-<h3 id="fixed_14">Fixed</h3>
+<h3 id="fixed_15">Fixed</h3>
 <ul>
 <li>Installation PETSC installation fail in case of preinstalled MPI</li>
 <li>Miss-compilation of SUITESPARSE on gcc-6.2</li>
@@ -608,7 +670,7 @@ Additional Notes:</li>
 <li>On gcc the -fext-numeric-literals compilation flag is now mandatory</li>
 </ul>
 <h2 id="openfpm-050-aug-2016">OpenFPM 0.5.0 - Aug 2016</h2>
-<h3 id="added_9">Added</h3>
+<h3 id="added_10">Added</h3>
 <ul>
 <li>map communicate particles across processors mooving the information of all the particle map_list give the possibility to give a list of property to move from one to another processor</li>
 <li>Numeric: Finite Differences discretization with matrix contruction and parallel solvers (See example ... )</li>
@@ -619,7 +681,7 @@ Additional Notes:</li>
 <li>Multi-phase CellList</li>
 <li>Hilber curve data and computation reordering for cache firndliness</li>
 </ul>
-<h3 id="fixed_15">Fixed</h3>
+<h3 id="fixed_16">Fixed</h3>
 <ul>
 <li>Removed small crash for small grid and big number of processors</li>
 </ul>
@@ -630,14 +692,14 @@ Additional Notes:</li>
 <li>Distributed grids on 1D do not work</li>
 </ul>
 <h2 id="openfpm-040-may-2016">OpenFPM 0.4.0 - May 2016</h2>
-<h3 id="added_10">Added</h3>
+<h3 id="added_11">Added</h3>
 <ul>
 <li>Grid with periodic boundary conditions</li>
 <li>VTK Writer for distributed vector, now is the default writer</li>
 <li>Installation of linear algebra packages</li>
 <li>More user friendly installation (No environment variables to add in your bashrc, installation report less verbose)</li>
 </ul>
-<h3 id="fixed_16">Fixed</h3>
+<h3 id="fixed_17">Fixed</h3>
 <ul>
 <li>GPU compilation</li>
 <li>PARMetis automated installation</li>
@@ -645,12 +707,12 @@ Additional Notes:</li>
 </ul>
 <h3 id="changed_8">Changed</h3>
 <h2 id="openfpm-030-apr-2016">OpenFPM 0.3.0 - Apr 2016</h2>
-<h3 id="added_11">Added</h3>
+<h3 id="added_12">Added</h3>
 <ul>
 <li>Molacular Dynamic example</li>
 <li>addUpdateCell list for more optimal update of the cell list instead of recreate the CellList</li>
 </ul>
-<h3 id="fixed_17">Fixed</h3>
+<h3 id="fixed_18">Fixed</h3>
 <ul>
 <li>Nothing to report</li>
 </ul>
@@ -668,14 +730,14 @@ Additional Notes:</li>
 <li>GoogleChart name function changed: AddPointGraph to AddLinesGraph and AddColumsGraph to AddHistGraph</li>
 </ul>
 <h2 id="openfpm-020-mar-2016">OpenFPM 0.2.0 - Mar 2016</h2>
-<h3 id="added_12">Added</h3>
+<h3 id="added_13">Added</h3>
 <ul>
 <li>Added Load Balancing and Dynamic Load Balancing on Beta</li>
 <li>PSE 1D example with multiple precision</li>
 <li>Plot example for GoogleChart plotting</li>
 <li>Distributed data structure now support 128bit floating point precision (on Beta)</li>
 </ul>
-<h3 id="fixed_18">Fixed</h3>
+<h3 id="fixed_19">Fixed</h3>
 <ul>
 <li>Detection 32 bit system and report as an error</li>
 <li>Bug in rounding off for periodic boundary condition</li>
@@ -685,7 +747,7 @@ Additional Notes:</li>
 <li>Nothing to report</li>
 </ul>
 <h2 id="openfpm-010-feb-2016">OpenFPM 0.1.0 - Feb 2016</h2>
-<h3 id="added_13">Added</h3>
+<h3 id="added_14">Added</h3>
 <ul>
 <li>PSE 1D example</li>
 <li>Cell list example</li>
@@ -693,7 +755,7 @@ Additional Notes:</li>
 <li>Kickstart for OpenFPM_numeric</li>
 <li>Automated dependency installation for SUITESPRASE EIGEN OPENBLAS(LAPACK)</li>
 </ul>
-<h3 id="fixed_19">Fixed</h3>
+<h3 id="fixed_20">Fixed</h3>
 <ul>
 <li>CRITICAL BUG in periodic bondary condition</li>
 <li>BOOST auto updated to 1.60</li>
@@ -710,6 +772,8 @@ Additional Notes:</li>
         
     
         <li class="main "><a href="#change-log">Change Log</a></li>
+        
+            <li><a href="#openfpm-520-sep-2025">OpenFPM 5.2.0 - Sep 2025</a></li>
         
             <li><a href="#openfpm-510-jun-2024">OpenFPM 5.1.0 - Jun 2024</a></li>
         

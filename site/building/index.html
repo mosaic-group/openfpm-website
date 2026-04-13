@@ -560,6 +560,11 @@ make run
 export LDFLAGS=&quot;$LDFLAGS -Wl,-ld_classic&quot;
 cmake ..
 </code></pre>
+<ul>
+<li><strong>Missing gmp3 or mpfr libraries during SuiteSparse installation</strong>: install missing libraries from source. Modify <em>install_SUITESPARSE.sh</em> by adding the following CMake variables <code>-DGMP_INCLUDE_DIR=... -DGMP_LIBRARY=... -DMPFR_INCLUDE_DIR=... -DMPFR_LIBRARY=...</code> to <code>CMAKE_OPTIONS</code>.</li>
+<li><strong>Linking PETSC to Metis fails</strong>: copy or create a symlink of <code>libGKlib.so.0</code> from <code>$PREFIX_DEPENDS/METIS/lib64</code> to <code>$PREFIX_DEPENDS/METIS/lib</code>.</li>
+<li><strong>Linking SuiteSparse fails</strong>: change from <code>SUITESPARSE/lib</code> to <code>SUITESPARSE/lib64</code> in <code>example.mk</code> and <code>openfpm_vars</code>.</li>
+</ul>
 <hr />
 <p>In addition to the building from source described below, OpenFPM packages are
 also available as pre-built <a href="../download/">binaries</a> and <a href="../docker/">Docker images</a></p></div>

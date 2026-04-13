@@ -2,6 +2,7 @@
 
 <img width=130px, style="margin:-20px"> | |
 ------------ | -----------------------------------------------------------------
+**15/9/2025** | *OpenFPM 5.2.0*
 **1/6/2024** | *OpenFPM 5.1.0*
 **12/2/2024** | *OpenFPM 5.0.0*
 **29/3/2022** | *OpenFPM 4.1.0*
@@ -20,6 +21,51 @@
 **5/11/2016** | *OpenFPM 0.6.0*
 
 # Change Log
+
+## OpenFPM 5.2.0 - Sep 2025
+- Refactor the internal structure of DC-PSE operators. Remove support building functions of DC-PSE on CPU to use a referenced Verlet List instead. Facilitate easier support sharing between DC-PSE operators. Add standard and adaptive surface DC-PSE operators on CPU. Update dependency installation scripts to up-to-date versions.
+
+### Added
+- Add a symmetric box iterator for cell list on GPU.
+- Add support for multiphase adaptive verlet list.
+- Add an option to skip reconstructing reordered Cell List if particles don't move.
+- Add SPH dam break example with template expression operators.
+- Add SPH dam break example with template expressions on GPU.
+- Add SPH dam break example with OdeInt on CPU.
+- Add adaptive surface DC-PSE operators.
+
+
+### Changes
+- Pass Verlet list as an argument to DC-PSE constructors to remove support building functions from DC-PSE and facilitate easier support sharing.
+- Split `Dcpse` into `Dcpse` and `SurfaceDcpse`. Rewrite `SupportBuilder` on GPU.
+- Update default versions of the open-source dependencies. Enable CUDA support in PETSC.
+- Move Minter installation from CMake to standalone script.
+- Extend positions only on `vector_dist.appendLocal()`.
+- Reduce DC-PSE usage of math power function.
+- Merge `POS_PROP` and `PROP_POS` to `POS_PROP`.
+- Change Minter installation from github to tarball.
+- Change interface of `getVerletAdaptRCut`. `rcut` is stored in the last particle property.
+- Add SFINAE `getProp` interface to avoid compilation errors in non-`AdaptRCut` simulations.
+- Perform PETSC auxillary libs support check in one go instead of testing one by one.
+
+### Fixed
+- Fix rvalue semantics in copy contructor in `CellList_gpu`.
+- Fix `Dcpse_3D_test`.
+- Fix `PPInterpolation` with `SurfaceDcpse`.
+- Fix DC-PSE operator for `vector_dist_subset`.
+- Fix external MPI communicator bugs.
+- Add missing assignment of `boxNeighborNumber` in `operator=` of CellList_gpu.
+- Fix partially incorrect initial values for parallel reduce operation.
+- Fix position to property assignment expression.
+- Fix OdeInt state vector assignment after `vector_dist.map()` in `SPH_dlb` example.
+- Fixes PETSC detection with a new CMake Policy.
+- Fix memory access error on adaptive Cell List update.
+- Fix OdeInt iterator potential nullptr memory access.
+- Fix `dcpse_surface_adaptive_planeCart` unit test in parallel mpi mode.
+- Fix slicing vector expressions error on GPU.
+- Fix `SE_CLASS1` error on `op_ssend_gg_recv_merge_impl`.
+- Fix unit tests in `openfpm_numerics`, `openfpm_pdata` with `SE_CLASS1` enabled.
+
 
 ## OpenFPM 5.1.0 - Jun 2024
 - Refactor implementations of cell list and Verlet list `CellList`, `CellList_gpu`,`VerletList` and all neighborhood iterators. Move from keeping two sets (unordered and ordered) of positions/property vectors to reordering explicitly before launching CUDA kernels that utilize this feature
